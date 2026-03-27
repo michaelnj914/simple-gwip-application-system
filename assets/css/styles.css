@@ -1,0 +1,466 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+   /* overflow-y: auto; */
+}
+
+.form-container {
+  width: 1000px;
+  margin: 40px auto;
+  border: 2px solid #000;
+  background: #f5f1f1;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  /* padding-bottom: 10px; */
+}
+
+
+.logo {
+  width: 150px;
+  height: 110px;
+  margin-right: 15px;
+}
+
+.header-text h2 {
+  margin: 0;
+  font-size: 33px;
+  font-weight: bold;
+}
+
+.header-text p {
+  margin: 2px 0;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+
+/* SUB HEADER */
+.sub-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 13px;
+  margin-bottom: -10px;
+}
+
+.date {
+  border-bottom: 1px solid #000;
+  width: 200px;
+  display: inline-block;
+}
+
+
+/* SECTION BOX */
+.section-box {
+  border: 2px solid #000;
+  padding: 10px;
+  margin-top: 10px;
+  
+}
+
+.section-title {
+  font-weight: bold;
+  margin-top: 17px;
+  margin-bottom: 15px;
+}
+
+.section-title span {
+    font-size: 17px;
+    margin-right: 7px;
+    border-bottom: 2px solid black;
+}
+
+
+
+
+
+/* CHECKBOX LINE */
+.checkbox-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left:  20px;
+}
+
+
+
+/* COUNTRY CHOICE */
+.country-choice {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* gap: 60px; */
+}
+
+.input-box {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.input-box::after {
+  content: attr(data-label);
+  display: block;
+  font-size: 12px;
+  color: gray;
+  margin-top: 3px;
+  text-align: center;
+}
+
+/* .country-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+} */
+
+/* .country-row div {
+  width: 30%;
+  border-bottom: 1px dashed #000;
+  text-align: center;
+  padding-bottom: 3px;
+} */
+
+.form-group {
+  margin-top: 10px;
+}
+
+.line-input {
+  border: none;
+  border-bottom: 1px dashed #000;
+  width: 69%;
+  outline: none;
+  /* position: relative; */
+}
+
+
+/* .row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.col {
+  flex: 1;
+} */
+
+.personal-container {
+  display: flex;
+  gap: 20px;
+}
+
+.personal-left {
+  flex: 2;
+}
+
+.personal-right {
+  flex: 1;
+  border: 1px solid #000;
+  height: 220px;
+  max-width: 220px;
+  z-index: 1;
+  margin-top: 7%;
+  display: flex;
+  align-items: center;
+  /* justify-content: column; */
+  font-size: 14px;
+}
+
+
+.inline-fields {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inline-fields input {
+  border: none;
+  border-bottom: 1px dashed #000;
+  outline: none;
+}
+
+
+/* TABLE */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 6px;
+  font-size: 13px;
+}
+
+th {
+  text-align: center;
+}
+
+
+
+
+table input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px dashed #000;
+}
+
+
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+thead {
+  background: #619cd3;
+  color: #fff;
+}
+
+tbody tr:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+th {
+  background: #d5d9db;
+  color: black;
+}
+tr:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+
+
+
+
+.gap,
+select {
+  border: none;
+  border-bottom: 1px dashed #000;
+  width: 100%;
+  font-size: 15px;
+  outline: none;
+  /* background: transparent; */
+}
+
+
+.review-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  /* border-bottom: 2px dashed; */
+}
+
+
+.red-title {
+  border: 2px solid red;
+  padding: 5px;
+  display: inline-block;
+  color: red;
+  margin-top: 30px;
+  margin-bottom: -9px;
+}
+
+
+
+
+.sub-section {
+  margin-top: 10px;
+}
+
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 5px;
+}
+
+
+
+
+
+/* dashed line inputs */
+.line-dash {
+  border: none;
+  border-bottom: 1px dashed #000;
+  width: 95%;
+  outline: none;
+}
+
+
+/* textarea styled like dashed lines */
+.job-desc textarea {
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-bottom: 1px dashed #000;
+  outline: none;
+  resize: none;
+  margin-bottom: 7px;
+}
+
+
+
+
+/* tighter table spacing like form */
+table td {
+  padding: 8px;
+}
+
+/* section spacing */
+.section-box {
+  margin-top: 15px;
+}
+
+/* dashed input styles */
+.line-dash {
+  border: none;
+  border-bottom: 1px dashed #000;
+  outline: none;
+  width: 80%;
+}
+
+.line-dash.full {
+  width: 95%;
+}
+
+.line-dash.long {
+  width: 55%;
+}
+
+.line-dash.small {
+  width: 25%;
+}
+
+
+/* two column layout for awards */
+.two-column-lines {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.two-column-lines p {
+  margin: 8px 0;
+}
+
+
+
+
+
+
+
+
+/* vertical divider */
+.divider {
+  width: 2px;
+  background: #000;
+  height: 100px;
+}
+
+/* certificate table styling */
+.certificate-table td {
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+/* referee box */
+.ref-box {
+  border: 1px solid #000;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* notes */
+.note {
+  font-weight: normal;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.small-note {
+  font-size: 11px;
+  display: block;
+  margin-left: 10px;
+}
+
+/* dashed inputs */
+/* .line-dash {
+  border: none;
+  border-bottom: 1px dashed #000;
+  outline: none;
+} */
+
+.line-dash.full {
+  width: 80%;
+}
+.line-dash.mid {
+  width: 40%;
+}
+.line-dash.small {
+  width: 25%;
+}
+.line-dash.sign {
+  width: 250px;
+}
+
+
+
+
+
+
+
+
+/* beneficiaries spacing */
+.beneficiary {
+  margin-bottom: 13px;
+}
+
+
+
+
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+tr:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+button {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-weight: bold;
+  padding: 13px 17px;
+  border: none;
+  border-radius: 5px;
+  /* margin-top: 20px; */
+  background-color: rgb(75, 34, 255);
+}
