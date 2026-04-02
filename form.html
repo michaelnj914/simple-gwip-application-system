@@ -42,11 +42,11 @@
           </div>
 
           <div class="checkbox-group">
-            <label><input type="checkbox" name="modeOfReference[]" value="direct" />
+            <label><input type="checkbox" name="chk_directhire" value="1" />
               DIRECT HIRE</label>
-            <label><input type="checkbox" name="modeOfReference[]" value="gwip" />
+            <label><input type="checkbox" name="chk_gwiphire" value="1" />
               GWIP HIRE</label>
-            <label><input type="checkbox" name="modeOfReference[]" value="indirect" />
+            <label><input type="checkbox" name="chk_indirecthire" value="1" />
               PRINCIPAL'S INDIRECT HIRE</label>
             <label>Referred By / Principal:<input type="text" name="referredBy"
                 style="border: none; border-bottom: 1px solid #000" />
@@ -116,7 +116,7 @@
                 <input type="email" name="email" style="width: 40%" required/>
 
                 <label>Contact Number:<span class="asterisk">*</span></label>
-                <input type="tel" name="phone" style="width: 30%" pattern="[0-9]{10,15}" required/>
+                <input type="text" name="phone" style="width: 30%"  required/>
               </div>
 
               
@@ -348,18 +348,18 @@
               <div class="sub-section">
                 <strong>For Registered Nurses</strong>
                 <div class="checkbox-grid">
-                  <label><input type="checkbox" name="nursing_qualification[]" value="bsc" />
+                  <label><input type="checkbox" name="chk_reg_nurse_bsc" value='1' />
                     B.Sc. Nursing</label>
-                  <label><input type="checkbox" name="nursing_qualification[]" value="diploma_nursing" />
+                  <label><input type="checkbox" name="chk_reg_nurse_diploma_nursing"  value='1'  />
                     Diploma of Nursing</label>
-                  <label><input type="checkbox" name="nursing_qualification[]" value="midwifery" />
+                  <label><input type="checkbox" name="chk_reg_nurse_midwifery"  value='1' />
                     Diploma of Midwifery</label>
-                  <label><input type="checkbox" name="nursing_qualification[]" value="masters" />
+                  <label><input type="checkbox" name="chk_reg_nurse_masters"  value='1' />
                     Masters in Nursing</label>
-                  <label><input type="checkbox" name="nursing_qualification[]" value="phd" />
+                  <label><input type="checkbox" name="chk_reg_nurse_phd"  value='1' />
                     PhD in Nursing</label>
                   <label>
-                    <input type="checkbox" name="nursing_qualification[]" value="other" />
+                    <input type="checkbox" name="chk_reg_nurse_other" value='1'  />
                     Other Diploma:
                     <input type="text" name="nursing_other" />
                   </label>
@@ -369,9 +369,9 @@
               <div class="sub-section">
                 <strong>For Physical Therapists</strong>
                 <div class="checkbox-grid">
-                  <label><input type="checkbox" name="pt_qualification[]" value="bsc_pt" />
+                  <label><input type="checkbox" name="chk_pt_bsc_pt"  value='1' />
                     B.Sc. Physical Therapist</label>
-                  <label><input type="checkbox" name="pt_qualification[]" value="na" />
+                  <label><input type="checkbox" name="chk_pt_na"  value='1' />
                     Not Applicable</label>
                 </div>
               </div>
@@ -383,67 +383,67 @@
             <div class="checkbox-grid-1">
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="er">
+                <input type="checkbox" name="chk_job_specialty_er" value='1'>
                 Emergency Room Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="med_surg">
+                <input type="checkbox" name="chk_job_specialty_med_surg" value='1'>
                 Medical Surgical Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="general">
+                <input type="checkbox" name="chk_job_specialty_general" value='1'>
                 General Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="icu">
+                <input type="checkbox" name="chk_job_specialty_icu"  value='1'>
                 ICU Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="telemetry">
+                <input type="checkbox" name="chk_job_specialty_telemetry" value='1'>
                 Telemetry Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="pt">
+                <input type="checkbox" name="chk_job_specialty_pt" value='1'>
                 Physical Therapist
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="theater">
+                <input type="checkbox" name="chk_job_specialty_theater" value='1'>
                 Theater / Operation Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="pcu">
+                <input type="checkbox" name="chk_job_specialty_pcu" value='1'>
                 PCU/CVPCU Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="ot">
+                <input type="checkbox" name="chk_job_specialty_ot" value='1'>
                 Occupational Therapist
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="delivery">
+                <input type="checkbox" name="chk_job_specialty_delivery" value='1'>
                 Delivery Room Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="rehab">
+                <input type="checkbox" name="chk_job_specialty_rehab" value='1'>
                 Rehabilitation Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="ortho">
+                <input type="checkbox" name="chk_job_specialty_ortho" value='1'>
                 Orthopedic Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="job_specialty[]" value="others">
+                <input type="checkbox" name="chk_job_specialty_others" value='1'>
                 Others — please specify:
                 <input type="text" name="job_specialty_other">
               </label>
@@ -458,32 +458,32 @@
             <div class="checkbox-grid-2">
 
               <label>
-                <input type="checkbox" name="portfolio[]" value="staff">
+                <input type="checkbox" name="chk_staff_nurse" value='1'>
                 Staff Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="portfolio[]" value="charge">
+                <input type="checkbox" name="chk_charge_nurse" value='1'>
                 Charge Nurse (Nurse Manager during shifts)
               </label>
 
               <label>
-                <input type="checkbox" name="portfolio[]" value="senior">
+                <input type="checkbox" name="chk_senior_nurse" value='1'>
                 Senior Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="portfolio[]" value="director">
+                <input type="checkbox" name="chk_director_nurse" value='1'>
                 Nursing Director
               </label>
 
               <label>
-                <input type="checkbox" name="portfolio[]" value="head">
+                <input type="checkbox" name="chk_head_nurse" value='1'>
                 Head Nurse
               </label>
 
               <label>
-                <input type="checkbox" name="portfolio[]" value="sister">
+                <input type="checkbox" name="chk_sister_nurse" value='1'>
                 Nursing Sister
               </label>
 
@@ -945,8 +945,7 @@
       </form>
     </div>
 
-    <br />
-    <button type="button" onclick="window.open('admin/login.html','_blank')">Admin Login</button>
+   
   </div>
 
   <!--HIDDEN ELEMENTS-->
