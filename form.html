@@ -11,7 +11,7 @@
 <body>
   <div class="form-container">
     <div id="formSection">
-      <form id="applicationForm" method="POST" enctype="multipart/form-data">
+      <form id="applicationForm" method="POST" action="api/application.php" enctype="multipart/form-data">
         <!-- ALL YOUR FORM CONTENT -->
 
         <!-- HEADER -->
@@ -549,14 +549,14 @@
               <tr>
                 <td>➡ PRC License</td>
                 <td><input type="text" class="gap" name="prc_number" /></td>
-                <td><input type="text" class="gap" name="prc_issued" /></td>
-                <td><input type="text" class="gap" name="prc_expiry" /></td>
+                <td><input type="date" class="gap" name="prc_issued" /></td>
+                <td><input type="date" class="gap" name="prc_expiry" /></td>
               </tr>
               <tr>
                 <td>➡ SSS/GSIS</td>
                 <td><input type="text" class="gap" name="sss_number" /></td>
-                <td><input type="text" class="gap" name="sss_issued" /></td>
-                <td><input type="text" class="gap" name="sss_expiry" /></td>
+                <td><input type="date" class="gap" name="sss_issued" /></td>
+                <td><input type="date" class="gap" name="sss_expiry" /></td>
               </tr>
               <tr>
                 <td>➡ Driver’s License</td>
@@ -564,10 +564,10 @@
                   <input type="text" class="gap" name="driver_number" />
                 </td>
                 <td>
-                  <input type="text" class="gap" name="driver_issued" />
+                  <input type="date" class="gap" name="driver_issued" />
                 </td>
                 <td>
-                  <input type="text" class="gap" name="driver_expiry" />
+                  <input type="date" class="gap" name="driver_expiry" />
                 </td>
               </tr>
               <tr>
@@ -576,10 +576,10 @@
                   <input type="text" class="gap" name="passport_number" />
                 </td>
                 <td>
-                  <input type="text" class="gap" name="passport_issued" />
+                  <input type="date" class="gap" name="passport_issued" />
                 </td>
                 <td>
-                  <input type="text" class="gap" name="passport_expiry" />
+                  <input type="date" class="gap" name="passport_expiry" />
                 </td>
               </tr>
               <tr>
@@ -841,7 +841,7 @@
             </p>
             <p>
               Spouse’s Birth Date :
-              <input class="line-dash full" name="spouse_birthdate" />
+              <input type='date' class="line-dash full" name="spouse_birthdate" />
             </p>
 
             <p>
