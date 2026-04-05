@@ -6,7 +6,7 @@ body {
 
 .form-container {
   width: 1000px;
-  margin: 40px auto;
+  margin: 40px auto 10px auto;
   border: 2px solid #000;
   background: #f5f1f1;
   padding: 10px;
@@ -57,6 +57,7 @@ body {
   border-bottom: 1px solid #000;
   width: 200px;
   display: inline-block;
+  font-weight: bold;
 }
 
 /* SECTION BOX */
@@ -166,14 +167,18 @@ body {
   flex: 2;
 }
 
+#pick-photo {
+  display: none;
+}
+
 .personal-right {
-  flex: 1;
-  border: 1px solid #000;
-  height: 220px;
+  /* flex: 1; */
+  border: 1px solid #cccccc;
+  max-height: 220px;
   max-width: 220px;
   z-index: 1;
   margin-top: 7%;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   /* justify-content: column; */
   font-size: 14px;
@@ -449,4 +454,11 @@ table th {
   border: 1px solid #000;
   padding: 8px;
   font-size: 15px;
+}
+
+#success-dialog{
+background-color: green;
+color:white;
+padding: 10px;
+border-radius: 5px;
 }
