@@ -6,18 +6,12 @@
 require_once "db_config.php"; //database configuration 
 
 if (isset($_SERVER['HTTP_API_COMMAND'])) {
-    $api = $_SERVER['HTTP_API_COMMAND']; //get the API command
-
-   // if (isset($_POST)) { //check if form has been submitted
-    //    $formData = array_filter($_POST); // if so, store all key/value pairs in a variable and remove empty values
-     //   $keys = array_keys($formData); //get all the keys(field names) into an array
-
+    $api = $_SERVER['HTTP_API_COMMAND']; //get the API command from the HTTP Header
       
         //Check our API command and route to the appropriate function
         if ($api == 'upload-photo') {
             process_uploaded_photo();
         }
-    //}
 }
 
 function process_uploaded_photo() {
@@ -28,8 +22,8 @@ function process_uploaded_photo() {
   $data['message'] = '';
 
   $allowedExts = array("jpg", "jpeg", "JPG", "JPEG", "png", "PNG"); // allowed file extensions
-  if (isset($_FILES['photo'])) {
-    $uploaded_filename = explode('.', $_FILES["photo"]["name"]); //seperated file name
+  if (isset($_FILES['photofile'])) {
+    $uploaded_filename = explode('.', $_FILES["photofile"]["name"]); //seperated file name
     $extension = end($uploaded_filename); //seperated file extension
     $id = $_POST['id'];
     $tablename = $_POST['tablename']; // 'application'
@@ -48,14 +42,14 @@ function process_uploaded_photo() {
             delete_photo_file_from_filesystem($old_filename, $uploadsFolder);//delete the old file from the file system because it exists
     }
 
-    if ((($_FILES["photo"]["type"] == "image/jpeg")
-        || ($_FILES["photo"]["type"] == "image/pjpeg")
-        || ($_FILES["photo"]["type"] == "image/png")
+    if ((($_FILES["photofile"]["type"] == "image/jpeg")
+        || ($_FILES["photofile"]["type"] == "image/pjpeg")
+        || ($_FILES["photofile"]["type"] == "image/png")
       )
-      && ($_FILES["photo"]["size"] <= 2000000) && in_array($extension, $allowedExts)
+      && ($_FILES["photofile"]["size"] <= 2000000) && in_array($extension, $allowedExts)
     ) {
-      if ($_FILES["photo"]["error"] > 0) {
-        $data['message'] = "Return Code: " . $_FILES["photo"]["error"];
+      if ($_FILES["photofile"]["error"] > 0) {
+        $data['message'] = "Return Code: " . $_FILES["photofile"]["error"];
         echo json_encode($data);
         die;
       } else {
@@ -81,12 +75,18 @@ function process_uploaded_photo() {
       echo json_encode($data);
       die;
     }
+  }else{
+    $data['success'] = false;
+    $data['result'] = '';
+    $data['message'] = 'File upload failed';
+    echo json_encode($data);
+    die;
   }
 }
 //==============================================================
 
 /** 
-This function will return the filename of an uploaded photo if it exists in the database table
+This function will return the filename of an uploaded photo if it exists in the database table or blank if it doesn't
  */
 function find_and_return_filename($id, $tablename, $tablefield){
     require 'db_config.php';
@@ -149,14 +149,14 @@ function delete_photo_info_from_database($id) {
 
 
 /**
-Makes a new unique filename and saves the uploaded photo to the file system
+Makes a new unique filename and saves the uploaded photo to the file system. Returns the unique filename to the calling function
  */
 function save_photo_file_to_filesystem($id, $extension, $uploadsFolder, $prefix){
-    $uniqueNo = time();//get the current unix timestamp as our unique number
+    $uniqueNo = time();//get the current unix timestamp as our unique number. *You may also generate a UUID here*
     $uniqueFilename = $prefix . "_" . $id . "_" . $uniqueNo . "." . $extension;
     //save to file system
     try {
-        move_uploaded_file($_FILES["photo"]["tmp_name"], dirname(__DIR__) . $uploadsFolder . $uniqueFilename);
+        move_uploaded_file($_FILES["photofile"]["tmp_name"], dirname(__DIR__) . $uploadsFolder . $uniqueFilename);
     } catch (Exception $exp) {
         return '';
     }

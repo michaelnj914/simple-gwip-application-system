@@ -16,6 +16,10 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
     if ($api == 'get-one-application') {
         get_one_application();
     }
+
+    if ($api == 'delete-application') {
+        delete_application();
+    }
 }
 
 function create_application()
@@ -81,3 +85,6 @@ function create_application()
 function get_application_list() {}
 
 function get_one_application() {}
+
+function delete_application() {}   
+
