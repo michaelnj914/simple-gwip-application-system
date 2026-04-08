@@ -87,12 +87,10 @@ body {
 
 /* CHECKBOX LINE */
 .checkbox-group {
-  /* border: 1px solid red; */
   display: flex;
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
-
 }
 
 .checkbox-group label {
@@ -169,7 +167,7 @@ body {
   flex: 2;
 }
 
-#pick-photo {
+#photo-picker {
   display: none;
 }
 
@@ -245,6 +243,7 @@ th {
   background: #d5d9db;
   color: black;
 }
+
 tr:hover {
   background: #f1f1f1;
   cursor: pointer;
@@ -296,6 +295,7 @@ select {
   margin-top: 5px;
   margin-left: 30px;
 }
+
 .checkbox-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -407,12 +407,15 @@ table td {
 .line-dash.full {
   width: 80%;
 }
+
 .line-dash.mid {
   width: 40%;
 }
+
 .line-dash.small {
   width: 25%;
 }
+
 .line-dash.sign {
   width: 250px;
 }

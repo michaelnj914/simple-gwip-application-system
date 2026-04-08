@@ -18,7 +18,10 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
     }
 
     if ($api == 'delete-application') {
-        delete_application();
+        if (isset($_POST['id'])) { //data sent from the front end must have the ID of the record present
+            $applyID =  $_POST['id'];
+            delete_application($applyID);
+        }
     }
 }
 
@@ -82,9 +85,83 @@ function create_application()
     }
 }
 
-function get_application_list() {}
+function get_application_list()
+{
+    require_once "db_config.php"; //database configuration 
+    // Connect to MySQL
+    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName); // Using mysqli here
+    $response = array();
+    // Check connection
+    if ($conn->connect_error) {
+        //return error to front end
+        $response['success'] = false;
+        $response['result'] = null;
+        $response['message'] = "Connection failed: " . $conn->connect_error;
+        echo json_encode($response);
+        die; // connection fails. QUIT !
+    }
+
+    $tablename = 'application';
+
+    $sql = "SELECT id, photo, firstName, lastName, applyFor, birthdate FROM $tablename";
+    $db_result = $conn->query($sql);
+    // Close connection
+    $conn->close();
+    if ($db_result->num_rows > 0) {
+
+        $rows = $db_result->fetch_all(MYSQLI_ASSOC); // fetch all rows from the database
+
+        $response['result'] = $rows; //return the list
+        $response['success'] = true;
+        $response['message'] = "Application list retrieved successfully";
+    } else {
+        $response['result'] = 0; //no record was retrieved
+        $response['success'] = false;
+        $response['message'] = "Applications retrieval failed";
+    }
+    echo json_encode($response); //return the response object
+    die;
+}
 
 function get_one_application() {}
 
-function delete_application() {}   
-
+function delete_application($applyID)
+{
+    require_once "db_config.php"; //database configuration 
+    require_once "photo_service.php"; //we will use a function from this file to remove photos
+    // Connect to MySQL
+    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName); // Using mysqli here
+    $response = array();
+    // Check connection
+    if ($conn->connect_error) {
+        //return error to front end
+        $response['success'] = false;
+        $response['result'] = null;
+        $response['message'] = "Connection failed: " . $conn->connect_error;
+        echo json_encode($response);
+        die; // connection fails. QUIT !
+    }
+    $tablename = 'application';
+    //check if a photo is recorded for this application
+    $photo = find_and_return_filename($applyID, $tablename, 'photo'); // Use a function from photo_service.php
+    if (empty($photo) == false) {
+        //delete the photo if it exists
+        delete_photo_file_from_filesystem($photo, '/api/uploads/'); // Use another function from photo_service.php
+    }
+    //go ahead and delete the application
+    $sql = "DELETE FROM $tablename WHERE id = $applyID";
+    $result = $conn->query($sql);
+    // Close connection
+    $conn->close();
+    if ($result) {
+        $response['result'] = $applyID;
+        $response['success'] = true;
+        $response['message'] = "Application deleted successfully";
+    } else {
+        $response['result'] = 0;
+        $response['success'] = false;
+        $response['message'] = "Application deletion failed";
+    }
+    echo json_encode($response); //return the response object
+    die;
+}

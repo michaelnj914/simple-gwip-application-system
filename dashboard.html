@@ -1,0 +1,50 @@
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="./assets/css/dashboard.css" />
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <!-- Dashboard -->
+        <div id="adminSection" class="dashboard-box">
+            <h1>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
+            <p class="subtitle">Medical Professionals Application Form</p>
+
+            <div class="top-bar">
+                <h2>Applications Dashboard</h2>
+                <button id="btnLogout">Logout</button>
+            </div>
+
+            <input type="text" id="searchName" placeholder="Search by Name" />
+            <input type="text" id="filterJob" placeholder="Filter by Job Category" />
+
+            <table class='apply-table'>
+                <thead>
+                    <tr>
+                    <th></th>
+                        <th>Date Applied</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Job Category</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   <script src="./assets/js/dashboard.js"></script>
+</body>
+
+</html>
