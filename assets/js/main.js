@@ -1,5 +1,6 @@
 //set the file date on the form to thecurrent date
 document.getElementById("file-date").textContent = new Date().toLocaleDateString();
+photo=undefined; // for photo upload
 const submitBtn = document.getElementById("submitBtn");
 
 //submit application
@@ -21,6 +22,9 @@ document.getElementById("applicationForm").addEventListener("submit", async func
   const myform = document.getElementById("applicationForm");
   const formData = new FormData(myform);
 
+  // add a filedate field to the form data
+ // formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
+
   const myHeaders = {
     'api-command': 'create-application'
   };
@@ -31,9 +35,11 @@ document.getElementById("applicationForm").addEventListener("submit", async func
       //if the application was submitted successfully then an ID of the record will be returned in the response's result property
       //We need this ID to modify the record, to write back the photo information
       const id = data.result;
-      //upload the photo. This will return a promise so we can use AWAIT on it.
+      //upload the photo if it exists.  This will return a promise so we can use AWAIT on it.
+      if (photo !== undefined) {
       await doPhotoUpload(id, photo); //do photo upload if possible and wait for it to complete
-      //photo upload was done. Successfull or not we continue and round up...
+      }      
+      //if the photo upload was done. Successfull or not we continue and round up...
       submitBtn.disabled = false; //re-enable the submit button
       submitBtn.textContent = "Submit";
       document.getElementById("responseMessage").textContent = "";
