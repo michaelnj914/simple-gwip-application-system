@@ -14,7 +14,10 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
     }
 
     if ($api == 'get-one-application') {
-        get_one_application();
+        if (isset($_POST['id'])) { //application id. Needed for the get_one_application function
+            $applyID =  $_POST['id'];
+            get_one_application($applyID);
+        }
     }
 
     if ($api == 'delete-application') {
@@ -123,7 +126,6 @@ function get_application_list()
     die;
 }
 
-function get_one_application() {}
 
 function delete_application($applyID)
 {
@@ -161,6 +163,42 @@ function delete_application($applyID)
         $response['result'] = 0;
         $response['success'] = false;
         $response['message'] = "Application deletion failed";
+    }
+    echo json_encode($response); //return the response object
+    die;
+}
+
+function get_one_application($applyID)
+{
+
+    require_once "db_config.php"; //database configuration 
+    // Connect to MySQL
+    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName); // Using mysqli here
+    $response = array();
+    // Check connection
+    if ($conn->connect_error) {
+        //return error to front end
+        $response['success'] = false;
+        $response['result'] = null;
+        $response['message'] = "Connection failed: " . $conn->connect_error;
+        echo json_encode($response);
+        die; // connection fails. QUIT !
+    }
+    $tablename = 'application';
+
+    $qry = "SELECT * FROM $tablename WHERE id = $applyID"; // select all columns from the table
+    $db_result = $conn->query($qry);
+    // Close connection
+    $conn->close();
+    if ($db_result->num_rows > 0) {
+        $row = $db_result->fetch_assoc(); // fetch one row from the database
+        $response['result'] = $row; //return the row
+        $response['success'] = true;
+        $response['message'] = "Application retrieved successfully";
+    } else {
+        $response['result'] = null; //no record was retrieved
+        $response['success'] = false;
+        $response['message'] = "Application retrieval failed";
     }
     echo json_encode($response); //return the response object
     die;

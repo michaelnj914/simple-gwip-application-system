@@ -1,3 +1,8 @@
+
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .dashboard-wrapper {
   width: 100%;
   height: calc(100vh - 150px);
@@ -25,7 +30,7 @@
   h1 {
     text-align: center;
     font-size: 32px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
     /* margin-bottom: 30px */
     color: #0075eb;
     letter-spacing: 1px;
@@ -70,7 +75,7 @@
 
 .top-bar h2 {
   font-size: 27px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
   color: #2c3e50;
 }
 
@@ -96,8 +101,7 @@
 } */
 
 /* TABLE */
-table {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+/* table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
@@ -115,7 +119,7 @@ table {
     color: #ffffff;
   }
 
-}
+} */
 
 
 

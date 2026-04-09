@@ -1,5 +1,10 @@
 
 window.addEventListener("load", async function () {
+    // Don't show our read-only form on this page that is used to display the details of one application
+    document.getElementById('viewable-application').style.display = 'none'; 
+
+    //Make sure our dashboard view is shown
+    document.querySelector(".dashboard-wrapper").style.display = "block";
     await getApplicationList(); //get the list of applications after the page has loaded
 });
 
@@ -29,7 +34,7 @@ async function getApplicationList() {
             photoObj = '<img src=' + photoURL + item.photo + ' style="height: 50px;"  />'; //display the photo
         }
 
-        tbody += '<tr class="apply-table-row">' +
+        tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ')" >' +
             '<td>' + photoObj + '</td>' +
             '<td></td>' +
             '<td>' + item.lastName + ', ' + item.firstName + '</td>' +
@@ -86,4 +91,74 @@ function computeAgeFromDate(dateString) {
         age--;
     }
     return age;
+}
+
+/**
+ * Get one application from the database using the primary key (id).
+ This is called when the user clicks on the table row. We are using Client-side rendering, 
+ which means a form is rendered in the browser using JavaScript when we download the data. 
+ We have a hidden application form that is shown when we retrieve the details of one application
+ * @param {*} applyId 
+ */
+async function getOneApplication(applyId) {
+    // prepare to make the request to the server
+    const myHeaders = {
+        'api-command': 'get-one-application'
+    };
+    const formData = new FormData();
+    formData.append('id', applyId);
+    try {
+        loadingDialog = document.getElementById('loading-dialog');
+        loadingDialog.showModal();
+        // make the request
+        const response = await fetch('api/application_service.php', { method: 'POST', headers: myHeaders, body: formData });
+        const data = await response.json();
+        if (data.success) { // If the application was retrieved successfully
+            loadingDialog.close();
+            // hide our current dashboard
+            document.querySelector(".dashboard-wrapper").style.display = "none";
+            // Show the hidden form
+            document.getElementById("viewable-application").style.display = "block";
+            populateForm(data.result);//populate the form with the returned data
+            //scroll to the top of the page
+            window.scrollTo(0, 0);
+        }
+    } catch (error) {
+        console.log('Error occured while obtaining application: ', error);
+        alert("Something went wrong!" + error);
+    }
+}
+
+function populateForm(dataRow) {
+    //disable all inputs, selects and textareas
+    const formElements = document.querySelectorAll('#viewable-application input, #viewable-application select, #viewable-application textarea');
+
+    // Loop through each element and make read-only, disabled and apply some css properties
+    formElements.forEach(element => {
+        element.readOnly = true;
+        element.disabled = true;
+        //style the elements
+        element.style.color = 'blue';
+        element.style.fontWeight = 'bold';
+        element.style.fontSize = '1rem';
+    });
+    try {
+          document.querySelector("input[name='firstName']").value = dataRow.firstName || '';
+    document.querySelector("input[name='lastName']").value = dataRow.lastName || '';
+    document.querySelector("input[name='birthdate']").value = dataRow.birthdate? dataRow.birthdate.substring(0, 10) : '';
+    document.querySelector("input[name='applyFor']").value = dataRow.applyFor? dataRow.applyFor : '';
+    document.querySelector("input[name='photo']").value = dataRow.photo? dataRow.photo : '';
+    document.querySelector("input[name='id']").value = dataRow.id? dataRow.id : '';
+
+    } catch (error) {
+        return false;
+    }
+      
+
+        return true;
+
+}
+
+printApplication = () => {
+    window.print();
 }
