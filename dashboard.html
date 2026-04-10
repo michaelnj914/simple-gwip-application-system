@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 
@@ -7,12 +5,147 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="./assets/css/dashboard.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
 </head>
 
 <body>
 
     <div class="dashboard-wrapper">
+        <style>
+            .dashboard-wrapper {
+                width: 100%;
+                height: calc(100vh - 150px);
+                justify-content: center;
+                align-items: center;
+            }
+
+            .dashboard-box {
+                width: 90%;
+                max-width: 1000px;
+                background: #fff8f8;
+                border: 2px solid #000;
+                border-radius: 10px;
+                padding: 30px 40px;
+                margin: 0 auto;
+
+                h1 {
+                    text-align: center;
+                    font-size: 32px;
+                    color: #0075eb;
+                    letter-spacing: 1px;
+                }
+
+                input {
+                    width: 27%;
+                    padding: 10px;
+                    margin-bottom: 12px;
+                    border-radius: 6px;
+                    border: 1px solid #aaa;
+                    font-size: 14px;
+                }
+
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 20px;
+                margin-bottom: 25px;
+            }
+
+            /* TOP BAR */
+            .top-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+
+            .top-bar h2 {
+                font-size: 27px;
+                color: #2c3e50;
+            }
+
+            /* BUTTON */
+            .top-bar button {
+                background: #56a2ee;
+                color: #fff;
+                padding: 10px 17px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background: #498ed3;
+                }
+            }
+
+            /*
+    .top-bar button:hover {
+    background: #498ed3;
+    } */
+
+            /* TABLE */
+            /* table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    
+    
+    thead {
+    background: #2c3e50;
+    color: #fff;
+    }
+    
+    th {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    font-size: 15px;
+    color: #ffffff;
+    }
+    
+    } */
+
+
+
+            /*
+    table th {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    font-size: 15px;
+    } */
+            #table-body tr td {
+
+                text-align: center;
+                padding: 10px;
+                font-size: .9rem;
+                border: 1px solid #575656;
+
+            }
+
+            .apply-table-row {
+                cursor: pointer;
+                background-color: #f2f2f2;
+            }
+
+            .apply-table-row:nth-child(odd) {
+                background-color: #e5e5e5;
+            }
+
+            .delete-button {
+                background-color: #e74c3c;
+                color: white;
+                border: none;
+                padding: 6px 12px;
+                border-radius: 5px;
+                font-size: 13px;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+        </style>
+
         <!-- Dashboard -->
         <div id="adminSection" class="dashboard-box">
             <h1>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
@@ -29,7 +162,7 @@
             <table class='apply-table'>
                 <thead>
                     <tr>
-                    <th></th>
+                        <th></th>
                         <th>Date Applied</th>
                         <th>Name</th>
                         <th>Age</th>
@@ -44,7 +177,958 @@
         </div>
     </div>
 
-   <script src="./assets/js/dashboard.js"></script>
+
+    <!--VIEWABLE APPLICATION STARTS HERE-->
+    <div id='viewable-application'>
+        <style>
+            @media print {
+                #print-header {
+                    display: none;
+                }
+
+                @page {
+                    margin: .5cm;
+                    size: legal portrait ;
+                }
+                .section-box {
+                    /* page-break-inside: avoid; */
+                }
+            }
+        </style>
+
+        <div id='print-header' style='padding: 8px; background-color: #9bc3ec; border-radius: 8px;
+            position: sticky; top: 0; text-align: right; z-index: 500; border-bottom: 2px solid #5e7c9b;'>
+            <button id='print-btn' onclick='printApplication()'>Print Application</button>
+        </div>
+
+        <div class="form-container">
+
+            <!-- <div id="formSection"> -->
+
+                <!-- ALL YOUR FORM CONTENT -->
+
+                <!-- HEADER -->
+                <div class="header">
+                    <img src="assets/logo/logo.gif" class="logo" alt="logo" />
+                    <div class="header-text">
+                        <h2>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h2>
+                        <p>
+                            (Data Encoding Form: <strong>Medical Professionals</strong>)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SUB HEADER -->
+                <div class="sub-header">
+                    <div>
+                        Please fill out the following with black ball pen (<strong>PLEASE PRINT IN BLOCK
+                            LETTERS</strong>)
+                    </div>
+                    <div>DATE: <input  type="text" name="filedate" style="border: none; border-bottom: 1px solid #000"></div>
+                </div>
+
+                <div class="section-box">
+                    <div class="section-title-Mode">
+                        <span>MODE OF REFERENCE</span>(Please put a check mark where applicable)
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="chk_directhire" value="1" />
+                            DIRECT HIRE</label>
+                        <label><input type="checkbox" name="chk_gwiphire" value="1" /> GWIP
+                            HIRE</label>
+                        <label><input type="checkbox" name="chk_indirecthire" value="1" />
+                            PRINCIPAL'S INDIRECT HIRE</label>
+                        <label>Referred By / Principal:<input type="text" name="referredBy"
+                                style="border: none; border-bottom: 1px solid #000" />
+                        </label>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+            <!-- COUNTRY OF CHOICE -->
+            <div class="country-choice">
+                <strong>COUNTRY OF CHOICE</strong>
+                <div class="input-box" data-label="First Choice">
+                    a.
+                    <input type="text" name="first_choice" />
+                </div>
+                <div class="input-box" data-label="Second Choice">
+                    b.
+                    <input type="text" name="second_choice" />
+                </div>
+                <div class="input-box" data-label="Third Choice">
+                    c.
+                    <input type="text" name="third_choice" />
+                </div>
+            </div>
+
+            <!-- PERSONAL INFORMATION -->
+            <div class="section-box">
+                <div class="section-title"><span>PERSONAL</span></div>
+                <div class="personal-container">
+                    <!-- LEFT SIDE -->
+                    <div class="personal-left">
+                        <div class="form-group">
+                            <label>WHAT TO APPLY FOR:<span class="asterisk">*</span></label>
+                            <input type="text" class="line-input" name="applyFor" required />
+                        </div>
+
+                        <div class="form-group inline-fields">
+                            <label>Last Name (Surname):<span class="asterisk">*</span></label>
+                            <input type="text" name="lastName" style="width: 75%" required />
+
+                            <label>First Name:<span class="asterisk">*</span></label>
+                            <input type="text" name="firstName" style="width: 40%" required />
+
+                            <label>Middle Name:</label>
+                            <input type="text" name="middleName" style="width: 20%" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Main Address (City Address):<span class="asterisk">*</span></label>
+                            <input type="text" name="address" class="line-input" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Alternate Address (Provincial):</label>
+                            <input type="text" name="alternateAddress" class="line-input" />
+                        </div>
+
+                        <div class="form-group inline-fields">
+                            <label>Email:<span class="asterisk">*</span></label>
+                            <input type="email" name="email" style="width: 40%" required />
+
+                            <label>Contact Number:<span class="asterisk">*</span></label>
+                            <input type="text" name="phone" style="width: 30%" required />
+                        </div>
+
+                        <!--Please make this a dropdown with the following choices: Single, Married, Widowed,Divorced, Separated, Co-Habitation -->
+                        <div class="form-group inline-fields">
+                            <label>Civil Status:<span class="asterisk">*</span></label>
+
+                            <select name="civilStatus" style="width: 150px" class="line-input" required>
+                                <option value="">-- Select Status --</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Widowed">Widowed</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Co-Habitation">Co-Habitation</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group inline-fields">
+                            <label>Height:</label>
+                            <input type="text" name="height" style="width: 15%" />
+
+                            <label>Weight:</label>
+                            <input type="text" name="weight" style="width: 15%" />
+
+                            <label>Birth Date:<span class="asterisk">*</span></label>
+                            <input type="date" name="birthDate" style="width: 30%" required />
+                        </div>
+
+                        <div class="form-group inline-fields">
+                            <label>Religion:</label>
+                            <input type="text" name="religion" style="width: 25%" />
+
+                            <label>Highest Educational Attainment:</label>
+                            <input type="text" name="highestEducational" placeholder="College / High schooll / etc..."
+                                style="width: 21%" />
+                        </div>
+
+                        <div class="form-group inline-fields">
+                            <label>Course Taken:</label>
+                            <input type="text" name="courseTaken" style="width: 11%" />
+
+                            <label>Gender:</label>
+                            <!--Please make this a dropdown with the following choices: Male, Female  DONE!!-->
+                            <select name="gender" style="width: 100px" class="line-input">
+                                <option value="">-- Select --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+
+                            <label>Experience:</label>
+                            <input type="text" name="experience" style="width: 30%"
+                                placeholder="Ex-Saudi / Ex-Taiwan / Ex-Hong Kong etc" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hobbies and Other Skills:</label>
+                            <input type="text" name="hobbies" class="line-input" style="width: 70%" />
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE (PICTURE BOX) -->
+                    <div class="personal-right">
+                        <div style='height:200px; width: 200px; border: 1px solid blue;margin:0 auto;overflow: hidden;'>
+                            <img id='img-preview' style='height:100%;display: none;margin: 0 auto;' />
+                        </div>
+                        <div>
+                            <!-- <label style='color:red; font-weight: bold;cursor: pointer;padding:5px;' for='photo-picker'>
+                                Select 2X2 Photo <input id='photo-picker' type="file" name="photo"
+                                    accept=".jpg, .jpeg, .png" />
+                            </label> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title"><span>EDUCATIONAL ATTAINMENT</span></div>
+
+                <table>
+                    <tr>
+                        <th>Name of School</th>
+                        <th>Year (From–To)</th>
+                        <th>Degree / Course</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class="gap" type="text" name="university_name" placeholder="➡ University" /><br />
+                            <input class="gap" type="text" name="university_location" placeholder="➡ Location" />
+                        </td>
+                        <td>
+                            <input class="gap" type="text" name="university_year" />
+                        </td>
+                        <td>
+                            <input class="gap" type="text" name="university_course" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class="gap" type="text" name="college_name" placeholder="➡ College" /><br />
+                            <input class="gap" type="text" name="college_location" placeholder="➡ Location" />
+                        </td>
+                        <td><input class="gap" type="text" name="college_year" /></td>
+                        <td><input class="gap" type="text" name="college_course" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class="gap" type="text" name="highschool_name" placeholder="➡ High School" /><br />
+                            <input class="gap" type="text" name="highschool_location" placeholder="➡ Location" />
+                        </td>
+                        <td>
+                            <input class="gap" type="text" name="highschool_year" />
+                        </td>
+                        <td>
+                            <input class="gap" type="text" name="highschool_course" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class="gap" type="text" name="elementary_name" placeholder="➡ Elementary" /><br />
+                            <input class="gap" type="text" name="elementary_location" placeholder="➡ Location" />
+                        </td>
+                        <td>
+                            <input class="gap" type="text" name="elementary_year" />
+                        </td>
+                        <td>
+                            <input class="gap" type="text" name="elementary_course" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class="gap" type="text" name="technical_name"
+                                placeholder="➡ Technical School" /><br />
+                            <input class="gap" type="text" name="technical_training" placeholder="➡ Trainings" />
+                        </td>
+                        <td><input class="gap" type="text" name="technical_year" /></td>
+                        <td>
+                            <input class="gap" type="text" name="technical_course" />
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="section-title">
+                    <span>REVIEWS (ON-GOING / COMPLETED)</span>
+                </div>
+
+                <div class="review-row">
+                    <div>1. <input type="text" name="review1" /></div>
+                    <div>
+                        <label><input type="radio" name="review1_status" value="ongoing" />
+                            On-Going</label>
+                        <label><input type="radio" name="review1_status" value="completed" />
+                            Completed</label>
+                    </div>
+                </div>
+
+                <div class="review-row">
+                    <div>2. <input type="text" name="review2" /></div>
+                    <div>
+                        <label><input type="radio" name="review2_status" value="ongoing" />
+                            On-Going</label>
+                        <label><input type="radio" name="review2_status" value="completed" />
+                            Completed</label>
+                    </div>
+                </div>
+
+                <div class="review-row">
+                    <div>3. <input type="text" name="review3" /></div>
+                    <div>
+                        <label><input type="radio" name="review3_status" value="ongoing" />
+                            On-Going</label>
+                        <label><input type="radio" name="review3_status" value="completed" />
+                            Completed</label>
+                    </div>
+                </div>
+
+                <!-- EXAMS -->
+                <div class="section-title"><span>EXAMS PASSED</span></div>
+
+                <table>
+                    <tr>
+                        <th>Exam Taken</th>
+                        <th>Year Passed</th>
+                        <th>Exam Taken</th>
+                        <th>Year Passed</th>
+                    </tr>
+                    <!-- I Added the additional paddings(style='padding-top: 24px;') to even out
+                      the level of the text boxes below-->
+                    <tr>
+                        <td>1.<input type="text" name="exam1" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam1_year" />
+                        </td>
+                        <td>5.<input type="text" name="exam5" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam5_year" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2.<input type="text" name="exam2" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam2_year" />
+                        </td>
+                        <td>6.<input type="text" name="exam6" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam6_year" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3.<input type="text" name="exam3" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam3_year" />
+                        </td>
+                        <td>7.<input type="text" name="exam7" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam7_year" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4.<input type="text" name="exam4" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam4_year" />
+                        </td>
+                        <td>8.<input type="text" name="exam8" /></td>
+                        <td style="padding-top: 24px">
+                            <input type="text" name="exam8_year" />
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- ================= PAGE 2 ================= -->
+
+                <div class="red-title">
+                    Requirements for USA Immigration Working Visa (HB3) Processing
+                </div>
+                <div class="section-box">
+                    <!-- EDUCATION -->
+                    <div class="section-title">
+                        EDUCATIONAL QUALIFICATIONS (Check the appropreate Box below)
+                    </div>
+
+                    <div class="left-space">
+                        <div class="sub-section">
+                            <strong>For Registered Nurses</strong>
+                            <div class="checkbox-grid">
+                                <label><input type="checkbox" name="chk_reg_nurse_bsc" value="1" />
+                                    B.Sc. Nursing</label>
+                                <label><input type="checkbox" name="chk_reg_nurse_diploma_nursing" value="1" />
+                                    Diploma of Nursing</label>
+                                <label><input type="checkbox" name="chk_reg_nurse_midwifery" value="1" />
+                                    Diploma of Midwifery</label>
+                                <label><input type="checkbox" name="chk_reg_nurse_masters" value="1" />
+                                    Masters in Nursing</label>
+                                <label><input type="checkbox" name="chk_reg_nurse_phd" value="1" />
+                                    PhD in Nursing</label>
+                                <label>
+                                    <input type="checkbox" name="chk_reg_nurse_other" value="1" />
+                                    Other Diploma:
+                                    <input type="text" name="nursing_other" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <strong>For Physical Therapists</strong>
+                            <div class="checkbox-grid">
+                                <label><input type="checkbox" name="chk_pt_bsc_pt" value="1" />
+                                    B.Sc. Physical Therapist</label>
+                                <label><input type="checkbox" name="chk_pt_na" value="1" /> Not
+                                    Applicable</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JOB SPECIALTIES -->
+                    <div class="section-title">
+                        JOB SPECIALTIES / POSITIONS HELD (Check the appropreate Box
+                        below)
+                    </div>
+                    <div class="checkbox-grid-1">
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_er" value="1" />
+                            Emergency Room Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_med_surg" value="1" />
+                            Medical Surgical Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_general" value="1" />
+                            General Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_icu" value="1" />
+                            ICU Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_telemetry" value="1" />
+                            Telemetry Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_pt" value="1" />
+                            Physical Therapist
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_theater" value="1" />
+                            Theater / Operation Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_pcu" value="1" />
+                            PCU/CVPCU Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_job_specialty_ot" value="1" />
+                            Occupational Therapist
+                        </label>
+
+                        <!-- RIGHT SIDE (PICTURE BOX) -->
+
+                    </div>
+
+                    <!-- PORTFOLIO -->
+                    <div class="section-title">
+                        YOUR PORTFOLIO LEVEL (Check the appropreate Box below)
+                    </div>
+                    <div class="checkbox-grid-2">
+                        <label>
+                            <input type="checkbox" name="chk_staff_nurse" value="1" />
+                            Staff Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_charge_nurse" value="1" />
+                            Charge Nurse (Nurse Manager during shifts)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_senior_nurse" value="1" />
+                            Senior Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_director_nurse" value="1" />
+                            Nursing Director
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_head_nurse" value="1" />
+                            Head Nurse
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="chk_sister_nurse" value="1" />
+                            Nursing Sister
+                        </label>
+                    </div>
+
+                    <!-- LICENSE REQUIREMENTS -->
+                    <div class="section-title">LICENSE REQUIREMENTS</div>
+
+                    <table>
+                        <tr>
+                            <th>Exam</th>
+                            <th>Year Passed</th>
+                            <th>Exam</th>
+                            <th>Year Passed</th>
+                        </tr>
+                        <tr>
+                            <td>➡ NCLEX</td>
+                            <td><input type="text" class="gap" name="nclex_year" /></td>
+                            <td>➡ CBT</td>
+                            <td><input type="text" class="gap" name="cbt_year" /></td>
+                        </tr>
+                        <tr>
+                            <td>➡ IELTS</td>
+                            <td><input type="text" class="gap" name="ielts_year" /></td>
+                            <td>➡ HAAD</td>
+                            <td><input type="text" class="gap" name="haad_year" /></td>
+                        </tr>
+                        <tr>
+                            <td>➡ TOEFL</td>
+                            <td><input type="text" class="gap" name="toefl_year" /></td>
+                            <td>➡ DHA</td>
+                            <td><input type="text" class="gap" name="dha_year" /></td>
+                        </tr>
+                        <tr>
+                            <td>➡ OET</td>
+                            <td><input type="text" class="gap" name="oet_year" /></td>
+                            <td>➡ PROMETRIC</td>
+                            <td>
+                                <input type="text" class="gap" name="prometric_year" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>➡ Others</td>
+                            <td>
+                                <input type="text" class="gap" name="other_exam_year" />
+                            </td>
+                            <td>➡ PT / OT Exams</td>
+                            <td><input type="text" class="gap" name="pt_ot_year" /></td>
+                        </tr>
+                    </table>
+
+                    <!-- LICENSE IDs -->
+                    <div class="section-title">LICENSES / IDs</div>
+
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Number</th>
+                            <th>Date Issued</th>
+                            <th>Expiration Date</th>
+                        </tr>
+                        <tr>
+                            <td>➡ PRC License</td>
+                            <td><input type="text" class="gap" name="prc_number" /></td>
+                            <td><input type="date" class="gap" name="prc_issued" /></td>
+                            <td><input type="date" class="gap" name="prc_expiry" /></td>
+                        </tr>
+                        <tr>
+                            <td>➡ SSS/GSIS</td>
+                            <td><input type="text" class="gap" name="sss_number" /></td>
+                            <td><input type="date" class="gap" name="sss_issued" /></td>
+                            <td><input type="date" class="gap" name="sss_expiry" /></td>
+                        </tr>
+                        <tr>
+                            <td>➡ Driver’s License</td>
+                            <td>
+                                <input type="text" class="gap" name="driver_number" />
+                            </td>
+                            <td>
+                                <input type="date" class="gap" name="driver_issued" />
+                            </td>
+                            <td>
+                                <input type="date" class="gap" name="driver_expiry" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>➡ Passport</td>
+                            <td>
+                                <input type="text" class="gap" name="passport_number" />
+                            </td>
+                            <td>
+                                <input type="date" class="gap" name="passport_issued" />
+                            </td>
+                            <td>
+                                <input type="date" class="gap" name="passport_expiry" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>➡ Place of Issue</td>
+                            <td colspan="3">
+                                <input type="text" class="gap" name="place_of_issue" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- SEMINARS -->
+                <div class="section-box">
+                    <div class="section-title">SEMINARS or WORKSHOPS ATTENDED</div>
+
+                    <table>
+                        <tr>
+                            <th style="width: 70%">Seminar / Workshop</th>
+                            <th>Period / Year Attended</th>
+                        </tr>
+
+                        <!-- 5 rows -->
+                        <tr>
+                            <td>1. <input class="line-dash" name="item1_name" /></td>
+                            <td><input class="line-dash" name="item1_value" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>2. <input class="line-dash" name="item2_name" /></td>
+                            <td><input class="line-dash" name="item2_value" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>3. <input class="line-dash" name="item3_name" /></td>
+                            <td><input class="line-dash" name="item3_value" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>4. <input class="line-dash" name="item4_name" /></td>
+                            <td><input class="line-dash" name="item4_value" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>5. <input class="line-dash" name="item5_name" /></td>
+                            <td><input class="line-dash" name="item5_value" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- EMPLOYMENT -->
+                <div class="section-box">
+                    <div class="section-title">EMPLOYMENT BACKGROUND</div>
+
+                    <table>
+                        <tr>
+                            <th>Company / Employer’s Name</th>
+                            <th>Job Position</th>
+                            <th>Country</th>
+                            <th>Year (From – To)</th>
+                        </tr>
+
+                        <tr>
+                            <td>1. <input class="line-dash" name="company1" /></td>
+                            <td><input class="line-dash" name="position1" /></td>
+                            <td><input class="line-dash" name="country1" /></td>
+                            <td><input class="line-dash" name="year1" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>2. <input class="line-dash" name="company2" /></td>
+                            <td><input class="line-dash" name="position2" /></td>
+                            <td><input class="line-dash" name="country2" /></td>
+                            <td><input class="line-dash" name="year2" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>3. <input class="line-dash" name="company3" /></td>
+                            <td><input class="line-dash" name="position3" /></td>
+                            <td><input class="line-dash" name="country3" /></td>
+                            <td><input class="line-dash" name="year3" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>4. <input class="line-dash" name="company4" /></td>
+                            <td><input class="line-dash" name="position4" /></td>
+                            <td><input class="line-dash" name="country4" /></td>
+                            <td><input class="line-dash" name="year4" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>5. <input class="line-dash" name="company5" /></td>
+                            <td><input class="line-dash" name="position5" /></td>
+                            <td><input class="line-dash" name="country5" /></td>
+                            <td><input class="line-dash" name="year5" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>6. <input class="line-dash" name="company6" /></td>
+                            <td><input class="line-dash" name="position6" /></td>
+                            <td><input class="line-dash" name="country6" /></td>
+                            <td><input class="line-dash" name="year6" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- JOB DESCRIPTION -->
+                <div class="section-box">
+                    <div class="section-title">
+                        JOB DESCRIPTION FOR JOB POSITIONS STATED ABOVE
+                    </div>
+
+                    <!-- 6 descriptions -->
+                    <div class="job-desc">
+                        <p><strong>Job Description 1.</strong></p>
+                        <textarea name="job_desc1"></textarea>
+
+                        <p><strong>Job Description 2.</strong></p>
+                        <textarea name="job_desc2"></textarea>
+
+                        <p><strong>Job Description 3.</strong></p>
+                        <textarea name="job_desc3"></textarea>
+
+                        <p><strong>Job Description 4.</strong></p>
+                        <textarea name="job_desc4"></textarea>
+
+                        <p><strong>Job Description 5.</strong></p>
+                        <textarea name="job_desc5"></textarea>
+
+                        <p><strong>Job Description 6.</strong></p>
+                        <textarea name="job_desc6"></textarea>
+                    </div>
+                </div>
+
+                <!-- ================= PAGE 4 ================= -->
+                <!-- AWARDS -->
+                <div class="section-box">
+                    <div class="section-title">AWARDS RECEIVED</div>
+
+                    <div class="two-column-lines">
+                        <div>
+                            <p>1. <input class="line-dash" name="field1" /></p>
+                            <p>2. <input class="line-dash" name="field2" /></p>
+                            <p>3. <input class="line-dash" name="field3" /></p>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div>
+                            <p>4. <input class="line-dash" name="field4" /></p>
+                            <p>5. <input class="line-dash" name="field5" /></p>
+                            <p>6. <input class="line-dash" name="field6" /></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CERTIFICATES -->
+                <div class="section-box">
+                    <div class="section-title">CERTIFICATES</div>
+
+                    <table class="certificate-table">
+                        <tr>
+                            <td>1. <input class="line-dash" name="certificate1" /></td>
+                            <td>4. <input class="line-dash" name="certificate4" /></td>
+                        </tr>
+                        <tr>
+                            <td>2. <input class="line-dash" name="certificate2" /></td>
+                            <td>5. <input class="line-dash" name="certificate5" /></td>
+                        </tr>
+                        <tr>
+                            <td>3. <input class="line-dash" name="certificate3" /></td>
+                            <td>6. <input class="line-dash" name="certificate6" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- REFEREES -->
+                <div class="section-box">
+                    <div class="section-title">REFEREES</div>
+
+                    <div class="ref-box">
+                        <p><strong>1.</strong></p>
+                        <p>
+                            Name:
+                            <input class="line-dash long" name="ref1_name" /> Telephone:
+                            <input class="line-dash small" name="ref1_phone" />
+                        </p>
+                        <p>
+                            Address: <input class="line-dash full" name="ref1_address" />
+                        </p>
+                    </div>
+
+                    <div class="ref-box">
+                        <p><strong>2.</strong></p>
+                        <p>
+                            Name:
+                            <input class="line-dash long" name="ref2_name" /> Telephone:
+                            <input class="line-dash small" name="ref2_phone" />
+                        </p>
+                        <p>
+                            Address: <input class="line-dash full" name="ref2_address" />
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SPONSORSHIP -->
+                <div class="section-box">
+                    <div class="section-title">
+                        PREVIOUS APPLICATION SPONSORSHIP COMMITMENTS
+                        <span class="note">(If you had been sponsored, please fill up below)</span>
+                    </div>
+
+                    <p>
+                        Name of Previous Sponsor:
+                        <input class="line-dash full" name="previous_sponsor" />
+                    </p>
+
+                    <p>
+                        Activities Sponsored:
+                        <input class="line-dash full" name="sponsored_activities" />
+                        <span class="small-note">(Exams, Reviews, Trainings etc...)</span>
+                    </p>
+
+                    <p>
+                        Amount of Obligation to Sponsor:
+                        <input class="line-dash full" name="sponsor_amount" />
+                        <span class="small-note">(Amount in Monetary terms...)</span>
+                    </p>
+                </div>
+
+                <!-- SUBMITTED REQUIREMENTS -->
+                <div class="section-box">
+                    <div class="section-title">Submitted Requirements</div>
+
+                    <p><input class="line-dash full" name="requirement1" /></p>
+                    <p><input class="line-dash full" name="requirement2" /></p>
+                    <p><input class="line-dash full" name="requirement3" /></p>
+                    <p><input class="line-dash full" name="requirement4" /></p>
+                </div>
+
+                <!-- FAMILY -->
+                <div class="section-box">
+                    <div class="section-title">APPLICANT’S FAMILY</div>
+
+                    <p>
+                        How Many Children? :
+                        <input class="line-dash full" name="children_count" />
+                    </p>
+                    <p>
+                        Child or Children's Ages :
+                        <input class="line-dash full" name="children_ages" />
+                    </p>
+                    <p>
+                        Spouse’s Name :
+                        <input class="line-dash full" name="spouse_name" />
+                    </p>
+                    <p>
+                        Spouse’s Occupation :
+                        <input class="line-dash full" name="spouse_occupation" />
+                    </p>
+                    <p>
+                        Spouse’s Birth Date :
+                        <input type="date" class="line-dash full" name="spouse_birthdate" />
+                    </p>
+
+                    <p>
+                        Father’s Name :
+                        <input class="line-dash mid" name="father_name" /> Father’s
+                        Occupation :
+                        <input class="line-dash small" name="father_occupation" />
+                    </p>
+
+                    <p>
+                        Mother’s Name :
+                        <input class="line-dash mid" name="mother_name" /> Mother’s
+                        Occupation :
+                        <input class="line-dash small" name="mother_occupation" />
+                    </p>
+
+                    <p>
+                        Parents’ Address :
+                        <input class="line-dash full" name="parents_address" />
+                    </p>
+
+                    <p>
+                        Parents’ Telephone :
+                        <input class="line-dash mid" name="parents_phone" /> Parents’
+                        Cell phone :
+                        <input class="line-dash small" name="parents_mobile" />
+                    </p>
+
+                    <!-- NEXT OF KIN -->
+                    <div class="section-title">NEXT OF KIN</div>
+
+                    <p>
+                        Name :
+                        <input class="line-dash mid" name="nok_name" /> Relationship to
+                        Applicant :
+                        <input class="line-dash small" name="nok_relationship" />
+                    </p>
+
+                    <p>
+                        Address : <input class="line-dash full" name="nok_address" />
+                    </p>
+
+                    <p>
+                        Telephone :
+                        <input class="line-dash mid" name="nok_phone" /> E-Mail :
+                        <input class="line-dash small" name="nok_email" />
+                    </p>
+
+                    <!-- BENEFICIARIES -->
+                    <div class="section-title">BENEFICIARIES</div>
+
+                    <div class="beneficiary">
+                        <p>
+                            1. Name :
+                            <input class="line-dash mid" name="beneficiary1_name" />
+                            Relationship to Applicant :
+                            <input class="line-dash small" name="beneficiary1_relationship" />
+                        </p>
+                        <p>
+                            Address :
+                            <input class="line-dash mid" name="beneficiary1_address" />
+                            Telephone :
+                            <input class="line-dash small" name="beneficiary1_phone" />
+                        </p>
+                    </div>
+
+                    <div class="beneficiary">
+                        <p>
+                            2. Name :
+                            <input class="line-dash mid" name="beneficiary2_name" />
+                            Relationship to Applicant :
+                            <input class="line-dash small" name="beneficiary2_relationship" />
+                        </p>
+                        <p>
+                            Address :
+                            <input class="line-dash mid" name="beneficiary2_address" />
+                            Telephone :
+                            <input class="line-dash small" name="beneficiary2_phone" />
+                        </p>
+                    </div>
+
+                    <div class="beneficiary">
+                        <p>
+                            3. Name :
+                            <input class="line-dash mid" name="beneficiary3_name" />
+                            Relationship to Applicant :
+                            <input class="line-dash small" name="beneficiary3_relationship" />
+                        </p>
+                        <p>
+                            Address :
+                            <input class="line-dash mid" name="beneficiary3_address" />
+                            Telephone :
+                            <input class="line-dash small" name="beneficiary3_phone" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./assets/js/dashboard.js"></script>
 </body>
 
 </html>
+
+<dialog style='color:white; background-color: #454545;' id="loading-dialog">
+    <div>Retrieving Data ...</div>
+</dialog>

@@ -1,6 +1,7 @@
 //set the file date on the form to thecurrent date
 document.getElementById("file-date").textContent =
   new Date().toLocaleDateString();
+photo = undefined; // for photo upload
 const submitBtn = document.getElementById("submitBtn");
 
 //submit application
@@ -24,6 +25,9 @@ document
     const myform = document.getElementById("applicationForm");
     const formData = new FormData(myform);
 
+    // add a filedate field to the form data
+    // formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
+
     const myHeaders = {
       "api-command": "create-application",
     };
@@ -38,9 +42,11 @@ document
       //if the application was submitted successfully then an ID of the record will be returned in the response's result property
       //We need this ID to modify the record, to write back the photo information
       const id = data.result;
-      //upload the photo. This will return a promise so we can use AWAIT on it.
-      await doPhotoUpload(id, photo); //do photo upload if possible and wait for it to complete
-      //photo upload was done. Successfull or not we continue and round up...
+      //upload the photo if it exists.  This will return a promise so we can use AWAIT on it.
+      if (photo !== undefined) {
+        await doPhotoUpload(id, photo); //do photo upload if possible and wait for it to complete
+      }
+      //if the photo upload was done. Successfull or not we continue and round up...
       submitBtn.disabled = false; //re-enable the submit button
       submitBtn.textContent = "Submit";
       document.getElementById("responseMessage").textContent = "";
@@ -79,6 +85,13 @@ photoSelector.addEventListener("change", (event) => {
   }
 });
 //==== end of photo selector =================================
+
+//Clears the photo from the UI. Done after a successful upload
+clearPhoto = () => {
+  URL.revokeObjectURL(imgPreview.src);
+  imgPreview.style.display = "none"; // hide the preview image element
+};
+//==== end of clearPhoto =================================
 
 //Clears the photo from the UI. Done after a successful upload
 clearPhoto = () => {
@@ -126,67 +139,3 @@ function doPhotoUpload(recordID, photo) {
     }
   });
 }
-
-// $(document).ready(function () {
-//   $("#applicationForm").on("submit", function (e) {
-//     e.preventDefault(); // stop normal form submission
-
-//     let form = document.getElementById("applicationForm");
-//     let formData = new FormData(form); // IMPORTANT (supports file upload)
-
-//     let firstName = $("input[name='firstName']").val();
-
-//     // Disable button while submitting
-//     $("#submitBtn").prop("disabled", true).text("Submitting...");
-
-//     // Show loading message
-//     $("#responseMessage").html(
-//       "<p style='color:blue;'>Submitting your application...</p>",
-//     );
-
-//     $.ajax({
-//       url: "api/application.php",
-//       type: "POST",
-//       data: formData,
-
-//       processData: false, // REQUIRED for FormData
-//       contentType: false, // REQUIRED for FormData
-
-//       success: function (response) {
-//         // Clean response
-//         response = response.trim();
-
-//         if (response === "success") {
-//           $("#responseMessage").html(
-//             `<p style="color:green; font-weight:bold;">
-//               Thank you, ${firstName}! Your application was submitted successfully.
-//             </p>`,
-//           );
-
-//           // Redirect after 3 seconds
-//           setTimeout(function () {
-//             window.location.href = "index.html"; // your landing page
-//           }, 3000);
-//         } else {
-//           $("#responseMessage").html(
-//             `<p style="color:red; font-weight:bold;">
-//               Application failed. Please try again.
-//             </p>`,
-//           );
-
-//           $("#submitBtn").prop("disabled", false).text("Submit Application");
-//         }
-//       },
-
-//       error: function () {
-//         $("#responseMessage").html(
-//           `<p style="color:red; font-weight:bold;">
-//             Something went wrong. Please try again.
-//           </p>`,
-//         );
-
-//         $("#submitBtn").prop("disabled", false).text("Submit Application");
-//       },
-//     });
-//   });
-// });
