@@ -2,7 +2,7 @@
 //database credentials go here
 $dbHost = "localhost";
 $dbUser = "root";
-$dbPass = "mikeNj";
+$dbPass = "2004";
 $dbName = "mike_nworji";
 
 ?>
