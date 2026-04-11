@@ -33,12 +33,12 @@ async function getApplicationList() {
         } else {
             photoObj = '<img src=' + photoURL + item.photo + ' style="height: 50px;"  />'; //display the photo
         }
-
+        
         tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ')" >' +
             '<td>' + (+data.result.indexOf(item) + 1) + '</td>' +
             '<td>' + photoObj + '</td>' +
             '<td></td>' +
-            '<td style="text-align: left;">' + item.lastName.toUpperCase() + ', ' + item.firstName + '</td>' +
+            '<td style="text-align: left;"><b>' + item.lastName.toUpperCase() + '</b>, ' + item.firstName + '</td>' +
             '<td>' + computeAgeFromDate(item.birthdate) + '</td>' + //will compute the age from the date of birth
             '<td style="text-align: left;">' + item.applyFor + '</td>' +
             '<td><button class="delete-button" title="Delete Application" onclick="deleteApplication(' + item.id + ')">-- delete --</button></td>' +
@@ -182,7 +182,7 @@ function populateForm(dataRow) {
         if (dataRow.photo === null) {
             photoObj = '-'; //No photo
         } else {
-            photoObj = '<img src=' + photoFolder + dataRow.photo + ' style="height: 90%;margin:0 auto;"  />'; //display the photo
+            photoObj = '<img src=' + photoFolder + dataRow.photo + ' style="width: 185px;margin:0 auto;"  />'; //display the photo
         }
         document.querySelector("input[name='applyFor']").value = validateDisplayedData(dataRow.applyFor).toUpperCase();
         document.getElementById("two-by-two").innerHTML = photoObj; //display the photo by injecting into the page
