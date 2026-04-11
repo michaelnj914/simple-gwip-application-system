@@ -134,8 +134,8 @@
                 <button id="btnLogout">Logout</button>
             </div>
 
-            <input type="text" id="searchName" placeholder="Search by Name" />
-            <input type="text" id="filterJob" placeholder="Filter by Job Category" />
+            <input type="text" id="searchName" onkeyup='searchByName(event)' placeholder="Search by Name" />
+            <input type="text" id="filterJob" onkeyup='searchByJobCategory(event)' placeholder="Filter by Job Category" />
 
             <table class='apply-table'>
                 <thead>

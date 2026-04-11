@@ -1,4 +1,7 @@
 
+//Global variable to hold data array from the database
+let dataArray = [];
+
 window.addEventListener("load", async function () {
     // Don't show our read-only form on this page that is used to display the details of one application
     document.getElementById('printable-application').style.display = 'none';
@@ -8,24 +11,93 @@ window.addEventListener("load", async function () {
     await getApplicationList(); //get the list of applications after the page has loaded
 });
 
-async function getApplicationList() {
 
+async function getApplicationList() {
     const myHeaders = {
         'api-command': 'get-application-list'
     }
 
     const response = await fetch('api/application_service.php', { method: 'POST', headers: myHeaders });
-    const data = await response.json();
+     data = await response.json();
 
     if (!data.success) {
         return false; //No applications exists in the database
     }
+    
+    dataArray = data.result;//put data into global variable that holds the list of applications
+    renderTable(data.result);//also render it out
+     return true; //return true after the table has been built
+}
 
-    //continue if there are applications
+/**
+ * Search for applications by applicant's name. Will search by first name or last name
+ * @param {*} event 
+ * @returns true if data is found, false if not
+ */
+function searchByName(event) {   
+    const searchString = event.target.value; //extract our search string from the event
+    if (searchString === '') { //if the search string is empty
+        renderTable(dataArray);// render the full list
+        return false; //quit
+    }
+    //filter the list of applications by the incoming value. We will search by first name and last name
+    //return any item where lastname or firstname contains the search string
+    const filteredList = dataArray.filter(item => item.firstName.toLowerCase().includes(searchString.toLowerCase())
+        || item.lastName.toLowerCase().includes(searchString.toLowerCase()));
+     
+    if (filteredList.length > 0) {
+        //something was found
+        renderTable(filteredList); //render the result into the table
+        return true;
+    } else {
+        //render empty array
+        renderTable([]);
+        return false;
+    }   
+}
+
+
+/**
+ * This function will search for applications by job category. If  the database job category starts with the search string
+ * @param {*} event onKeyUp event, the search string has been entered
+ * @returns true if data is found, false if not
+ */
+function searchByJobCategory(event) {
+    const searchString = event.target.value; //extract our search string
+      if (searchString === '') { //if the search string is empty
+        renderTable(dataArray);// render the full list
+        return false; //quit
+    }
+    //filter the list of applications by the incoming value. We will search by job_category
+    //return any item where job_category begins with the search string
+    const filteredList = dataArray.filter(item => item.applyFor.toLowerCase().startsWith(searchString.toLowerCase()));
+   
+  if (filteredList.length > 0) {
+      //something was found
+      renderTable(filteredList); //render the result into the table
+      return true;
+  } else {
+      //render an empty array
+      renderTable([]);
+      return false;
+  }    
+}
+
+/**
+ * It renders a list of applications as a collection of table rows. It attaches these rows to the table body
+ * @param {*} dataArray Passed in from an array of applications
+ * @returns true if rendered successfully or false if not
+ */
+function renderTable(dataArray) {
     const tableBody = document.getElementById('table-body');
     let tbody = '';
+    if(dataArray.length === 0) { // if an empty array was passed in, render a message and return
+        tbody = '<tr><td colspan="7" style="text-align: center;font-size:1.2rem;color:red;">No applications found</td></tr>';
+        tableBody.innerHTML = tbody;
+        return false;
+    }
     //Use a loop to build up table rows out of the returned data
-    data.result.forEach((item) => {
+    dataArray.forEach((item) => {
         let photoURL = 'api/uploads/';
         let photoObj = ''; //prepare for each photo
         if (item.photo === null) {
@@ -33,9 +105,9 @@ async function getApplicationList() {
         } else {
             photoObj = '<img src=' + photoURL + item.photo + ' style="height: 50px;"  />'; //display the photo
         }
-        
-        tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ')" >' +
-            '<td>' + (+data.result.indexOf(item) + 1) + '</td>' +
+
+        tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ', event)" >' +
+            '<td>' + (+dataArray.indexOf(item) + 1) + '</td>' +
             '<td>' + photoObj + '</td>' +
             '<td></td>' +
             '<td style="text-align: left;"><b>' + item.lastName.toUpperCase() + '</b>, ' + item.firstName + '</td>' +
@@ -48,6 +120,7 @@ async function getApplicationList() {
     tableBody.innerHTML = tbody; //insert the data into the table
     return true; //return true after the table has been built
 }
+
 
 //==================================================================
 /**
@@ -101,7 +174,11 @@ function computeAgeFromDate(dateString) {
  We have a hidden application form that is shown when we retrieve the details of one application
  * @param {*} applyId 
  */
-async function getOneApplication(applyId) {
+async function getOneApplication(applyId, event) {
+    event.preventDefault();
+    if (event.target.tagName === 'BUTTON') { //if the user clicked on the delete button. We don't want to do anything here
+        return false;
+    }
     // prepare to make the request to the server
     const myHeaders = {
         'api-command': 'get-one-application'
