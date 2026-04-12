@@ -96,17 +96,20 @@
                 tr:nth-child(odd) {
                     background-color: #e5e5e5;
                 }
-                tr{                
+
+                tr {
                     transition: background-color 0.3s ease-in-out;
                 }
-                 tr:hover {
+
+                tr:hover {
                     background-color: #bfe1f1;
                     transition: background-color 0.1s ease-in-out;
-                } 
-                tr td {                  
+                }
+
+                tr td {
                     padding: 10px;
                     font-size: .9rem;
-                }                
+                }
             }
 
             .delete-button {
@@ -118,6 +121,7 @@
                 font-size: 13px;
                 cursor: pointer;
                 transition: 0.2s;
+
                 &:hover {
                     background-color: #c0392b;
                 }
@@ -135,7 +139,8 @@
             </div>
 
             <input type="text" id="searchName" onkeyup='searchByName(event)' placeholder="Search by Name" />
-            <input type="text" id="filterJob" onkeyup='searchByJobCategory(event)' placeholder="Filter by Job Category" />
+            <input type="text" id="filterJob" onkeyup='searchByJobCategory(event)'
+                placeholder="Filter by Job Category" />
 
             <table class='apply-table'>
                 <thead>
@@ -456,9 +461,9 @@
                     <div class="review-row">
                         <div>1. <input type="text" name="review1" /></div>
                         <div>
-                            <label><input type="radio" name="review1_status" value="ongoing" />
+                            <label for='review1_status'><input type="radio" name="review1_status" value='ongoing'   />
                                 On-Going</label>
-                            <label><input type="radio" name="review1_status" value="completed" />
+                            <label for='review1_status'><input type="radio" name="review1_status" value='completed'  />
                                 Completed</label>
                         </div>
                     </div>
@@ -466,9 +471,9 @@
                     <div class="review-row">
                         <div>2. <input type="text" name="review2" /></div>
                         <div>
-                            <label><input type="radio" name="review2_status" value="ongoing" />
+                            <label for='review2_status'><input type="radio" name="review2_status" value='ongoing' />
                                 On-Going</label>
-                            <label><input type="radio" name="review2_status" value="completed" />
+                            <label for='review2_status'><input type="radio" name="review2_status" value='completed' />
                                 Completed</label>
                         </div>
                     </div>
@@ -476,9 +481,9 @@
                     <div class="review-row">
                         <div>3. <input type="text" name="review3" /></div>
                         <div>
-                            <label><input type="radio" name="review3_status" value="ongoing" />
+                            <label for='review3_status'><input type="radio" name="review3_status" value="ongoing" />
                                 On-Going</label>
-                            <label><input type="radio" name="review3_status" value="completed" />
+                            <label for='review3_status'><input type="radio" name="review3_status" value="completed" />
                                 Completed</label>
                         </div>
                     </div>

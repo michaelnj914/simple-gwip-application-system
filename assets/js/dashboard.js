@@ -16,17 +16,15 @@ async function getApplicationList() {
     const myHeaders = {
         'api-command': 'get-application-list'
     }
-
     const response = await fetch('api/application_service.php', { method: 'POST', headers: myHeaders });
-     data = await response.json();
+    data = await response.json();
 
     if (!data.success) {
         return false; //No applications exists in the database
     }
-    
     dataArray = data.result;//put data into global variable that holds the list of applications
     renderTable(data.result);//also render it out
-     return true; //return true after the table has been built
+    return true; //return true after the table has been built
 }
 
 /**
@@ -34,7 +32,7 @@ async function getApplicationList() {
  * @param {*} event 
  * @returns true if data is found, false if not
  */
-function searchByName(event) {   
+function searchByName(event) {
     const searchString = event.target.value; //extract our search string from the event
     if (searchString === '') { //if the search string is empty
         renderTable(dataArray);// render the full list
@@ -44,7 +42,7 @@ function searchByName(event) {
     //return any item where lastname or firstname contains the search string
     const filteredList = dataArray.filter(item => item.firstName.toLowerCase().includes(searchString.toLowerCase())
         || item.lastName.toLowerCase().includes(searchString.toLowerCase()));
-     
+
     if (filteredList.length > 0) {
         //something was found
         renderTable(filteredList); //render the result into the table
@@ -53,9 +51,8 @@ function searchByName(event) {
         //render empty array
         renderTable([]);
         return false;
-    }   
+    }
 }
-
 
 /**
  * This function will search for applications by job category. If  the database job category starts with the search string
@@ -64,23 +61,23 @@ function searchByName(event) {
  */
 function searchByJobCategory(event) {
     const searchString = event.target.value; //extract our search string
-      if (searchString === '') { //if the search string is empty
+    if (searchString === '') { //if the search string is empty
         renderTable(dataArray);// render the full list
         return false; //quit
     }
     //filter the list of applications by the incoming value. We will search by job_category
     //return any item where job_category begins with the search string
     const filteredList = dataArray.filter(item => item.applyFor.toLowerCase().startsWith(searchString.toLowerCase()));
-   
-  if (filteredList.length > 0) {
-      //something was found
-      renderTable(filteredList); //render the result into the table
-      return true;
-  } else {
-      //render an empty array
-      renderTable([]);
-      return false;
-  }    
+
+    if (filteredList.length > 0) {
+        //something was found
+        renderTable(filteredList); //render the result into the table
+        return true;
+    } else {
+        //render an empty array
+        renderTable([]);
+        return false;
+    }
 }
 
 /**
@@ -91,7 +88,7 @@ function searchByJobCategory(event) {
 function renderTable(dataArray) {
     const tableBody = document.getElementById('table-body');
     let tbody = '';
-    if(dataArray.length === 0) { // if an empty array was passed in, render a message and return
+    if (dataArray.length === 0) { // if an empty array was passed in, render a message and return
         tbody = '<tr><td colspan="7" style="text-align: center;font-size:1.2rem;color:red;">No applications found</td></tr>';
         tableBody.innerHTML = tbody;
         return false;
@@ -207,14 +204,12 @@ async function getOneApplication(applyId, event) {
     }
 }
 
-
-
 /**
  * As we return the data from our server as JSON, we need to check if the data is defined or null
  * @param {*} obj  object
  * @returns empty string if object is not defined or null else it returns the object
  */
-function validateDisplayedData(obj){
+function validateDisplayedData(obj) {
     if (obj !== undefined && obj !== null) {
         return obj;
     } else {
@@ -222,12 +217,11 @@ function validateDisplayedData(obj){
     }
 }
 
-
-function goBack(){
+function goBack() {
     // Make the html of the application list dashboard visible
     document.querySelector(".dashboard-wrapper").style.display = "block";
     // Hide the one application with retrieved data
-    document.getElementById("printable-application").style.display = "none";  
+    document.getElementById("printable-application").style.display = "none";
 }
 
 printApplication = () => {
@@ -239,7 +233,6 @@ printApplication = () => {
  * @param {*} dataRow contains all data for one application
  * @returns a boolean. True if no errors occur or False otherwise
  */
-
 function populateForm(dataRow) {
     let photoFolder = 'api/uploads/';
     //disable all inputs, selects and textareas
@@ -247,6 +240,7 @@ function populateForm(dataRow) {
 
     // Loop through each element and make read-only, disabled and apply some css properties
     formElements.forEach(element => {
+       // element.value = '';
         element.readOnly = true;
         //  element.disabled = true;
         //style the elements
@@ -276,6 +270,24 @@ function populateForm(dataRow) {
         document.querySelector("select[name='civilStatus']").value = validateDisplayedData(dataRow.civilStatus); //select field
         document.querySelector("select[name='gender']").value = validateDisplayedData(dataRow.gender); //select field
         document.querySelector("input[name='address']").value = validateDisplayedData(dataRow.address);
+
+        //handle the radion button group
+        const radVal = validateDisplayedData(dataRow.review1_status); // 'ongoing' or 'completed'
+        let radio = document.querySelector(`input[name='review1_status'][value = '${radVal}']`); 
+        if (radio !== null) {
+            radio.checked = true; //set the appropriate radio button
+        }
+        const radVal2 = validateDisplayedData(dataRow.review2_status);
+        let radio2 = document.querySelector(`input[name='review2_status'][value = '${radVal2}']`);
+        if (radio2 !== null) {
+            radio2.checked = true;
+        }
+        const radVal3 = validateDisplayedData(dataRow.review3_status);
+        let radio3 = document.querySelector(`input[name='review3_status'][value = '${radVal3}']`);
+        if (radio3 !== null) {
+            radio3.checked = true;
+        }
+
 
     } catch (error) {
         console.log('Error occured while populating form: ', error);
