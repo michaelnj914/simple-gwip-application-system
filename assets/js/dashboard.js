@@ -182,7 +182,7 @@ function populateForm(dataRow) {
         if (dataRow.photo === null) {
             photoObj = '-'; //No photo
         } else {
-            photoObj = '<img src=' + photoFolder + dataRow.photo + ' style="height: 90%;margin:0 auto;"  />'; //display the photo
+            photoObj = '<img src=' + photoFolder + dataRow.photo + ' style="width: 185px ;margin:0 auto;"  />'; //display the photo
         }
         document.querySelector("input[name='applyFor']").value = validateDisplayedData(dataRow.applyFor).toUpperCase();
         document.getElementById("two-by-two").innerHTML = photoObj; //display the photo by injecting into the page
