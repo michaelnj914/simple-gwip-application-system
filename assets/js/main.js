@@ -23,7 +23,7 @@ document.getElementById("applicationForm").addEventListener("submit", async func
   const formData = new FormData(myform);
 
   // add a filedate field to the form data
- // formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
+  formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
 
   const myHeaders = {
     'api-command': 'create-application'

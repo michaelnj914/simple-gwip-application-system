@@ -3,6 +3,7 @@
 
 CREATE TABLE application ( 
 id INT AUTO_INCREMENT PRIMARY KEY,
+filedate DATE,
 -- Hire type checkboxes
 chk_directhire INT DEFAULT 0,
 chk_gwiphire INT DEFAULT 0,

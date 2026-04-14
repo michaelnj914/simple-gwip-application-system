@@ -106,7 +106,7 @@ function renderTable(dataArray) {
         tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ', event)" >' +
             '<td>' + (+dataArray.indexOf(item) + 1) + '</td>' +
             '<td>' + photoObj + '</td>' +
-            '<td></td>' +
+            '<td>' + (item.filedate !== undefined? item.filedate : '-') + '</td>' +
             '<td style="text-align: left;"><b>' + item.lastName.toUpperCase() + '</b>, ' + item.firstName + '</td>' +
             '<td>' + computeAgeFromDate(item.birthdate) + '</td>' + //will compute the age from the date of birth
             '<td style="text-align: left;">' + item.applyFor + '</td>' +
@@ -287,7 +287,7 @@ function populateForm(dataRow) {
         if (radio3 !== null) {
             radio3.checked = true;
         }
-
+        document.querySelector("input[name='filedate']").value = validateDisplayedData(dataRow.filedate);
 
     } catch (error) {
         console.log('Error occured while populating form: ', error);
