@@ -1,4 +1,7 @@
 
+//Global variable to hold data array from the database
+let dataArray = [];
+
 window.addEventListener("load", async function () {
     // Don't show our read-only form on this page that is used to display the details of one application
     document.getElementById('printable-application').style.display = 'none';
@@ -8,24 +11,90 @@ window.addEventListener("load", async function () {
     await getApplicationList(); //get the list of applications after the page has loaded
 });
 
-async function getApplicationList() {
 
+async function getApplicationList() {
     const myHeaders = {
         'api-command': 'get-application-list'
     }
-
     const response = await fetch('api/application_service.php', { method: 'POST', headers: myHeaders });
-    const data = await response.json();
+    data = await response.json();
 
     if (!data.success) {
         return false; //No applications exists in the database
     }
+    dataArray = data.result;//put data into global variable that holds the list of applications
+    renderTable(data.result);//also render it out
+    return true; //return true after the table has been built
+}
 
-    //continue if there are applications
+/**
+ * Search for applications by applicant's name. Will search by first name or last name
+ * @param {*} event 
+ * @returns true if data is found, false if not
+ */
+function searchByName(event) {
+    const searchString = event.target.value; //extract our search string from the event
+    if (searchString === '') { //if the search string is empty
+        renderTable(dataArray);// render the full list
+        return false; //quit
+    }
+    //filter the list of applications by the incoming value. We will search by first name and last name
+    //return any item where lastname or firstname contains the search string
+    const filteredList = dataArray.filter(item => item.firstName.toLowerCase().includes(searchString.toLowerCase())
+        || item.lastName.toLowerCase().includes(searchString.toLowerCase()));
+
+    if (filteredList.length > 0) {
+        //something was found
+        renderTable(filteredList); //render the result into the table
+        return true;
+    } else {
+        //render empty array
+        renderTable([]);
+        return false;
+    }
+}
+
+/**
+ * This function will search for applications by job category. If  the database job category starts with the search string
+ * @param {*} event onKeyUp event, the search string has been entered
+ * @returns true if data is found, false if not
+ */
+function searchByJobCategory(event) {
+    const searchString = event.target.value; //extract our search string
+    if (searchString === '') { //if the search string is empty
+        renderTable(dataArray);// render the full list
+        return false; //quit
+    }
+    //filter the list of applications by the incoming value. We will search by job_category
+    //return any item where job_category begins with the search string
+    const filteredList = dataArray.filter(item => item.applyFor.toLowerCase().startsWith(searchString.toLowerCase()));
+
+    if (filteredList.length > 0) {
+        //something was found
+        renderTable(filteredList); //render the result into the table
+        return true;
+    } else {
+        //render an empty array
+        renderTable([]);
+        return false;
+    }
+}
+
+/**
+ * It renders a list of applications as a collection of table rows. It attaches these rows to the table body
+ * @param {*} dataArray Passed in from an array of applications
+ * @returns true if rendered successfully or false if not
+ */
+function renderTable(dataArray) {
     const tableBody = document.getElementById('table-body');
     let tbody = '';
+    if (dataArray.length === 0) { // if an empty array was passed in, render a message and return
+        tbody = '<tr><td colspan="7" style="text-align: center;font-size:1.2rem;color:red;">No applications found</td></tr>';
+        tableBody.innerHTML = tbody;
+        return false;
+    }
     //Use a loop to build up table rows out of the returned data
-    data.result.forEach((item) => {
+    dataArray.forEach((item) => {
         let photoURL = 'api/uploads/';
         let photoObj = ''; //prepare for each photo
         if (item.photo === null) {
@@ -34,11 +103,11 @@ async function getApplicationList() {
             photoObj = '<img src=' + photoURL + item.photo + ' style="height: 50px;"  />'; //display the photo
         }
 
-        tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ')" >' +
-            '<td>' + (+data.result.indexOf(item) + 1) + '</td>' +
+        tbody += '<tr class="apply-table-row" onclick="getOneApplication(' + item.id + ', event)" >' +
+            '<td>' + (+dataArray.indexOf(item) + 1) + '</td>' +
             '<td>' + photoObj + '</td>' +
             '<td></td>' +
-            '<td style="text-align: left;">' + item.lastName.toUpperCase() + ', ' + item.firstName + '</td>' +
+            '<td style="text-align: left;"><b>' + item.lastName.toUpperCase() + '</b>, ' + item.firstName + '</td>' +
             '<td>' + computeAgeFromDate(item.birthdate) + '</td>' + //will compute the age from the date of birth
             '<td style="text-align: left;">' + item.applyFor + '</td>' +
             '<td><button class="delete-button" title="Delete Application" onclick="deleteApplication(' + item.id + ')">-- delete --</button></td>' +
@@ -48,6 +117,7 @@ async function getApplicationList() {
     tableBody.innerHTML = tbody; //insert the data into the table
     return true; //return true after the table has been built
 }
+
 
 //==================================================================
 /**
@@ -101,7 +171,11 @@ function computeAgeFromDate(dateString) {
  We have a hidden application form that is shown when we retrieve the details of one application
  * @param {*} applyId 
  */
-async function getOneApplication(applyId) {
+async function getOneApplication(applyId, event) {
+    event.preventDefault();
+    if (event.target.tagName === 'BUTTON') { //if the user clicked on the delete button. We don't want to do anything here
+        return false;
+    }
     // prepare to make the request to the server
     const myHeaders = {
         'api-command': 'get-one-application'
@@ -130,14 +204,12 @@ async function getOneApplication(applyId) {
     }
 }
 
-
-
 /**
  * As we return the data from our server as JSON, we need to check if the data is defined or null
  * @param {*} obj  object
  * @returns empty string if object is not defined or null else it returns the object
  */
-function validateDisplayedData(obj){
+function validateDisplayedData(obj) {
     if (obj !== undefined && obj !== null) {
         return obj;
     } else {
@@ -145,12 +217,11 @@ function validateDisplayedData(obj){
     }
 }
 
-
-function goBack(){
+function goBack() {
     // Make the html of the application list dashboard visible
     document.querySelector(".dashboard-wrapper").style.display = "block";
     // Hide the one application with retrieved data
-    document.getElementById("printable-application").style.display = "none";  
+    document.getElementById("printable-application").style.display = "none";
 }
 
 printApplication = () => {
@@ -162,7 +233,6 @@ printApplication = () => {
  * @param {*} dataRow contains all data for one application
  * @returns a boolean. True if no errors occur or False otherwise
  */
-
 function populateForm(dataRow) {
     let photoFolder = 'api/uploads/';
     //disable all inputs, selects and textareas
@@ -170,6 +240,7 @@ function populateForm(dataRow) {
 
     // Loop through each element and make read-only, disabled and apply some css properties
     formElements.forEach(element => {
+       // element.value = '';
         element.readOnly = true;
         //  element.disabled = true;
         //style the elements
@@ -182,7 +253,7 @@ function populateForm(dataRow) {
         if (dataRow.photo === null) {
             photoObj = '-'; //No photo
         } else {
-            photoObj = '<img src=' + photoFolder + dataRow.photo + ' style="width: 185px ;margin:0 auto;"  />'; //display the photo
+            photoObj = '<img src=' + photoFolder + dataRow.photo + ' style="width: 185px;margin:0 auto;"  />'; //display the photo
         }
         document.querySelector("input[name='applyFor']").value = validateDisplayedData(dataRow.applyFor).toUpperCase();
         document.getElementById("two-by-two").innerHTML = photoObj; //display the photo by injecting into the page
@@ -199,6 +270,24 @@ function populateForm(dataRow) {
         document.querySelector("select[name='civilStatus']").value = validateDisplayedData(dataRow.civilStatus); //select field
         document.querySelector("select[name='gender']").value = validateDisplayedData(dataRow.gender); //select field
         document.querySelector("input[name='address']").value = validateDisplayedData(dataRow.address);
+
+        //handle the radion button group
+        const radVal = validateDisplayedData(dataRow.review1_status); // 'ongoing' or 'completed'
+        let radio = document.querySelector(`input[name='review1_status'][value = '${radVal}']`); 
+        if (radio !== null) {
+            radio.checked = true; //set the appropriate radio button
+        }
+        const radVal2 = validateDisplayedData(dataRow.review2_status);
+        let radio2 = document.querySelector(`input[name='review2_status'][value = '${radVal2}']`);
+        if (radio2 !== null) {
+            radio2.checked = true;
+        }
+        const radVal3 = validateDisplayedData(dataRow.review3_status);
+        let radio3 = document.querySelector(`input[name='review3_status'][value = '${radVal3}']`);
+        if (radio3 !== null) {
+            radio3.checked = true;
+        }
+
 
     } catch (error) {
         console.log('Error occured while populating form: ', error);

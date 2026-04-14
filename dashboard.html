@@ -82,56 +82,34 @@
                 }
             }
 
-            /*
-    .top-bar button:hover {
-    background: #498ed3;
-    } */
+            .apply-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
 
-            /* TABLE */
-            /* table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    
-    
-    thead {
-    background: #2c3e50;
-    color: #fff;
-    }
-    
-    th {
-    border: 1px solid #ffffff;
-    padding: 10px;
-    font-size: 15px;
-    color: #ffffff;
-    }
-    
-    } */
+                th {
+                    background-color: #03172b;
+                    color: #fff;
+                    border: 1px solid #fff;
+                }
 
+                tr:nth-child(odd) {
+                    background-color: #e5e5e5;
+                }
 
+                tr {
+                    transition: background-color 0.3s ease-in-out;
+                }
 
-            /*
-    table th {
-    border: 1px solid #ffffff;
-    padding: 10px;
-    font-size: 15px;
-    } */
-            #table-body tr td {
+                tr:hover {
+                    background-color: #bfe1f1;
+                    transition: background-color 0.1s ease-in-out;
+                }
 
-                text-align: center;
-                padding: 10px;
-                font-size: .9rem;
-                border: 1px solid #575656;
-
-            }
-
-            .apply-table-row {
-                cursor: pointer;
-                background-color: #f2f2f2;
-            }
-
-            .apply-table-row:nth-child(odd) {
-                background-color: #e5e5e5;
+                tr td {
+                    padding: 10px;
+                    font-size: .9rem;
+                }
             }
 
             .delete-button {
@@ -143,6 +121,10 @@
                 font-size: 13px;
                 cursor: pointer;
                 transition: 0.2s;
+
+                &:hover {
+                    background-color: #c0392b;
+                }
             }
         </style>
 
@@ -156,8 +138,9 @@
                 <button id="btnLogout">Logout</button>
             </div>
 
-            <input type="text" id="searchName" placeholder="Search by Name" />
-            <input type="text" id="filterJob" placeholder="Filter by Job Category" />
+            <input type="text" id="searchName" onkeyup='searchByName(event)' placeholder="Search by Name" />
+            <input type="text" id="filterJob" onkeyup='searchByJobCategory(event)'
+                placeholder="Filter by Job Category" />
 
             <table class='apply-table'>
                 <thead>
@@ -198,22 +181,27 @@
                 .form-container {
                     width: 1000px;
                     margin: 40px auto 10px auto;
-                    background: #ffffff; /* Set the background color to white */
+                    background: #ffffff;
+                    /* Set the background color to white */
                     padding: 10px;
-                    border: 0; /* Remove the border */
+                    border: 0;
+                    /* Remove the border */
                 }
 
                 .page-marker {
-                    page-break-inside: avoid; /* Prevent page breaks inside this container */
+                    page-break-inside: avoid;
+                    /* Prevent page breaks inside this container */
                 }
 
                 #print-header {
-                    display: none;/* Hide the print header */
+                    display: none;
+                    /* Hide the print header */
                 }
 
                 @page {
                     margin: .5cm;
-                    size: legal portrait;/* Set the page size to legal and orientation to portrait */
+                    size: legal portrait;
+                    /* Set the page size to legal and orientation to portrait */
                 }
             }
         </style>
@@ -227,7 +215,7 @@
         </div>
 
         <div class="form-container">
-           
+
             <!-- PAGE 1 -->
             <div class='page-marker'>
                 <!-- HEADER -->
@@ -473,9 +461,9 @@
                     <div class="review-row">
                         <div>1. <input type="text" name="review1" /></div>
                         <div>
-                            <label><input type="radio" name="review1_status" value="ongoing" />
+                            <label for='review1_status'><input type="radio" name="review1_status" value='ongoing'   />
                                 On-Going</label>
-                            <label><input type="radio" name="review1_status" value="completed" />
+                            <label for='review1_status'><input type="radio" name="review1_status" value='completed'  />
                                 Completed</label>
                         </div>
                     </div>
@@ -483,9 +471,9 @@
                     <div class="review-row">
                         <div>2. <input type="text" name="review2" /></div>
                         <div>
-                            <label><input type="radio" name="review2_status" value="ongoing" />
+                            <label for='review2_status'><input type="radio" name="review2_status" value='ongoing' />
                                 On-Going</label>
-                            <label><input type="radio" name="review2_status" value="completed" />
+                            <label for='review2_status'><input type="radio" name="review2_status" value='completed' />
                                 Completed</label>
                         </div>
                     </div>
@@ -493,9 +481,9 @@
                     <div class="review-row">
                         <div>3. <input type="text" name="review3" /></div>
                         <div>
-                            <label><input type="radio" name="review3_status" value="ongoing" />
+                            <label for='review3_status'><input type="radio" name="review3_status" value="ongoing" />
                                 On-Going</label>
-                            <label><input type="radio" name="review3_status" value="completed" />
+                            <label for='review3_status'><input type="radio" name="review3_status" value="completed" />
                                 Completed</label>
                         </div>
                     </div>
