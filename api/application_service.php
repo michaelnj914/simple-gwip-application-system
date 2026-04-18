@@ -1,8 +1,26 @@
 <?php
 
-ini_set('display_errors', '1');  //REMOVE the comment during development
+session_start(); 
+
+// ini_set('display_errors', '1');  //REMOVE the comment during development
 if (isset($_SERVER['HTTP_API_COMMAND'])) {
     $api = $_SERVER['HTTP_API_COMMAND']; //get the API command
+
+
+     // Allow ONLY login without session
+    if ($api == 'login') {
+        login();
+        exit();
+    }
+
+    // PROTECT EVERYTHING ELSE
+    if (!isset($_SESSION['admin'])) {
+        exit(json_encode([
+            "success" => false,
+            "message" => "Unauthorized access"
+        ]));
+    }
+
 
     //Check our API command and route to the appropriate functions
     if ($api == 'create-application') {
@@ -26,7 +44,88 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
             delete_application($applyID);
         }
     }
+
+    if ($api == 'logout') {
+        logout();
+        exit();
+    }
+    
+
 }
+
+function login()
+{
+    require_once "db_config.php";
+
+    // Tell the browser that the response will be in JSON format
+    header("Content-Type: application/json");
+    // Create a new MySQL database connection
+    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+    // Check if the database connection failed
+    if ($conn->connect_error) {
+        // If connection fails, return a JSON error message and stop execution
+        exit(json_encode(["success" => false, "message" => "Connection failed"]));
+    }
+    // Get the username and password sent from the login form (POST request)
+    // If they do not exist, assign an empty string
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    // Prepare a SQL statement to get the admin record with the matching username
+    // LIMIT 1 ensures only one result is returned
+    $stmt = $conn->prepare("SELECT id, username, password FROM admin WHERE username = ? LIMIT 1");
+
+    // Check if the query preparation failed
+    if (!$stmt) {
+        // If the query fails, return an error message
+        exit(json_encode(["success" => false, "message" => "Query failed"]));
+    }
+
+    // Bind the username parameter to the prepared statement
+    // "s" means the parameter is a string
+    $stmt->bind_param("s", $username);
+    // Execute the SQL query
+    $stmt->execute();
+    // Bind the results from the query to PHP variables
+    $stmt->bind_result($id, $db_username, $db_password);
+
+    // Check if a record was found and verify the password
+    if ($stmt->fetch() && $password === $db_password) {
+        // If login is successful, store the username in a session
+        $_SESSION['admin'] = $db_username;
+        // Prepare a success response
+        $res = ["success" => true, "message" => "Login successful"];
+
+    } else {
+
+        // If login fails, return an error message
+        $res = ["success" => false, "message" => "Invalid username or password"];
+    }
+
+    // Close the prepared statement
+    $stmt->close();
+    // Close the database connection
+    $conn->close();
+    // Return the result as JSON and stop the script
+    exit(json_encode($res));
+}
+
+
+function logout()
+{
+    session_start(); // ensure session is active
+    // Destroy the session
+    session_destroy();
+
+    exit(json_encode([
+        "success" => true,
+        "message" => "Logged out successfully"
+    ]));
+}
+
+
+
 
 function create_application()
 {

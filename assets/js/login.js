@@ -1,40 +1,60 @@
-function tryLogin() {
-  let un = $("#username").val();
-  let pw = $("#password").val();
-  if (un.trim() !== "" && pw.trim() != "") {
-    // alert("can connect");
+// Get the login button element from the page
+const btnLogin = document.getElementById("btnLogin");
 
-    $.ajax({
-      url: "ajaxhandler/loginAjax.php",
-      type: "POST",
-      dataType: "json",
-      data: { user_name: un, password: pw, action: "verifyUser" },
-      beforeSend: function () {
-        //if you want to do something just
-        //before making the call
-        // alert("about to make an ajax call");
-      },
-      success: function (rv) {
-        //if the ajax call was successfull,
-        //result will be in rv
-        // alert(JSON.stringify(rv));
-        if (rv["status"] == "ALL OK") {
-          document.location.replace("dashboard.php");
-        } else {
-          alert(rv["status"]);
-        }
-      },
-      error: function () {
-        //if for some reason the call was unsuccessful
-        alert("Oops something went wrong!");
-      },
+// Check if the login button exists before attaching the event listener
+if (btnLogin) {
+  // Add a click event listener to the login button
+  btnLogin.addEventListener("click", async function () {
+    // Get the values entered in the username and password fields
+    // trim() removes extra spaces before and after the text
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // Validate input: make sure both username and password are provided
+    if (!username || !password) {
+      alert("Please enter username and password");
+      return; // Stop execution if fields are empty
+    }
+
+    // Disable the login button to prevent multiple clicks
+    btnLogin.disabled = true;
+
+    // Change button text to show the login process is happening
+    btnLogin.textContent = "Logging in...";
+
+    // Create a FormData object to send login data to the server
+    const formData = new FormData();
+    formData.append("username", username); // attach username
+    formData.append("password", password); // attach password
+
+    // Custom header used by the API to determine the command (login)
+    const myHeaders = {
+      "api-command": "login",
+    };
+
+    // Send a POST request to the API with the login data
+    const response = await fetch("api/application_service.php", {
+      method: "POST",
+      body: formData,
+      headers: myHeaders,
     });
-  }
-}
 
-$(function (e) {
-  //capture the keyup event
-  $(document).on("click", "#btnLogin", function (e) {
-    tryLogin();
+    // Convert the server response into JSON format
+    const data = await response.json();
+
+    // If login is successful
+    if (data.success) {
+      // Redirect the user to the dashboard page
+      window.location.href = "dashboard.php";
+    } else {
+      // If login fails, show the error message from the server
+      alert(data.message);
+    }
+
+    // Re-enable the login button after the request finishes
+    btnLogin.disabled = false;
+
+    // Restore the original button text
+    btnLogin.textContent = "LOGIN";
   });
-});
+}
