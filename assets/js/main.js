@@ -29,6 +29,7 @@ document.getElementById("applicationForm").addEventListener("submit", async func
   const myHeaders = {
     'api-command': 'create-application'
   };
+  
   const response = await fetch(myform.action, { method: myform.method, body: formData, headers: myHeaders });
   const data = await response.json(); // we need this line to get our response
  

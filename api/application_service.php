@@ -1,26 +1,11 @@
 <?php
 
+// Start or resume session to store user data
 session_start(); 
 
 // ini_set('display_errors', '1');  //REMOVE the comment during development
 if (isset($_SERVER['HTTP_API_COMMAND'])) {
     $api = $_SERVER['HTTP_API_COMMAND']; //get the API command
-
-
-     // Allow ONLY login without session
-    if ($api == 'login') {
-        login();
-        exit();
-    }
-
-    // PROTECT EVERYTHING ELSE
-    if (!isset($_SESSION['admin'])) {
-        exit(json_encode([
-            "success" => false,
-            "message" => "Unauthorized access"
-        ]));
-    }
-
 
     //Check our API command and route to the appropriate functions
     if ($api == 'create-application') {
@@ -45,11 +30,30 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
         }
     }
 
-    if ($api == 'logout') {
-        logout();
+        // Check if the API command sent from the frontend is "login"
+    if ($api == 'login') {
+        // Call the login function to authenticate the user
+        login();
+        // Stop further execution so other protected routes are not checked
         exit();
     }
-    
+
+    // Check if the admin session is NOT set (user is not logged in)
+    if (!isset($_SESSION['admin'])) {
+        // Return a JSON response indicating access is denied
+        exit(json_encode([
+            "success" => false,
+            "message" => "Unauthorized access"
+        ]));
+    }
+
+    // If the API command is "logout"
+    if ($api == 'logout') {
+        // Call the logout function to destroy the session
+        logout();
+        // Stop script execution after logout
+        exit();
+    }
 
 }
 
