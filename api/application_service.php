@@ -162,10 +162,10 @@ function create_application()
             echo json_encode($response);
             die; //There is no point in continuing if connection fails. QUIT !
         }
-        $filedate = date('Y-m-d');
 
         $formData = array_filter($_POST); // Get all key/value pairs in a variable and remove empty values
-        $formData['filedate'] = $filedate;
+        $formData['filedate'] = $_POST['filedate'] ?? date('Y-m-d');
+        
         $keys = array_keys($formData); //get all the keys(field names) into an array
         $all_fieldnames =  implode(",", $keys); //from the submitted form, create a comma separated string of field names
         $all_values = ''; // all our incoming values will enter here
