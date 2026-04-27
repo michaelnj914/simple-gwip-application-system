@@ -1,3 +1,4 @@
+
 //set the file date on the form to thecurrent date
 document.getElementById("file-date").textContent = new Date().toLocaleDateString();
 photo=undefined; // for photo upload
@@ -23,11 +24,12 @@ document.getElementById("applicationForm").addEventListener("submit", async func
   const formData = new FormData(myform);
 
   // add a filedate field to the form data
-  formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
+ formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
 
   const myHeaders = {
     'api-command': 'create-application'
   };
+  
   const response = await fetch(myform.action, { method: myform.method, body: formData, headers: myHeaders });
   const data = await response.json(); // we need this line to get our response
  
@@ -86,10 +88,10 @@ clearPhoto = () => {
 //==== end of clearPhoto =================================
 
 //Clears the photo from the UI. Done after a successful upload
-clearPhoto = () => {
-  URL.revokeObjectURL(imgPreview.src);
-  imgPreview.style.display = "none"; // hide the preview image element
-};
+// clearPhoto = () => {
+//   URL.revokeObjectURL(imgPreview.src);
+//   imgPreview.style.display = "none"; // hide the preview image element
+// };
 //==== end of clearPhoto =================================
 
 //==== Upload the photo ============================== 
@@ -126,4 +128,3 @@ function doPhotoUpload(recordID, photo) {
     }
   });
 }
-

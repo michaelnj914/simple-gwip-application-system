@@ -3,7 +3,10 @@
 
 CREATE TABLE application ( 
 id INT AUTO_INCREMENT PRIMARY KEY,
-filedate DATE,
+
+
+filedate DATE DEFAULT CURRENT_DATE,
+
 -- Hire type checkboxes
 chk_directhire INT DEFAULT 0,
 chk_gwiphire INT DEFAULT 0,
@@ -23,7 +26,7 @@ phone VARCHAR(50) NOT NULL,
 civilStatus VARCHAR(50),
 height VARCHAR(20),
 weight VARCHAR(20),
-birthDate DATE NOT NULL,
+birthdate DATE NOT NULL,
 religion VARCHAR(100),
 highestEducational VARCHAR(150),
 courseTaken VARCHAR(150),
@@ -260,3 +263,12 @@ beneficiary1_name VARCHAR(150),
     beneficiary3_address TEXT,
     beneficiary3_phone VARCHAR(50)
 )ENGINE = InnoDB;
+
+
+
+CREATE TABLE admin (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100),
+  password VARCHAR(255)
+);
+
