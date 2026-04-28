@@ -33,7 +33,7 @@ if (btnLogin) {
     };
     
     // Send a POST request to the API with the login data
-    const response = await fetch("api/application_service.php", {
+    const response = await fetch("api/users_service.php", {
       method: "POST",
       body: formData,
       headers: myHeaders,

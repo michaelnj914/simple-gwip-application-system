@@ -1252,11 +1252,24 @@ if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
                 background-color: #aa362a;
             }
         }
+
+        input {
+            height: 25px;
+            border-radius: 5px;
+            border: 1px solid #4488e2;
+            font-size: 13px;
+
+            &:focus { 
+                border:1px solid #3399ff;              
+                outline: none;
+               box-shadow: 0 2px 11px rgba(51, 153, 255, 0.5);              
+            }
+        }
     </style>
-    <form>
+    <form >
         <div>
             <div id='user-encode-panel' style='display:grid; grid-template-columns: 1fr 1fr 1fr;gap:5px;'>
-                <h3 style='grid-column:span 3;'>Manage Users</h3>
+                <h3 style='grid-column:span 3;color: #0c4b17;'>Manage Users</h3>
                 <div><label>Username</label><br><input type='text' name='username' /></div>
                 <div style='grid-column:span 2;'></div>
                 <div><label>First Name</label><br><input type='text' name='firstname' /></div>

@@ -1,6 +1,7 @@
-
+//@ts-check-ignore
 //Global variable to hold data array from the database
 let dataArray = [];
+let usersDataArray=[];
 
 window.addEventListener("load", async function () {
     // Don't show our read-only form on this page that is used to display the details of one application
@@ -46,20 +47,54 @@ function closeuserdialog(){
 document.getElementById('users-dialog').close();
 }
 
-function getUsersList(){
+async function getUsersList(){
   const myHeaders = {
     'api-command': 'get-users'
   }
-  const response = fetch('api/application_service.php', { method: 'POST', headers: myHeaders });
-  const data = response.json();
+  const response = await fetch('api/users_service.php', { method: 'POST', headers: myHeaders });
+  const data = await response.json();
+  usersDataArray = data.result;//put data into global variable that holds the list of applications
+  renderUsersTable(data.result);//also render it out
+  return true; //return true after the table has been built
 
 }
+
+function renderUsersTable(users) {
+  const usersTableBody = document.getElementById('users-table-body');
+  let tbody = '';
+  if (users.length === 0) { // if an empty array was passed in, render a message and return
+    tbody = '<tr><td colspan="7" style="text-align: center;font-size:1.2rem;color:red;">No Users Found</td></tr>';
+    usersTableBody.innerHTML = tbody;
+    return false;
+  }
+  //Use a loop to build up table rows out of the returned data
+  users.forEach((item) => {
+  
+
+    tbody += '<tr  onclick="getOneUser(' + item.id + ', event)" >' +
+      '<td>' + (+users.indexOf(item) + 1) + '</td>' +
+      '<td>' + '</td>' +
+      '<td>' + (item.lastlogin ? item.lastlogin.split('-')[1] + '/' + item.lastlogin.split('-')[2] + '/' + item.lastlogin.split('-')[0] : 'N/A') + '</td>' +   // Format filedate from YYYY-MM-DD to MM/DD/YYYY
+      // '<td>' + (item.filedate  ? new Date(item.filedate).toLocaleDateString('en-US') : 'N/A') + '</td>' +
+      '<td style="text-align: left;"><b>' + item.firstname.toUpperCase() + '</b>, ' + item.lastname + '</td>' +
+      '<td>' + (item.role) + '</td>' + //will get designation
+      '<td style="text-align: left;">' + item.logins + '</td>' +
+      '<td><button class="delete-button" title="Delete Application" onclick="deleteUser(' + item.id + ')">-- delete --</button></td>' +
+      '</tr>';
+  });
+  // after the loop:
+  usersTableBody.innerHTML = tbody; //insert the data into the table
+  return true; //return true after the table has been built
+}
+
+
+
 
 function createUser(){
   const myHeaders = {
     'api-command': 'create-user'
   }
-  const response = fetch('api/application_service.php', { method: 'POST', headers: myHeaders });
+  const response = fetch('api/users_service.php', { method: 'POST', body: formData, headers: myHeaders });
   const data = response.json();
 }
 

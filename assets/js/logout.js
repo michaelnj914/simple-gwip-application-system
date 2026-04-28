@@ -12,7 +12,7 @@ if (btnLogout) {
     btnLogout.textContent = "Logging Out...";
 
     // Send a POST request to the server to perform logout
-    const response = await fetch("api/application_service.php", {
+    const response = await fetch("api/users_service.php", {
       method: "POST",
       headers: {
         "API-COMMAND": "logout", // Custom header telling the API to run the logout command
@@ -40,20 +40,3 @@ if (btnLogout) {
   });
 }
 
-// $(function (e) {
-//   $(document).on("click", "#btnLogout", function (ee) {
-//     $.ajax({
-//       url: "ajaxhandler/logoutAjax.php",
-//       type: "POST",
-//       dataType: "json",
-//       data: { id: 1 },
-//       beforeSend: function (e) {},
-//       success: function (e) {
-//         document.location.replace("login.php");
-//       },
-//       error: function (e) {
-//         alert("Something went wrong!");
-//       },
-//     });
-//   });
-// });
