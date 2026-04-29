@@ -4,6 +4,7 @@
 // Start or resume session to store user data
 session_start();
 
+
 if (isset($_SERVER['HTTP_API_COMMAND'])) {
     $api = $_SERVER['HTTP_API_COMMAND']; //get the API command
 
@@ -23,14 +24,35 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
     }
     // Get all users
     if ($api == 'get-users') {
+        if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
+            // Return a JSON response indicating access is denied
+            exit(json_encode([
+                "success" => false,
+                "message" => "Unauthorized access"
+            ]));
+        }
         // Call the get_users function
         get_users();
     }
     if ($api == 'create-user') {
+        if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
+            // Return a JSON response indicating access is denied
+            exit(json_encode([
+                "success" => false,
+                "message" => "Unauthorized access"
+            ]));
+        }
         create_user(); //create users();
     }
     //Delete a user
     if ($api == 'delete-user') {
+        if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
+            // Return a JSON response indicating access is denied
+            exit(json_encode([
+                "success" => false,
+                "message" => "Unauthorized access"
+            ]));
+        }
         if (isset($_POST['id'])) { //data sent from the front end must have the ID of the record present
             $userID = intval($_POST['id']); //convert to integer
             delete_user($userID);
@@ -38,12 +60,6 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
     }
 }
 
-//get all users =================================
-if ($api == 'get-users') {
-    // Call the get_users function
-    get_users();
-    exit();
-}
 //======================================================
 function login()
 {
@@ -68,7 +84,7 @@ function login()
         $password = '';
         // Get username from POST request
         if (isset($_POST['username'])) $username =   $_POST['username'];
-        // Get password from POST request (or empty string if not sent)
+        // Get password from POST request
         if (isset($_POST['password'])) $password =  $_POST['password'];
 
         // Prepare SQL statement to find user with matching username
@@ -122,13 +138,10 @@ function login()
             // Return success response
             $res = ["success" => true, "message" => "Login successful", "result" => $logged_in_user];
 
-            // $conn->close();
         } else {
             // Return error response if login fails
             $res = ["success" => false, "message" => "Invalid username or password"];
         }
-        // Close prepared statement to free resources
-        // $stmt->close();
         // Close database connection
         $conn->close();
         exit(json_encode($res));

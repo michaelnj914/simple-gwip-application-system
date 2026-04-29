@@ -27,8 +27,14 @@ window.addEventListener("load", async function () {
 });
 
 //========================================================
-//USER-MANAGEMENT ========================================
+//USER-MANAGEMENT BEGINS ========================================
 //========================================================
+
+/**
+ * Converts the permissions code to a readable string
+ * @param {*} code 
+ * @returns 
+ */
 function getDesignationFromCode(code) {
   if (code === 1) {
     return 'ADMIN';
@@ -42,6 +48,7 @@ function getDesignationFromCode(code) {
 }
 
 function openUserEncoding() {
+  //User form is in a dialog
   document.getElementById('users-dialog').showModal();
   //load users
   getUsersList();
@@ -65,10 +72,10 @@ async function createUser() {
 }
 
 
-function closeuserdialog() {
+function closeUserdialog() {
   //reset the user form if it has any entries
   const userFrm = document.getElementById("user-form");
-   userFrm.reset();
+   userFrm.reset();// clear any entries
   //close the dialog
   document.getElementById('users-dialog').close();  
 }
@@ -122,9 +129,6 @@ async function deleteUser(userId) {
     getUsersList(); //reload the users
   }
 }
-
-
-
 //===========================================================
 // END USER-MANAGEMENT ========================================
 //========================================================

@@ -87,13 +87,6 @@ clearPhoto = () => {
 }
 //==== end of clearPhoto =================================
 
-//Clears the photo from the UI. Done after a successful upload
-// clearPhoto = () => {
-//   URL.revokeObjectURL(imgPreview.src);
-//   imgPreview.style.display = "none"; // hide the preview image element
-// };
-//==== end of clearPhoto =================================
-
 //==== Upload the photo ============================== 
 /**
  * Our photo upload function.

@@ -1268,7 +1268,7 @@ if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
     </style>
     <form id='user-form' method="POST" >
         <div>
-            <div id='user-encode-panel' style='display:grid; grid-template-columns: 1fr 1fr 1fr;gap:5px;'>
+            <div  style='display:grid; grid-template-columns: 1fr 1fr 1fr;gap:5px;'>
                 <h3 style='grid-column:span 3;color: #0c4b17;'>Manage Users</h3>
                 <div><label>Username</label><span style='color:red;'>*</span><br><input type='text' name='username' /></div>
                 <div style='grid-column:span 2;'></div>
@@ -1290,11 +1290,11 @@ if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
                 <div></div>
                 <div style='text-align:right;padding-top:20px;'>
                     <button type='button' class='user-button' onclick='createUser()'>Add User</button>
-                    <button type='button' class='user-button-close' onclick='closeuserdialog()'>Close</button>
+                    <button type='button' class='user-button-close' onclick='closeUserdialog()'>Close</button>
                 </div>
                 <hr style='grid-column:span 3; color:black'>
             </div>
-            <div style='height: calc(100vh - 405px); overflow-y: scroll;'>
+            <div style='height: calc(100vh - 405px); overflow-y: auto;'>
                 <table id='users-table'>
                     <thead>
                         <tr>
