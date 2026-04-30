@@ -1,7 +1,7 @@
 
 //set the file date on the form to thecurrent date
 document.getElementById("file-date").textContent = new Date().toLocaleDateString();
-photo=undefined; // for photo upload
+photo = undefined; // for photo upload
 const submitBtn = document.getElementById("submitBtn");
 
 //submit application
@@ -24,45 +24,45 @@ document.getElementById("applicationForm").addEventListener("submit", async func
   const formData = new FormData(myform);
 
   // add a filedate field to the form data
- formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
+  formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
 
   const myHeaders = {
     'api-command': 'create-application'
   };
-  
+
   const response = await fetch(myform.action, { method: myform.method, body: formData, headers: myHeaders });
   const data = await response.json(); // we need this line to get our response
- 
-    if (data.success) {
-      //if the application was submitted successfully then an ID of the record will be returned in the response's result property
-      //We need this ID to modify the record, to write back the photo information
-      const id = data.result;
-      //upload the photo if it exists.  This will return a promise so we can use AWAIT on it.
-      if (photo !== undefined) {
+
+  if (data.success) {
+    //if the application was submitted successfully then an ID of the record will be returned in the response's result property
+    //We need this ID to modify the record, to write back the photo information
+    const id = data.result;
+    //upload the photo if it exists.  This will return a promise so we can use AWAIT on it.
+    if (photo !== undefined) {
       await doPhotoUpload(id, photo); //do photo upload if possible and wait for it to complete
-      }      
-      //if the photo upload was done. Successfull or not we continue and round up...
-      submitBtn.disabled = false; //re-enable the submit button
-      submitBtn.textContent = "Submit";
-      document.getElementById("responseMessage").textContent = "";
-      document.getElementById("success-dialog").showModal();//show modal dialog
-      document.getElementById("success-message").textContent = name + ", your application was submitted successfully!";
-      setTimeout(() => { //delay for 5 seconds
-        document.getElementById("success-dialog").close();//remove modal dialog
-        clearPhoto();//clear the photo
-        myform.reset(); //clear the form
-        window.scrollTo(0, 0); //scroll to top of the page/form
-      }, 5000);
-
-    } else { //application submission failed
-      // Handle error response
-      document.getElementById("responseMessage").textContent = data.message;
-      submitBtn.disabled = false; //re-enable the submit button
-      submitBtn.textContent = "Submit";      
     }
-  });
+    //if the photo upload was done. Successfull or not we continue and round up...
+    submitBtn.disabled = false; //re-enable the submit button
+    submitBtn.textContent = "Submit";
+    document.getElementById("responseMessage").textContent = "";
+    document.getElementById("success-dialog").showModal();//show modal dialog
+    document.getElementById("success-message").textContent = name + ", your application was submitted successfully!";
+    setTimeout(() => { //delay for 5 seconds
+      document.getElementById("success-dialog").close();//remove modal dialog
+      clearPhoto();//clear the photo
+      myform.reset(); //clear the form
+      window.scrollTo(0, 0); //scroll to top of the page/form
+    }, 5000);
 
-  
+  } else { //application submission failed
+    // Handle error response
+    document.getElementById("responseMessage").textContent = data.message;
+    submitBtn.disabled = false; //re-enable the submit button
+    submitBtn.textContent = "Submit";
+  }
+});
+
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++
 // ==== PHOTO ======================================
 //+++++++++++++++++++++++++++++++++++++++++++++++++
@@ -85,13 +85,6 @@ clearPhoto = () => {
   URL.revokeObjectURL(imgPreview.src)
   imgPreview.style.display = 'none'; // hide the preview image element
 }
-//==== end of clearPhoto =================================
-
-//Clears the photo from the UI. Done after a successful upload
-// clearPhoto = () => {
-//   URL.revokeObjectURL(imgPreview.src);
-//   imgPreview.style.display = "none"; // hide the preview image element
-// };
 //==== end of clearPhoto =================================
 
 //==== Upload the photo ============================== 

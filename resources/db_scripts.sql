@@ -272,3 +272,9 @@ CREATE TABLE admin (
   password VARCHAR(255)
 );
 
+ALTER TABLE `admin`
+ADD COLUMN `role` INT UNSIGNED DEFAULT 0 AFTER `password`,
+ADD COLUMN `firstname` VARCHAR(150) AFTER `role`,
+ADD COLUMN `lastname` VARCHAR(150) AFTER `firstname`,
+ADD COLUMN `lastlogin` DATE AFTER `lastname`,
+ADD COLUMN `logins` INT UNSIGNED DEFAULT 0 AFTER `lastlogin`;

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
     header("Location: index.html"); // redirect to login
     exit();
 }
@@ -63,6 +63,41 @@ if (!isset($_SESSION['admin'])) {
                 margin-bottom: 25px;
             }
 
+            /*USER INFO */
+            .user-info {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                border-bottom: 1px solid #999999;
+                padding: 10px;
+
+                button {
+                    background: #56a2ee;
+                    color: #fff;
+                    padding: 10px 17px;
+                    border: none;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    cursor: pointer;
+
+                }
+            }
+
+            .user-manage {
+
+                button {
+                    background: #085722;
+                    color: #fff;
+
+
+                }
+
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background: #06421a;
+                }
+            }
+
             /* TOP BAR */
             .top-bar {
                 display: flex;
@@ -91,6 +126,7 @@ if (!isset($_SESSION['admin'])) {
                     background: #498ed3;
                 }
             }
+
 
             .apply-table {
                 width: 100%;
@@ -141,12 +177,27 @@ if (!isset($_SESSION['admin'])) {
         <!-- Dashboard -->
         <div id="adminSection" class="dashboard-box">
             <h1>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
-            <p class="subtitle">Medical Professionals Application Form</p>
+            <h2 style='margin:0; font-size: 27px; color: #2c3e50;text-align:center;'>Applications Dashboard</h2>
+            <hr style='margin: 0;'>
 
-            <div class="top-bar">
-                <h2>Applications Dashboard</h2>
-                <button id="btnLogout">Logout</button>
+            <div class='user-info'>
+                <div>
+                    <button id='manageUsersButton' style='background: #085722;color: #fff;display:none;' onclick='openUserEncoding()'>
+                        Manage Users</button>
+                </div>
+                <div style='display:grid;grid-template-columns:1fr auto auto;gap:6px;'>
+                    <div style='padding-top:10px; font-style: italic;'>Logged In:</div>
+                    <div style='padding:5px;border-radius:4px;border:1px solid #56a2ee;font-size:.8rem;font-weight:700;'>
+                        <span id='userFirstName'></span> &nbsp; <span id='userLastName'></span><br>
+                        <span id='designation' style='color:brown'></span>
+                    </div>
+                    <div style='text-align: right;padding-top:2px;'> <button id="btnLogout">Logout</button></div>
+                </div>
+
             </div>
+            <p class="subtitle" style='text-align:left;'>Submitted Medical Professionals Application Forms</p>
+
+
 
             <input type="text" id="searchName" onkeyup='searchByName(event)' placeholder="Search by Name" />
             <input type="text" id="filterJob" onkeyup='searchByJobCategory(event)'
@@ -471,9 +522,9 @@ if (!isset($_SESSION['admin'])) {
                     <div class="review-row">
                         <div>1. <input type="text" name="review1" /></div>
                         <div>
-                            <label for='review1_status'><input type="radio" name="review1_status" value='ongoing'   />
+                            <label for='review1_status'><input type="radio" name="review1_status" value='ongoing' />
                                 On-Going</label>
-                            <label for='review1_status'><input type="radio" name="review1_status" value='completed'  />
+                            <label for='review1_status'><input type="radio" name="review1_status" value='completed' />
                                 Completed</label>
                         </div>
                     </div>
@@ -1150,7 +1201,6 @@ if (!isset($_SESSION['admin'])) {
         </div>
     </div>
 
-
     <script src="./assets/js/dashboard.js"></script>
     <script src="./assets/js/logout.js"></script>
 </body>
@@ -1159,4 +1209,111 @@ if (!isset($_SESSION['admin'])) {
 
 <dialog style='color:white; background-color: #454545;' id="loading-dialog">
     <div>Retrieving Data ...</div>
+</dialog>
+
+
+<!--USER MANAGEMENT     =============================================-->
+<dialog style='background-color: #ffffff;border-radius: 10px; max-height: calc(100vh - 200px);' id='users-dialog'>
+    <style>
+        h3 {
+            margin: 0;
+        }
+
+        label {
+            font-style: italic;
+            font-size: .85rem;
+            font-weight: bold;
+        }
+
+        .user-button {
+            background-color: #3e07a5;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+
+            &:hover {
+                background-color: #280668;
+            }
+        }
+
+        .user-button-close {
+            background-color: #e74c3c;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+
+            &:hover {
+                background-color: #aa362a;
+            }
+        }
+
+        input {
+            height: 25px;
+            border-radius: 5px;
+            border: 1px solid #4488e2;
+            font-size: 13px;
+
+            &:focus {
+                border: 1px solid #3399ff;
+                outline: none;
+                box-shadow: 0 2px 11px rgba(51, 153, 255, 0.5);
+            }
+        }
+    </style>
+    <form id='user-form' method="POST" >
+        <div>
+            <div  style='display:grid; grid-template-columns: 1fr 1fr 1fr;gap:5px;'>
+                <h3 style='grid-column:span 3;color: #0c4b17;'>Manage Users</h3>
+                <div><label>Username</label><span style='color:red;'>*</span><br><input type='text' name='username' /></div>
+                <div style='grid-column:span 2;'></div>
+                <div><label>First Name</label><br><input type='text' name='firstname' /></div>
+                <div><label>Last Name</label><br><input type='text' name='lastname' /></div>
+                <div><label>Role</label><span style='color:red;'>*</span><br>
+                    <select name='role' required>
+                        <option value=''>-- select --</option>
+                        <option value='1'>Admin</option>
+                        <option value='2'>Manager</option>
+                        <option value='3'>Staff</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <span style='color:red;'>*</span><br>
+                    <input type='text' name='password' required />
+                </div>
+                <div></div>
+                <div style='text-align:right;padding-top:20px;'>
+                    <button type='button' class='user-button' onclick='createUser()'>Add User</button>
+                    <button type='button' class='user-button-close' onclick='closeUserdialog()'>Close</button>
+                </div>
+                <hr style='grid-column:span 3; color:black'>
+            </div>
+            <div style='height: calc(100vh - 405px); overflow-y: auto;'>
+                <table id='users-table'>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Last Login</th>
+                            <th>Logins</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id='users-table-body'>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </form>
 </dialog>

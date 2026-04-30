@@ -1,7 +1,7 @@
 <?php
 
 // Start or resume session to store user data
-session_start(); 
+session_start();
 
 // ini_set('display_errors', '1');  //REMOVE the comment during development
 if (isset($_SERVER['HTTP_API_COMMAND'])) {
@@ -30,14 +30,7 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
         }
     }
 
-        // Check if the API command sent from the frontend is "login"
-    if ($api == 'login') {
-        // Call the login function to authenticate the user
-        login();
-        // Stop further execution so other protected routes are not checked
-        exit();
-    }
-
+  
     // Check if the admin session is NOT set (user is not logged in)
     if (!isset($_SESSION['admin'])) {
         // Return a JSON response indicating access is denied
@@ -47,98 +40,7 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
         ]));
     }
 
-    // If the API command is "logout"
-    if ($api == 'logout') {
-        // Call the logout function to destroy the session
-        logout();
-        // Stop script execution after logout
-        exit();
-    }
-
-}
-
-function login()
-{
-    // Load database connection settings (host, user, password, database name)
-    require_once "db_config.php";
-
-    // Tell the browser we are returning JSON response (API format)
-    header("Content-Type: application/json");
-
-    // Create connection to MySQL database
-    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
-
-    // Check if database connection failed
-    if ($conn->connect_error) {
-        // Stop execution and return error message in JSON format
-        exit(json_encode(["success" => false, "message" => "Connection failed"]));
-    }
-    // Start session to store logged-in user information
-    session_start();
-    // Get username from POST request (or empty string if not sent)
-    $username = $_POST['username'] ?? '';
-    // Get password from POST request (or empty string if not sent)
-    $password = $_POST['password'] ?? '';
-
-    // Prepare SQL statement to find admin with matching username
-    // LIMIT 1 ensures only one record is returned
-    $stmt = $conn->prepare("SELECT id, username, password FROM admin WHERE username = ? LIMIT 1");
-
-    // Check if SQL preparation failed
-    if (!$stmt) {
-        // Stop execution and return error message
-        exit(json_encode(["success" => false, "message" => "Query failed"]));
-    }
-
-    // Bind the username parameter to the SQL query
-    // "s" means string type
-    $stmt->bind_param("s", $username);
-
-    // Execute the SQL query
-    $stmt->execute();
-
-    // Store results into variables:
-    // $id = user ID
-    // $db_username = username from database
-    // $db_password = hashed password from database
-    $stmt->bind_result($id, $db_username, $db_password);
-
-    // Fetch the record and verify password
-    // password_verify() compares plain password with hashed password
-    if ($stmt->fetch() && password_verify($password, $db_password)) {
-
-        // Store username in session after successful login
-        $_SESSION['admin'] = $db_username;
-
-        // Return success response
-        $res = ["success" => true, "message" => "Login successful"];
-
-    } else {
-
-        // Return error response if login fails
-        $res = ["success" => false, "message" => "Invalid username or password"];
-    }
-
-    // Close prepared statement to free resources
-    $stmt->close();
-
-    // Close database connection
-    $conn->close();
-
-    // Return response as JSON and stop script execution
-    exit(json_encode($res));
-}
-
-
-function logout()
-{
-    session_start(); // ensure session is active
-    // Destroy the session
-    session_destroy();
-    exit(json_encode([
-        "success" => true,
-        "message" => "Logged out successfully"
-    ]));
+   
 }
 
 
@@ -164,8 +66,8 @@ function create_application()
         }
 
         $formData = array_filter($_POST); // Get all key/value pairs in a variable and remove empty values
-        $formData['filedate'] = $_POST['filedate'] ?? date('Y-m-d');
-        
+       // $formData['filedate'] = $_POST['filedate'] ?? date('Y-m-d');
+
         $keys = array_keys($formData); //get all the keys(field names) into an array
         $all_fieldnames =  implode(",", $keys); //from the submitted form, create a comma separated string of field names
         $all_values = ''; // all our incoming values will enter here
