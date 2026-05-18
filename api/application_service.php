@@ -29,7 +29,6 @@ if (isset($_SERVER['HTTP_APICOMMAND'])) {
             delete_application($applyID);
         }
     }
-
   
     // Check if the admin session is NOT set (user is not logged in)
     if (!isset($_SESSION['admin'])) {

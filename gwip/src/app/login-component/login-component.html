@@ -13,7 +13,8 @@
             <input id='username' placeholder='Username' name='username' [(ngModel)]='loginForm.value.username'  required />
             <input id='password' type='password' placeholder='Password' name='password' [(ngModel)]='loginForm.value.password' required />
 
-            <button type='submit' class='btnlogin' id='btnLogin'>LOGIN</button>
+            <button type='submit' class='btnlogin' id='btnLogin' [disabled]='loginForm.invalid'>LOGIN</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a [routerLink]='["/home"]' class='btnlogin'>Go to Home Page</a>
         </div>
     </div>
 </form>
