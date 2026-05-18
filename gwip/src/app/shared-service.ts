@@ -73,10 +73,10 @@ export class SharedService {
    * @returns boolean If the logged-in user is an admin it returns true, otherwise it returns false
    */
   userIsAdmin(): boolean {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (loggedInUser) {
-      const user = JSON.parse(loggedInUser);
-      return user.role === 1; // Assuming role 1 is admin
+    const user = localStorage.getItem('loggedInUser');
+    if (user!==null) {
+      const loggedInUser = JSON.parse(user);
+      return loggedInUser.role === 1; // Assuming role 1 is admin
     }
     return false;
   }

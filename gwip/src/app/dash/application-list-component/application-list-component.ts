@@ -20,8 +20,6 @@ export class ApplicationListComponent {
 
 
   async ngOnInit() {
-    //set permission level for this page
-
     //load the list of applications when the component is initialized
     await this.loadApplications();
   }
@@ -30,7 +28,8 @@ export class ApplicationListComponent {
     const data = await this.sharedService.callAPI('application_service.php', 'get-application-list', null);
     if (data.success) {
       this.applications.set(data.result); // Set the applications array = data.result;
-      console.log('Loaded applications:', this.applications());
+    //sort by id in descending order so that the latest application will be at the top of the list
+      this.applications.set(this.applications().sort((a, b) => b.id - a.id));
     } else {
       this.errorMessage = data.message;
       console.error('Failed to load applications:', data.message);

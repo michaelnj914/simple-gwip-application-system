@@ -18,6 +18,7 @@ export class DashboardComponent {
   designation = '';
 
   ngOnInit() {
+    
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);

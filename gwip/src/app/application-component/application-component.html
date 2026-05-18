@@ -167,8 +167,8 @@
                         </div>
                         <div>
                             <label style='color:red; font-weight: bold;cursor: pointer;padding:5px;' for='photo-picker'>
-                                Select 2X2 Photo <input id='photo-picker' type='file'  [ngModelOptions]='{standalone: true}' [(ngModel)]='applForm.value.photo'
-                                    accept='.jpg, .jpeg, .png' />
+                                Select 2X2 Photo <input id='photo-picker' type='file' (change)='selectPhoto($event)' name='photo'
+                                   [(ngModel)]='applForm.value.photo'   accept='.jpg, .jpeg, .png' />
                             </label>
                         </div>
                     </div>
@@ -922,7 +922,7 @@
 
             <br />
             <div style='text-align:center;'>
-                <button type='submit' style='cursor:pointer;' id='submitBtn'>Submit Application</button>
+                <button type='submit' style='cursor:pointer;' id='submitBtn' [disabled]='applForm.invalid'>Submit Application</button>
                 <div id='responseMessage'></div>
             </div>
 
@@ -941,10 +941,10 @@
             </button>
     </div>
 
+@if(successMessage().length > 0){
+    <div class='success-message'>{{successMessage()}}</div>
+}
 
-<dialog id='success-dialog'>
-    <p id='success-message'></p>
-</dialog>
 
 }@else {
 
