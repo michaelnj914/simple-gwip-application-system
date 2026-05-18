@@ -1,25 +1,23 @@
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+
 
 @Injectable({
     providedIn: 'root'
 })
-export class Auth {
- //  router = inject(Router);
-    canActivate() {        
-        //decode the jwt token in localStorage
-        if (localStorage.getItem('loggedInUser') === null) {
+export class Auth { // This is a route guard to protect the dashboard route and its child routes
+
+    canActivate() {
+        const usr: any = localStorage.getItem('loggedInUser');//This was cached when we logged in
+        if (usr === null) {
             return false;
         }
-        const loggedInUser:any = localStorage.getItem('loggedInUser');
-        if (loggedInUser) {
-            if (+loggedInUser['role'] === 1 ) {  //only admin can access the dashboard and users page
-                return true;
-            } else {
-              // this.router.navigate(['home']);
-                return false;
-            }
+        //convert the stringified JSON object back to a JavaScript object
+        const loggedInUser = JSON.parse(usr);
+        if (+loggedInUser.role === 1) {  //only admin can access the dashboard and users page
+            return true;
+        } else {
+
+            return false;
         }
-        return false;
     }
 }

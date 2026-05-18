@@ -21,7 +21,7 @@ export const routes: Routes = [
         path: 'application', //URL: "application" will load the application component
         loadComponent: () => import('./application-component/application-component').then(m => m.ApplicationComponent)
     },
-    {
+    {  // DashboardComponent is a parent component for all the other childcomponents
         path: 'dashboard', component: DashboardComponent, canActivate: [Auth], //url guard to protect the dashboard route
         children: [
                 // default route for the dashboard
