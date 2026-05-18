@@ -1,0 +1,193 @@
+//Formerly lPage.css
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #749ad3;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1330px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: var(--big-font-size);
+    margin-bottom: 1.5rem;
+}
+
+.main {
+    overflow: hidden;
+}
+
+.header {
+    width: 100%;
+    background-color: #d6e4fa;
+    z-index: 100;
+    transition:
+        background-color 0.4s,
+        box-shadow 0.4s;
+}
+
+.nav {
+    position: relative;
+    /* width: 80%; */
+    height: 4.4rem;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    line-height: 2rem;
+    margin-top: 17px;
+}
+
+.logo {
+    height: 59px;
+    margin-right: 3px;
+    /* display: block; */
+    max-width: 100%;
+}
+
+/*=============== HOME SECTION ===============*/
+
+.home {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+}
+
+.home-container {
+    height: 78vh;
+    place-items: center;
+}
+
+.home-data {
+    text-align: center;
+    margin-top: 90px;
+}
+
+.home-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* letter-spacing: 5px; */
+    font-weight: bold;
+    color: #f3f4f6;
+    font-size: 67px;
+    margin-bottom: 16px;
+}
+
+.home-description {
+    color: #f9f5ed;
+    margin-block: 16px 48px;
+    max-width: 600px;
+    line-height: 1.5rem;
+    margin: auto;
+    letter-spacing: 0.6px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background: gold;
+    color: #6b5224;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.btn-outline {
+    border: 2px solid rgba(44, 20, 20, 0.25);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.btn-outline:hover {
+    background-color: #113369;
+    transform: translateY(-5px);
+}
+
+.btn-primary:hover {
+    background: rgb(255, 225, 53);
+    transform: translateY(-5px);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    /* styles for mobile */
+
+    .home-title {
+        text-align: center;
+        color: #f3f4f6;
+        font-size: 30px;
+        margin-bottom: 16px;
+    }
+
+    .home-description {
+        color: #f9f5ed;
+        max-width: 400px;
+        line-height: 1.2rem;
+        margin: auto;
+        letter-spacing: 0.6px;
+        margin-bottom: 25px;
+    }
+
+    .nav-logo {
+        font-size: 14px;
+        font-weight: 700;
+        /* line-height: 2rem; */
+        margin-top: 12px;
+    }
+
+    .logo {
+        height: 50px;
+        margin-right: 3px;
+        max-width: 100%;
+        font-weight: bold;
+    }
+}

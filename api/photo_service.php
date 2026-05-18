@@ -5,8 +5,8 @@
 //ini_set('display_errors', '1');  //REMOVE the comment during development
 require_once "db_config.php"; //database configuration 
 
-if (isset($_SERVER['HTTP_API_COMMAND'])) {
-    $api = $_SERVER['HTTP_API_COMMAND']; //get the API command from the HTTP Header
+if (isset($_SERVER['HTTP_APICOMMAND'])) {
+    $api = $_SERVER['HTTP_APICOMMAND']; //get the API command from the HTTP Header
 
     //Check our API command and route to the appropriate function
     if ($api == 'upload-photo') {

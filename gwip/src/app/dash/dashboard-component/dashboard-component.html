@@ -1,0 +1,36 @@
+<div class="dashboard-wrapper">
+
+    <!-- Dashboard -->
+    <div id="adminSection" class="dashboard-box">
+        <h1 style='margin:0;'>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
+        <h2 style='margin:0; font-size: 27px; color: #2c3e50;text-align:center;'>Applications Dashboard</h2>
+        <hr style='margin: 0;'>
+
+        <div class='user-info'>
+            <div>
+                @if(isAdmin){ <!--Display the button based on if the user is Admin-->
+                <button id='manageUsersButton' style='background: #085722;color: #fff;' (click)='openUserEncoding()'>
+                    Manage Users
+                </button>
+                }
+            </div>
+            <div style='display:grid;grid-template-columns:1fr auto auto;gap:6px;'>
+                <div style='padding-top:10px; font-style: italic;'>Logged In:</div>
+                <div style='padding:5px;border-radius:4px;border:1px solid #56a2ee;font-size:.8rem;font-weight:700;'>
+                    <span>{{userFirstName}}</span> &nbsp; <span>{{userLastName}}</span><br>
+                    <span style='color:brown'>{{designation}}</span>
+                </div>
+                <div style='text-align: right;padding-top:2px;'> <button id="btnLogout" (click)='logout()'>logout</button></div>
+            </div>
+        </div>
+
+        <router-outlet />
+
+    </div>
+</div>
+
+<!--Show we are calling the API-->
+@if(sharedService.isCallingAPI()){
+<div class='overlay'></div>
+<div class='loader'>Loading...</div>
+}

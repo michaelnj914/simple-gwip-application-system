@@ -5,8 +5,8 @@
 session_start();
 
 
-if (isset($_SERVER['HTTP_API_COMMAND'])) {
-    $api = $_SERVER['HTTP_API_COMMAND']; //get the API command
+if (isset($_SERVER['HTTP_APICOMMAND'])) {
+    $api = $_SERVER['HTTP_APICOMMAND']; //get the API command
 
     // Check if the API command sent from the frontend is "login"
     if ($api == 'login') {
@@ -24,12 +24,12 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
     }
     // Get all users
     if ($api == 'get-users') {
-        if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
-            // Return a JSON response indicating access is denied
-            exit(json_encode([
-                "success" => false,
-                "message" => "Unauthorized access"
-            ]));
+       if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
+           // Return a JSON response indicating access is denied
+           exit(json_encode([
+               "success" => false,
+               "message" => "Unauthorized access"
+           ]));
         }
         // Call the get_users function
         get_users();

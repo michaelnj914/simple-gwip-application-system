@@ -1,0 +1,42 @@
+<!--OUR FORMER LANDING PAGE ++++++++++++++++++++++++++++++++++++++++-->
+<!-- HEADER -->
+<header class='header'>
+    <nav class='nav container'>
+        <div class='company-logo grid-1'>
+            <img src='/assets/logo.gif' alt='logo' class='logo' />
+            <!-- <a href='index.html' class='nav-logo'>GOD'S WILL INTERNATIONAL PLACEMENT, INC.</a> -->
+            <a [routerLink]="['/home']" class='nav-logo'>GOD'S WILL INTERNATIONAL PLACEMENT, INC.</a>
+        </div>
+    </nav>
+</header>
+<main class='main'>
+    <section class='home'>
+        <div class='home-container container grid'>
+            <div class='home-data'>
+                <h1 class='home-title'>
+                    Placing Filipino Talent <br />
+                    on the World Stage
+                </h1>
+
+                <p class='home-description'>
+                    For more than two decades, God's Will International Placement,
+                    Inc. has been the trusted bridge between skilled Filipino workers
+                    and reputable overseas employers across the globe.
+                </p>
+
+                <div class='form-btn'>
+                    <!-- <a href='form.html' class='btn-primary'>Start Application</a> -->
+                    <a [routerLink]="['/application']" class='btn-primary'>Start Application</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class='admin-btn'>
+        <!-- <a href='login.html' class='btn-outline'>Admin Login</a> old way --> 
+        <!-- <a [routerLink]="['/login'] class='btn-outline'>Admin Login</a> Another Angular alternative way -->
+        <button  class='btn-outline' (click)='navigateToLogin()'>Admin Login</button>
+    </div>
+</footer>

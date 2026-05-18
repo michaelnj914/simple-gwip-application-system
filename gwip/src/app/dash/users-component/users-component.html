@@ -1,0 +1,72 @@
+<!--USER MANAGEMENT     =============================================-->
+<div style='background-color: #ffffff;width:70%;border-radius: 10px;margin:0 auto; max-height: calc(100vh - 200px);'
+    id='users-dialog' animate.enter='scaleIn' animate.leave='scaleOut'>
+
+    <form #userFrm='ngForm' (ngSubmit)='createUser(userFrm.value)'>
+        <div>
+            <div class='user-encode'>
+                <h3 style='grid-column:span 3;color: #0c4b17;'>Manage Users</h3>
+                <div><label>Username</label><span style='color:red;'>*</span><br>
+                    <input type='text' name='username' required [(ngModel)]='userFrm.value.username' />
+                </div>
+                <div>
+                    <label>Password</label>
+                    <span style='color:red;'>*</span><br>
+                    <input type='text' name='password' required [(ngModel)]='userFrm.value.password' />
+                </div>
+                <div><label>Role</label><span style='color:red;'>*</span><br>
+                    <select name='role' required [(ngModel)]='userFrm.value.role' style='height: 28px;'>
+                        <option value=''>-- select --</option>
+                        <option value='1'>Admin</option>
+                        <option value='2'>Manager</option>
+                        <option value='3'>Staff</option>
+                    </select>
+                </div>
+
+                <div><label>First Name</label><br><input type='text' name='firstname'
+                        [(ngModel)]='userFrm.value.firstname' /></div>
+                <div><label>Last Name</label><br><input type='text' name='lastname'
+                        [(ngModel)]='userFrm.value.lastname' /></div>
+                <div style='padding-top:19px;'> <button type='submit' class='user-button'
+                        [disabled]='userFrm.invalid'>Add User</button>
+                    &nbsp;&nbsp;<button type='button' class='user-button-close' (click)='closeUsers()'>Back</button>
+                </div>
+
+                <hr style='grid-column:span 3; color:black'>
+            </div>
+            <div style='height: calc(100vh - 405px); overflow-y: auto; border:1px solid #999999;padding:10px;'>
+                <table class='display-table'>
+                    <thead>
+                        <tr class='sticky-header'>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Last Login</th>
+                            <th>Logins</th>
+                            <th>Plain_Password</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (user of usersList(); track $index) {
+                        <tr>
+                            <td>{{$index + 1}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.firstname}} {{user.lastname | uppercase}}</td>
+                            <td>{{sharedService.getDesignationFromCode(+user.role)}}</td>
+                            <td>{{user.lastlogin | date:'d/MMM/yyyy'}} </td>
+                            <td>{{user.logins}}</td>
+                            <td>{{user.plain_password}}</td>
+                            <td><button type='button' class='delete-button'
+                                    style='border-radius: 50%;width:24px;height:23px;padding:0;'
+                                    title='Delete This User' (click)='deleteUser(user.id)'>X</button></td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
