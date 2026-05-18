@@ -15,7 +15,7 @@ export class ApplicationListComponent {
 
   errorMessage: string = ''; // Variable to hold error messages
   photoURL = 'api/uploads/'; // Base URL for application photos
-  permissionLevel = 0;
+
   isAdmin = this.sharedService.userIsAdmin();
 
 
@@ -36,7 +36,6 @@ export class ApplicationListComponent {
     }
     return;
   }
-
 
   //==================================================================
   /**
@@ -74,7 +73,6 @@ export class ApplicationListComponent {
   searchByName(event: any) {
     const searchString = event.target.value; //extract our search string from the event
     if (searchString === '') { //if the search string is empty
-      // renderTable(dataArray);// render the full list
       return false; //quit
     }
     //filter the list of applications by the incoming value. We will search by first name and last name

@@ -99,8 +99,10 @@ export class ApplicationComponent {
 
   //Clears the photo from the UI. Done after a successful upload
   clearPhoto() {
-    URL.revokeObjectURL(this.imgPreview!.src)
-    //imgPreview.style.display = 'none'; // hide the preview image element
+    if (this.imgPreview) {
+      URL.revokeObjectURL(this.imgPreview.src)
+      this.imgPreview.style.display = 'none'; // hide the preview image element 
+    }
   }
   //==== end of clearPhoto =================================
 
