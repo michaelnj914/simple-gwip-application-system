@@ -1255,7 +1255,7 @@ if (!isset($_SESSION['admin']) && !isset($_SESSION['logged_in_user'])) {
 
         input {
             height: 25px;
-            width: 200px;
+            /* width: 200px; */
             border-radius: 5px;
             border: 1px solid #4488e2;
             font-size: 13px;
