@@ -56,14 +56,19 @@ export class ApplicationComponent {
       if (this.photo) {
         await this.doPhotoUpload(appId, this.photo);
       }
-
+    
+   
       this.successMessage.set(this.applicantName() + ', Your application was submitted successfully');
       setTimeout(() => {
         this.successMessage.set('');
         //clear the form fields
         this.applicantName.set('');
-        this.clearPhoto();  //clear the photo from the UI after successful submission
-       // applicationForm.reset();
+        const frm = document.getElementById('appl-form') as HTMLFormElement;
+        if (frm) {
+          frm.reset(); // reset the form
+        }
+        this.clearPhoto();  //clear the photo from the UI 
+        window.scrollTo(0, 0); //scroll to the top of the page
         
       }, 5000); // 5 second interval
 
@@ -99,7 +104,8 @@ export class ApplicationComponent {
   //Clears the photo from the UI. Done after a successful upload
   clearPhoto() {
     if (this.imgPreview) {
-      URL.revokeObjectURL(this.imgPreview.src)
+      URL.revokeObjectURL(this.imgPreview.src);
+      this.imgPreview.src = '';
      // this.imgPreview.style.display = 'none'; // hide the preview image element 
     }
   }
