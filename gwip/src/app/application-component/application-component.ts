@@ -28,6 +28,7 @@ export class ApplicationComponent {
 
   ngOnInit() {
     window.scrollTo(0, 0); // Scroll to the top of the page when the component is initialized
+    this.imgPreview = document.getElementById('img-preview') as HTMLImageElement;
   }
   
   
@@ -53,9 +54,7 @@ export class ApplicationComponent {
       // This can be used to upload the photo for the application if there is any photo to upload.
       //Upload the photo if any
       if (this.photo) {
-
         await this.doPhotoUpload(appId, this.photo);
-
       }
 
       this.successMessage.set(this.applicantName() + ', Your application was submitted successfully');
@@ -63,8 +62,9 @@ export class ApplicationComponent {
         this.successMessage.set('');
         //clear the form fields
         this.applicantName.set('');
-        applicationForm.reset();
         this.clearPhoto();  //clear the photo from the UI after successful submission
+        applicationForm.reset();
+        
       }, 5000); // 5 second interval
 
     } else {
@@ -72,7 +72,6 @@ export class ApplicationComponent {
     }
   }
 
- 
   navigateToHome() {
     this.router.navigate(['/home']);
   }
@@ -92,7 +91,7 @@ export class ApplicationComponent {
     this.imgPreview = document.getElementById('img-preview') as HTMLImageElement;
     if (this.photo && this.imgPreview) {
       this.imgPreview.src = URL.createObjectURL(this.photo); // Create a temporary URL
-      this.imgPreview.style.display = 'block'; // show the preview image element
+    // this.imgPreview.style.display = 'block'; // show the preview image element
     }
   }
   //==== end of photo selector =================================
@@ -101,7 +100,7 @@ export class ApplicationComponent {
   clearPhoto() {
     if (this.imgPreview) {
       URL.revokeObjectURL(this.imgPreview.src)
-      this.imgPreview.style.display = 'none'; // hide the preview image element 
+     // this.imgPreview.style.display = 'none'; // hide the preview image element 
     }
   }
   //==== end of clearPhoto =================================

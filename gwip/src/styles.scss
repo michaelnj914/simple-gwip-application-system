@@ -82,14 +82,11 @@ button:disabled {
     z-index: 1000;
 }
 
-
 //FORM VALIDATION -- If a required input or select is touched but not filled(valid) show red border
 select,
 input.ng-invalid.ng-touched {
     border: 1px solid red;
 }
-
-
 
 //ANIMATIONS======================
 @keyframes scaleInOut {

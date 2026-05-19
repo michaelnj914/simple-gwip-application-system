@@ -467,3 +467,24 @@ table th {
     padding: 10px;
     border-radius: 5px;
 }
+
+.success-message{
+background-color: green;
+font-size:1.5rem;
+padding:10px;
+color:white;
+position:fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 2000;
+}
+
+.submitting{
+color:green;
+font-weight: bold;
+font-size: 1.1rem;
+padding:5px;
+text-align: center;
+}
+
