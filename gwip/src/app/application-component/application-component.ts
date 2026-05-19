@@ -63,7 +63,7 @@ export class ApplicationComponent {
         //clear the form fields
         this.applicantName.set('');
         this.clearPhoto();  //clear the photo from the UI after successful submission
-        applicationForm.reset();
+       // applicationForm.reset();
         
       }, 5000); // 5 second interval
 
