@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { SharedService } from '../../shared-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { apply } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-application-list-component',
@@ -21,10 +22,10 @@ export class ApplicationListComponent {
 
   async ngOnInit() {
     //load the list of applications when the component is initialized
-    await this.loadApplications();
+    await this.loadApplicationsList();
   }
 
-  async loadApplications() {
+  async loadApplicationsList() {
     const data = await this.sharedService.callAPI('application_service.php', 'get-application-list', null);
     if (data.success) {
       this.applications.set(data.result); // Set the applications array = data.result;
@@ -35,6 +36,19 @@ export class ApplicationListComponent {
       console.error('Failed to load applications:', data.message);
     }
     return;
+  }
+
+  async openOneApplication(applyId: number) {
+   
+   const obj= { id: applyId };
+  const data = await this.sharedService.callAPI('application_service.php', 'get-one-application', obj);
+  if (data.success) {
+    this.applications.set(data.result); // Set the applications array = data.result;
+  } else {
+    this.errorMessage = data.message;
+    console.error('Failed to load applications:', data.message);
+  }
+  return;
   }
 
   //==================================================================
@@ -48,7 +62,7 @@ export class ApplicationListComponent {
       return false; //user cancelled
     }
     // prepare to make the request to the server
-    const obj= { id: applyId }; //We can directly use an object here, the callAPI method will convert it to FormData internally. = new FormData();
+    const obj = { id: applyId }; //We can directly use an object here, the callAPI method will convert it to FormData internally. = new FormData();
    
     try {
       // make the request
@@ -56,7 +70,7 @@ export class ApplicationListComponent {
 
       if (data.success) { //if the application was deleted successfully
         //reload the application list
-        await this.loadApplications();
+        await this.loadApplicationsList();
       }
     } catch (error) {
       console.log('Error occured while deleting application: ', error);

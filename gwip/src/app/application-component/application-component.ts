@@ -3,6 +3,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../shared-service';
 import { Router } from '@angular/router';
+import { IApplicationForm } from '../app.interfaces';
 
 @Component({
   selector: 'app-application-component',
@@ -24,7 +25,9 @@ export class ApplicationComponent {
   errorMessage = signal<string>(''); // Signal to hold the error message to display if form submission fails
   applicantName = signal<string>('');
   photo = null; // this variable will hold the selected photo file
-  imgPreview: HTMLImageElement|null = null; //empty object
+  imgPreview: HTMLImageElement | null = null; //empty object
+  
+  applyObj: IApplicationForm | null = null; //to hold application form from database
 
   ngOnInit() {
     window.scrollTo(0, 0); // Scroll to the top of the page when the component is initialized
@@ -81,6 +84,9 @@ export class ApplicationComponent {
     this.router.navigate(['/home']);
   }
 
+  navigateToApplicationList() {
+    this.router.navigate(['/dashboard/applicationlist']);
+  }
 
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++
@@ -138,4 +144,18 @@ export class ApplicationComponent {
       }
     });
   }
+
+
+/**
+ * As we return the data from our server as JSON, we need to check if the data is defined or null
+ * @param {*} obj  object
+ * @returns empty string if object is not defined or null else it returns the object
+ */
+validateDisplayedData(obj:any) {
+  if (obj !== undefined && obj !== null) {
+    return obj;
+  } else {
+    return '';
+  }
+}
 }

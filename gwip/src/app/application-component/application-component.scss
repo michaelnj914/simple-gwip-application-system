@@ -468,25 +468,65 @@ table th {
     border-radius: 5px;
 }
 
-.success-message{
-background-color: green;
-font-size:1.5rem;
-border-radius:10px;
-border:4px solid white;
-padding:10px;
-color:white;
-position:fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-z-index: 2000;
+.success-message {
+    background-color: green;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: 4px solid white;
+    padding: 10px;
+    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
 }
 
-.submitting{
-color:green;
-font-weight: bold;
-font-size: 1.1rem;
-padding:5px;
-text-align: center;
+.submitting {
+    color: green;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 5px;
+    text-align: center;
 }
 
+// FOR PRINTABLE APPLICATION ================================================
+#print-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 8px;
+    background-color: #9bc3ec;
+    border-radius: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    border-bottom: 2px solid #5e7c9b;
+}
+
+@media print {
+    .form-container {
+        width: 1000px;
+        margin: 40px auto 10px auto;
+        background: #ffffff;
+        /* Set the background color to white */
+        padding: 10px;
+        border: 0;
+        /* Remove the border */
+    }
+
+    .page-marker {
+        page-break-inside: avoid;
+        /* Prevent page breaks inside this container */
+    }
+
+    #print-header {
+        display: none;
+        /* Hide the print header */
+    }
+
+    @page {
+        margin: .5cm;
+        size: legal portrait;
+        /* Set the page size to legal and orientation to portrait */
+    }
+}
