@@ -120,6 +120,7 @@ export class ApplicationComponent {
   }
 
   navigateToApplicationList() {
+    this.sharedService.userButtonIsVisible.set(true);
     this.router.navigate(['/dashboard/applicationlist']);
   }
 

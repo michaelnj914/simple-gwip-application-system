@@ -41,7 +41,7 @@ export class ApplicationListComponent {
   }
 
    openOneApplication(applyId: number) {
-   
+   this.sharedService.userButtonIsVisible.set(false);
     const obj = { id: applyId };
     
     this.router.navigate(['/dashboard/application', applyId, false]);
