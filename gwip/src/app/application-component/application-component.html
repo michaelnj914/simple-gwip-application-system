@@ -1,14 +1,14 @@
 @if(isPublicPage===true){
 
 <div class='form-container' animate.enter='fadeIn'>
-    <form #applForm='ngForm' id ='appl-form' (ngSubmit)='submitApplication(applForm.value)'>
+    <form #applForm='ngForm' id='appl-form' (ngSubmit)='submitApplication(applForm.value)'>
         <div id='formSection'>
 
             <!-- ALL YOUR FORM CONTENT VIEWABLE BY THE PUBLIC -->
 
             <!-- HEADER -->
             <div class='header'>
-                <img src='assets/logo/logo.gif' class='logo' alt='logo' />
+                <img src='assets/logo.gif' class='logo' alt='logo' />
                 <div class='header-text'>
                     <h2>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h2>
                     <p>
@@ -33,13 +33,13 @@
 
                 <div class='checkbox-group'>
                     <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_directhire'  />
+                            [(ngModel)]='applForm.value.chk_directhire' />
                         DIRECT HIRE</label>
                     <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_gwiphire'  /> GWIP
+                            [(ngModel)]='applForm.value.chk_gwiphire' /> GWIP
                         HIRE</label>
                     <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_indirecthire'  />
+                            [(ngModel)]='applForm.value.chk_indirecthire' />
                         PRINCIPAL'S INDIRECT HIRE</label>
                     <label>Referred By / Principal:<input type='text' [ngModelOptions]='{standalone: true}'
                             [(ngModel)]='applForm.value.referredBy'
@@ -80,8 +80,8 @@
 
                     <div class='form-group inline-fields'>
                         <label>Last Name (Surname):<span class='asterisk'>*</span></label>
-                        <input type='text' [ngModelOptions]='{standalone: true}' [(ngModel)]='applForm.value.lastName'
-                            style='width: 75%' required />
+                        <input type='text' [(ngModel)]='applForm.value.lastName'
+                           name='lastName' style='width: 75%' required />
 
                         <label>First Name:<span class='asterisk'>*</span></label>
                         <input type='text' [ngModelOptions]='{standalone: true}' [(ngModel)]='applForm.value.firstName'
@@ -121,12 +121,9 @@
                         <select [ngModelOptions]='{standalone: true}' [(ngModel)]='applForm.value.civilStatus'
                             style='width: 150px' class='line-input' required>
                             <option value=''>-- Select Status --</option>
-                            <option value='Single'>Single</option>
-                            <option value='Married'>Married</option>
-                            <option value='Widowed'>Widowed</option>
-                            <option value='Divorced'>Divorced</option>
-                            <option value='Separated'>Separated</option>
-                            <option value='Co-Habitation'>Co-Habitation</option>
+                           @for(cs of civilStatus; track $index){
+                            <option value='{{cs}}'>{{cs}}</option>
+                            }
                         </select>
                     </div>
 
@@ -183,8 +180,8 @@
 
                 <!-- RIGHT SIDE (PICTURE BOX) -->
                 <div class='personal-right'>
-                    <div style='height:200px; width: 200px; border: 1px solid blue;margin:0 auto;overflow: hidden;'>                       
-                        <img id='img-preview' style='height:100%;margin: 0 auto;' />                        
+                    <div style='height:200px; width: 200px; border: 1px solid blue;margin:0 auto;overflow: hidden;'>
+                        <img id='img-preview' style='height:100%;margin: 0 auto;' />
                     </div>
                     <div>
                         <label style='color:red; font-weight: bold;cursor: pointer;padding:5px;' for='photo-picker'>
@@ -416,23 +413,23 @@
                         <strong>For Registered Nurses</strong>
                         <div class='checkbox-grid'>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_bsc'  />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_bsc' />
                                 B.Sc. Nursing</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_diploma_nursing'  />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_diploma_nursing' />
                                 Diploma of Nursing</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_midwifery'  />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_midwifery' />
                                 Diploma of Midwifery</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_masters'  />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_masters' />
                                 Masters in Nursing</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_phd'  />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_phd' />
                                 PhD in Nursing</label>
                             <label>
                                 <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_other'  />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_other' />
                                 Other Diploma:
                                 <input type='text' [ngModelOptions]='{standalone: true}'
                                     [(ngModel)]='applForm.value.nursing_other' />
@@ -444,10 +441,10 @@
                         <strong>For Physical Therapists</strong>
                         <div class='checkbox-grid'>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_pt_bsc_pt'  />
+                                    [(ngModel)]='applForm.value.chk_pt_bsc_pt' />
                                 B.Sc. Physical Therapist</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_pt_na'  /> Not
+                                    [(ngModel)]='applForm.value.chk_pt_na' /> Not
                                 Applicable</label>
                         </div>
                     </div>
@@ -461,55 +458,55 @@
                 <div class='checkbox-grid-1'>
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_er'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_er' />
                         Emergency Room Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_med_surg'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_med_surg' />
                         Medical Surgical Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_general'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_general' />
                         General Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_icu'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_icu' />
                         ICU Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_telemetry'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_telemetry' />
                         Telemetry Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_pt'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_pt' />
                         Physical Therapist
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_theater'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_theater' />
                         Theater / Operation Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_pcu'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_pcu' />
                         PCU/CVPCU Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_ot'  />
+                            [(ngModel)]='applForm.value.chk_job_specialty_ot' />
                         Occupational Therapist
                     </label>
 
@@ -524,37 +521,37 @@
                 <div class='checkbox-grid-2'>
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_staff_nurse'  />
+                            [(ngModel)]='applForm.value.chk_staff_nurse' />
                         Staff Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_charge_nurse'  />
+                            [(ngModel)]='applForm.value.chk_charge_nurse' />
                         Charge Nurse (Nurse Manager during shifts)
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_senior_nurse'  />
+                            [(ngModel)]='applForm.value.chk_senior_nurse' />
                         Senior Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_director_nurse'  />
+                            [(ngModel)]='applForm.value.chk_director_nurse' />
                         Nursing Director
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_head_nurse'  />
+                            [(ngModel)]='applForm.value.chk_head_nurse' />
                         Head Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_sister_nurse'  />
+                            [(ngModel)]='applForm.value.chk_sister_nurse' />
                         Nursing Sister
                     </label>
                 </div>
@@ -1120,11 +1117,11 @@
             </div>
         </div>
 
-        <br/>
+        <br />
         <div style='text-align:center;'>
             <button type='submit' style='cursor:pointer;' id='submitBtn' [disabled]='applForm.invalid'>Submit
                 Application</button>
-           @if(isSubmitting()){<div class='submitting'>Submitting ...</div>} 
+            @if(isSubmitting()){<div class='submitting'>Submitting ...</div>}
         </div>
 
     </form>
@@ -1158,10 +1155,11 @@
 <!-- *******************************************************************************************-->
 <!-- *******************************************************************************************-->
 
-<div id='printable-application'>   
+<div id='printable-application'>
 
     <div id='print-header'>
-        <div style='text-align:left;'><button id='back-btn'(click)='navigateToApplicationList()'>&lt;&lt;&nbsp;&nbsp;Back to List of
+        <div style='text-align:left;'><button id='back-btn'
+                (click)='navigateToApplicationList()'>&lt;&lt;&nbsp;&nbsp;Back to List of
                 Applications</button></div>
 
         <div style='text-align:right'><button id='print-btn' (click)='printApplication()'>Print Application</button>
@@ -1174,7 +1172,7 @@
         <div class='page-marker'>
             <!-- HEADER -->
             <div class='header'>
-                <img src='./assets/logo/logo.gif' class='logo' alt='logo' />
+                <img src='./assets/logo.gif' class='logo' alt='logo' />
                 <div class='header-text'>
                     <h2>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h2>
                     <p>
@@ -1189,7 +1187,7 @@
                     Please fill out the following with black ball pen (<strong>PLEASE PRINT IN BLOCK
                         LETTERS</strong>)
                 </div>
-                <div>DATE: <span class='display-span'>{{applyObj!.filedate | date:'dd MMM, yyyy'}}</span> 
+                <div>DATE: <span class='display-span'>{{applyObj!.filedate | date:'dd MMM, yyyy'}}</span>
                 </div>
             </div>
 
@@ -1199,11 +1197,11 @@
                 </div>
 
                 <div class='checkbox-group'>
-                    <label><input type='checkbox' [checked]='+applyObj!.chk_directhire === 1? true : false'  />
+                    <label><input type='checkbox' [checked]='+applyObj!.chk_directhire === 1? true : false' />
                         DIRECT HIRE</label>
-                    <label><input type='checkbox' [checked]='+applyObj!.chk_gwiphire === 1? true : false'  /> GWIP
+                    <label><input type='checkbox' [checked]='+applyObj!.chk_gwiphire === 1? true : false' /> GWIP
                         HIRE</label>
-                    <label><input type='checkbox' [checked]='+applyObj!.chk_indirecthire === 1 ? true : false'  />
+                    <label><input type='checkbox' [checked]='+applyObj!.chk_indirecthire === 1 ? true : false' />
                         PRINCIPAL'S INDIRECT HIRE</label>
                     <label>Referred By / Principal:<input type='text' [value]='applyObj!.referredBy'
                             style='border: none; border-bottom: 1px solid #000' />
@@ -1269,19 +1267,11 @@
                             <input type='text' [value]='applyObj!.phone' style='width: 30%' required />
                         </div>
 
-                        
+
                         <div class='form-group inline-fields'>
                             <label>Civil Status:</label>
+                            <span class='display-span'>{{applyObj!.civilStatus}}</span>
 
-                            <select [value]='applyObj!.civilStatus' style='width: 150px' class='line-input' required>
-                                <option value=''>-- Select Status --</option>
-                                <option value='Single'>Single</option>
-                                <option value='Married'>Married</option>
-                                <option value='Widowed'>Widowed</option>
-                                <option value='Divorced'>Divorced</option>
-                                <option value='Separated'>Separated</option>
-                                <option value='Co-Habitation'>Co-Habitation</option>
-                            </select>
                         </div>
 
                         <div class='form-group inline-fields'>
@@ -1300,8 +1290,8 @@
                             <input type='text' [value]='applyObj!.religion' style='width: 25%' />
 
                             <label>Highest Educational Attainment:</label>
-                            <input type='text' [value]='applyObj!.highestEducational' placeholder='College / High schooll / etc...'
-                                style='width: 21%' />
+                            <input type='text' [value]='applyObj!.highestEducational'
+                                placeholder='College / High schooll / etc...' style='width: 21%' />
                         </div>
 
                         <div class='form-group inline-fields'>
@@ -1309,7 +1299,7 @@
                             <input type='text' [value]='applyObj!.courseTaken' style='width: 11%' />
 
                             <label>Gender:</label>
-                            
+
                             <select [value]='applyObj!.gender' style='width: 100px' class='line-input'>
                                 <option value=''>-- Select --</option>
                                 <option value='Male'>Male</option>
@@ -1331,7 +1321,8 @@
                     <div class='personal-right'>
                         <div id='two-by-two'
                             style='display:grid;place-items:center;height:200px; width: 200px; margin:0 auto;overflow: hidden;'>
-
+                            <img id='img-preview' src='../api/uploads/{{applyObj!.photo}}'
+                                style='height:100%;margin: 0 auto;' />
                         </div>
                     </div>
                 </div>
@@ -1347,8 +1338,10 @@
 
                     <tr>
                         <td>
-                            <input class='gap' type='text' [value]='applyObj!.university_name' placeholder='➡ University' /><br />
-                            <input class='gap' type='text' [value]='applyObj!.university_location' placeholder='➡ Location' />
+                            <input class='gap' type='text' [value]='applyObj!.university_name'
+                                placeholder='➡ University' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.university_location'
+                                placeholder='➡ Location' />
                         </td>
                         <td>
                             <input class='gap' type='text' [value]='applyObj!.university_year' />
@@ -1360,8 +1353,10 @@
 
                     <tr>
                         <td>
-                            <input class='gap' type='text' [value]='applyObj!.college_name' placeholder='➡ College' /><br />
-                            <input class='gap' type='text' [value]='applyObj!.college_location' placeholder='➡ Location' />
+                            <input class='gap' type='text' [value]='applyObj!.college_name'
+                                placeholder='➡ College' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.college_location'
+                                placeholder='➡ Location' />
                         </td>
                         <td><input class='gap' type='text' [value]='applyObj!.college_year' /></td>
                         <td><input class='gap' type='text' [value]='applyObj!.college_course' /></td>
@@ -1369,8 +1364,10 @@
 
                     <tr>
                         <td>
-                            <input class='gap' type='text' [value]='applyObj!.highschool_name' placeholder='➡ High School' /><br />
-                            <input class='gap' type='text' [value]='applyObj!.highschool_location' placeholder='➡ Location' />
+                            <input class='gap' type='text' [value]='applyObj!.highschool_name'
+                                placeholder='➡ High School' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.highschool_location'
+                                placeholder='➡ Location' />
                         </td>
                         <td>
                             <input class='gap' type='text' [value]='applyObj!.highschool_year' />
@@ -1382,8 +1379,10 @@
 
                     <tr>
                         <td>
-                            <input class='gap' type='text' [value]='applyObj!.elementary_name' placeholder='➡ Elementary' /><br />
-                            <input class='gap' type='text' [value]='applyObj!.elementary_location' placeholder='➡ Location' />
+                            <input class='gap' type='text' [value]='applyObj!.elementary_name'
+                                placeholder='➡ Elementary' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.elementary_location'
+                                placeholder='➡ Location' />
                         </td>
                         <td>
                             <input class='gap' type='text' [value]='applyObj!.elementary_year' />
@@ -1397,7 +1396,8 @@
                         <td>
                             <input class='gap' type='text' [value]='applyObj!.technical_name'
                                 placeholder='➡ Technical School' /><br />
-                            <input class='gap' type='text' [value]='applyObj!.technical_training' placeholder='➡ Trainings' />
+                            <input class='gap' type='text' [value]='applyObj!.technical_training'
+                                placeholder='➡ Trainings' />
                         </td>
                         <td><input class='gap' type='text' [value]='applyObj!.technical_year' /></td>
                         <td>
@@ -1413,9 +1413,11 @@
                 <div class='review-row'>
                     <div>1. <input type='text' [value]='applyObj!.review1' /></div>
                     <div>
-                        <label for='review1_status'><input type='radio' [value]='applyObj!.review1_status' value='ongoing' />
+                        <label for='review1_status'><input type='radio' [value]='applyObj!.review1_status'
+                                value='ongoing' />
                             On-Going</label>
-                        <label for='review1_status'><input type='radio' [value]='applyObj!.review1_status' value='completed' />
+                        <label for='review1_status'><input type='radio' [value]='applyObj!.review1_status'
+                                value='completed' />
                             Completed</label>
                     </div>
                 </div>
@@ -1423,9 +1425,11 @@
                 <div class='review-row'>
                     <div>2. <input type='text' [value]='applyObj!.review2' /></div>
                     <div>
-                        <label for='review2_status'><input type='radio' [value]='applyObj!.review2_status' value='ongoing' />
+                        <label for='review2_status'><input type='radio' [value]='applyObj!.review2_status'
+                                value='ongoing' />
                             On-Going</label>
-                        <label for='review2_status'><input type='radio' [value]='applyObj!.review2_status' value='completed' />
+                        <label for='review2_status'><input type='radio' [value]='applyObj!.review2_status'
+                                value='completed' />
                             Completed</label>
                     </div>
                 </div>
@@ -1433,9 +1437,11 @@
                 <div class='review-row'>
                     <div>3. <input type='text' [value]='applyObj!.review3' /></div>
                     <div>
-                        <label for='review3_status'><input type='radio' [value]='applyObj!.review3_status' value='ongoing' />
+                        <label for='review3_status'><input type='radio' [value]='applyObj!.review3_status'
+                                value='ongoing' />
                             On-Going</label>
-                        <label for='review3_status'><input type='radio' [value]='applyObj!.review3_status' value='completed' />
+                        <label for='review3_status'><input type='radio' [value]='applyObj!.review3_status'
+                                value='completed' />
                             Completed</label>
                     </div>
                 </div>
@@ -1450,7 +1456,7 @@
                         <th>Exam Taken</th>
                         <th>Year Passed</th>
                     </tr>
-                   
+
                     <tr>
                         <td>1.<input type='text' [value]='applyObj!.exam1' /></td>
                         <td style='padding-top: 24px'>
@@ -1514,18 +1520,23 @@
                     <div class='sub-section'>
                         <strong>For Registered Nurses</strong>
                         <div class='checkbox-grid'>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_bsc === 1? true : false'  />
+                            <label><input type='checkbox'
+                                    [checked]='+applyObj!.chk_reg_nurse_bsc === 1? true : false' />
                                 B.Sc. Nursing</label>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_diploma_nursing === 1? true : false'  />
+                            <label><input type='checkbox'
+                                    [checked]='+applyObj!.chk_reg_nurse_diploma_nursing === 1? true : false' />
                                 Diploma of Nursing</label>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_midwifery === 1? true : false'  />
+                            <label><input type='checkbox'
+                                    [checked]='+applyObj!.chk_reg_nurse_midwifery === 1? true : false' />
                                 Diploma of Midwifery</label>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_masters === 1? true : false'  />
+                            <label><input type='checkbox'
+                                    [checked]='+applyObj!.chk_reg_nurse_masters === 1? true : false' />
                                 Masters in Nursing</label>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_phd === 1? true : false'  />
+                            <label><input type='checkbox'
+                                    [checked]='+applyObj!.chk_reg_nurse_phd === 1? true : false' />
                                 PhD in Nursing</label>
                             <label>
-                                <input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_other === 1? true : false'  />
+                                <input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_other === 1? true : false' />
                                 Other Diploma:
                                 <input type='text' [value]='applyObj!.nursing_other' />
                             </label>
@@ -1535,9 +1546,9 @@
                     <div class='sub-section'>
                         <strong>For Physical Therapists</strong>
                         <div class='checkbox-grid'>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_pt_bsc_pt === 1? true : false'  />
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_pt_bsc_pt === 1? true : false' />
                                 B.Sc. Physical Therapist</label>
-                            <label><input type='checkbox' [checked]='+applyObj!.chk_pt_na === 1? true : false'  /> Not
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_pt_na === 1? true : false' /> Not
                                 Applicable</label>
                         </div>
                     </div>
@@ -1550,47 +1561,47 @@
                 </div>
                 <div class='checkbox-grid-1'>
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_er === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_er === 1? true : false' />
                         Emergency Room Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_med_surg === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_med_surg === 1? true : false' />
                         Medical Surgical Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_general === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_general === 1? true : false' />
                         General Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_icu === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_icu === 1? true : false' />
                         ICU Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_telemetry === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_telemetry === 1? true : false' />
                         Telemetry Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_pt === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_pt === 1? true : false' />
                         Physical Therapist
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_theater === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_theater === 1? true : false' />
                         Theater / Operation Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_pcu === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_pcu === 1? true : false' />
                         PCU/CVPCU Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_ot === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_ot === 1? true : false' />
                         Occupational Therapist
                     </label>
 
@@ -1604,32 +1615,32 @@
                 </div>
                 <div class='checkbox-grid-2'>
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_staff_nurse === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_staff_nurse === 1? true : false' />
                         Staff Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_charge_nurse === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_charge_nurse === 1? true : false' />
                         Charge Nurse (Nurse Manager during shifts)
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_senior_nurse === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_senior_nurse === 1? true : false' />
                         Senior Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_director_nurse === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_director_nurse === 1? true : false' />
                         Nursing Director
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_head_nurse === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_head_nurse === 1? true : false' />
                         Head Nurse
                     </label>
 
                     <label>
-                        <input type='checkbox' [checked]='+applyObj!.chk_sister_nurse === 1? true : false'  />
+                        <input type='checkbox' [checked]='+applyObj!.chk_sister_nurse === 1? true : false' />
                         Nursing Sister
                     </label>
                 </div>

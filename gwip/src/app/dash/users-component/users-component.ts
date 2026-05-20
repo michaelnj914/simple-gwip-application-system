@@ -87,6 +87,7 @@ export class UsersComponent {
   }
 
   closeUsers() {
+    this.sharedService.userButtonIsVisible.set(true);
   //To close this users page we simply navigate back to the Parent, which is the dashboard.
   this.router.navigate(['/dashboard']); //The default page here is the ApplicationsList component
   }

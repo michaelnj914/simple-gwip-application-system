@@ -10,6 +10,8 @@ export class SharedService {
   //we will use the Angular http service to make http requests
   http: HttpClient = inject(HttpClient);
 
+  userButtonIsVisible = signal<boolean>(false);
+
   isCallingAPI = signal<boolean>(false); // Signal to indicate if an API call is in progress.
   //This is accessible from any component that injects this SharedService, so you can use it to show a loading spinner or disable buttons while an API call is in progress.
 

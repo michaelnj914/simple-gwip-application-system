@@ -16,9 +16,11 @@ export class DashboardComponent {
   userLastName = '';
   userFirstName = '';
   designation = '';
+  
 
   ngOnInit() {
     
+    this.sharedService.userButtonIsVisible.set(true);//make sure the manage users button is visible
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);
@@ -29,6 +31,7 @@ export class DashboardComponent {
   }
 
   openUserEncoding() {
+    this.sharedService.userButtonIsVisible.set(false);
     this.router.navigate(['/dashboard/users']);
   }
 

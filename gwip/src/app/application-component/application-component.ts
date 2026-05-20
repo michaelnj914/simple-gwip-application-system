@@ -29,6 +29,15 @@ export class ApplicationComponent {
   imgPreview: HTMLImageElement | null = null; //empty object  
   applyObj: IApplicationForm | null = null; //to hold application form from database
   applyId: number = 0; //to hold application id passed in the URL. Called from application list component when a row is clicked
+  //Array for civil status
+  civilStatus = [
+    'Single',
+    'Married',
+    'Widowed',
+    'Divorced',
+    'Separated',
+    'Co-Habitation'
+  ]
   //==============================================================================================================
 
   ngOnInit() {
@@ -184,4 +193,6 @@ export class ApplicationComponent {
       return '';
     }
   }
+
+ 
 }

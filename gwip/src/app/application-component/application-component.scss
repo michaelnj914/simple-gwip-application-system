@@ -397,13 +397,6 @@ table td {
     margin-left: 10px;
 }
 
-/* dashed inputs */
-/* .line-dash {
-  border: none;
-  border-bottom: 1px dashed #000;
-  outline: none;
-} */
-
 .line-dash.full {
     width: 80%;
 }
@@ -500,7 +493,7 @@ table th {
     border-radius: 10px;
 
     .display-span {
-        border-bottom: 1px solid #000;
+        border-bottom: 1px dashed #000;
     }
 
     input,
@@ -541,6 +534,10 @@ table th {
     .page-marker {
         page-break-inside: avoid;
         /* Prevent page breaks inside this container */
+    }
+
+    .user-info {
+        display: none;
     }
 
     #print-header {

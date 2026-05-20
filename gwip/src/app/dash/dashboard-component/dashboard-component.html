@@ -9,9 +9,12 @@
         <div class='user-info'>
             <div>
                 @if(isAdmin){ <!--Display the button based on if the user is Admin-->
+                @if(sharedService.userButtonIsVisible()){
                 <button id='manageUsersButton' style='background: #085722;color: #fff;' (click)='openUserEncoding()'>
                     Manage Users
                 </button>
+                }
+                
                 }
             </div>
             <div style='display:grid;grid-template-columns:1fr auto auto;gap:6px;'>
