@@ -491,6 +491,30 @@ table th {
 }
 
 // FOR PRINTABLE APPLICATION ================================================
+.readonly-form-container {
+    width: 1000px;
+    margin: 40px auto 10px auto;
+    border: 2px solid #000;
+    background: #f5f1f1;
+    padding: 10px;
+    border-radius: 10px;
+
+    .display-span {
+        border-bottom: 1px solid #000;
+    }
+
+    input,
+    textarea,
+    select,
+    .display-span {
+        color: #0000ff;
+        font-weight: 600;
+        font-size: .9rem;
+    }
+
+}
+
+
 #print-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -504,7 +528,7 @@ table th {
 }
 
 @media print {
-    .form-container {
+    .readonly-form-container {
         width: 1000px;
         margin: 40px auto 10px auto;
         background: #ffffff;

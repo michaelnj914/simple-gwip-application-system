@@ -3,6 +3,7 @@ import { SharedService } from '../../shared-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { apply } from '@angular/forms/signals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-application-list-component',
@@ -11,6 +12,7 @@ import { apply } from '@angular/forms/signals';
   styleUrl: './application-list-component.scss',
 })
 export class ApplicationListComponent {
+  router = inject(Router);
   sharedService = inject(SharedService);
   applications = signal<any[]>([]); // Array to hold the list of applications
 
@@ -38,16 +40,12 @@ export class ApplicationListComponent {
     return;
   }
 
-  async openOneApplication(applyId: number) {
+   openOneApplication(applyId: number) {
    
-   const obj= { id: applyId };
-  const data = await this.sharedService.callAPI('application_service.php', 'get-one-application', obj);
-  if (data.success) {
-    this.applications.set(data.result); // Set the applications array = data.result;
-  } else {
-    this.errorMessage = data.message;
-    console.error('Failed to load applications:', data.message);
-  }
+    const obj = { id: applyId };
+    
+    this.router.navigate(['/dashboard/application', applyId, false]);
+  
   return;
   }
 

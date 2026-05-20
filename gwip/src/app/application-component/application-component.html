@@ -1,4 +1,4 @@
-@if(isPublicPage()){
+@if(isPublicPage===true){
 
 <div class='form-container' animate.enter='fadeIn'>
     <form #applForm='ngForm' id ='appl-form' (ngSubmit)='submitApplication(applForm.value)'>
@@ -33,13 +33,13 @@
 
                 <div class='checkbox-group'>
                     <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_directhire' value='1' />
+                            [(ngModel)]='applForm.value.chk_directhire'  />
                         DIRECT HIRE</label>
                     <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_gwiphire' value='1' /> GWIP
+                            [(ngModel)]='applForm.value.chk_gwiphire'  /> GWIP
                         HIRE</label>
                     <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_indirecthire' value='1' />
+                            [(ngModel)]='applForm.value.chk_indirecthire'  />
                         PRINCIPAL'S INDIRECT HIRE</label>
                     <label>Referred By / Principal:<input type='text' [ngModelOptions]='{standalone: true}'
                             [(ngModel)]='applForm.value.referredBy'
@@ -416,23 +416,23 @@
                         <strong>For Registered Nurses</strong>
                         <div class='checkbox-grid'>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_bsc' value='1' />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_bsc'  />
                                 B.Sc. Nursing</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_diploma_nursing' value='1' />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_diploma_nursing'  />
                                 Diploma of Nursing</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_midwifery' value='1' />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_midwifery'  />
                                 Diploma of Midwifery</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_masters' value='1' />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_masters'  />
                                 Masters in Nursing</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_phd' value='1' />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_phd'  />
                                 PhD in Nursing</label>
                             <label>
                                 <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_reg_nurse_other' value='1' />
+                                    [(ngModel)]='applForm.value.chk_reg_nurse_other'  />
                                 Other Diploma:
                                 <input type='text' [ngModelOptions]='{standalone: true}'
                                     [(ngModel)]='applForm.value.nursing_other' />
@@ -444,10 +444,10 @@
                         <strong>For Physical Therapists</strong>
                         <div class='checkbox-grid'>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_pt_bsc_pt' value='1' />
+                                    [(ngModel)]='applForm.value.chk_pt_bsc_pt'  />
                                 B.Sc. Physical Therapist</label>
                             <label><input type='checkbox' [ngModelOptions]='{standalone: true}'
-                                    [(ngModel)]='applForm.value.chk_pt_na' value='1' /> Not
+                                    [(ngModel)]='applForm.value.chk_pt_na'  /> Not
                                 Applicable</label>
                         </div>
                     </div>
@@ -461,55 +461,55 @@
                 <div class='checkbox-grid-1'>
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_er' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_er'  />
                         Emergency Room Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_med_surg' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_med_surg'  />
                         Medical Surgical Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_general' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_general'  />
                         General Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_icu' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_icu'  />
                         ICU Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_telemetry' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_telemetry'  />
                         Telemetry Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_pt' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_pt'  />
                         Physical Therapist
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_theater' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_theater'  />
                         Theater / Operation Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_pcu' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_pcu'  />
                         PCU/CVPCU Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_job_specialty_ot' value='1' />
+                            [(ngModel)]='applForm.value.chk_job_specialty_ot'  />
                         Occupational Therapist
                     </label>
 
@@ -524,37 +524,37 @@
                 <div class='checkbox-grid-2'>
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_staff_nurse' value='1' />
+                            [(ngModel)]='applForm.value.chk_staff_nurse'  />
                         Staff Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_charge_nurse' value='1' />
+                            [(ngModel)]='applForm.value.chk_charge_nurse'  />
                         Charge Nurse (Nurse Manager during shifts)
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_senior_nurse' value='1' />
+                            [(ngModel)]='applForm.value.chk_senior_nurse'  />
                         Senior Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_director_nurse' value='1' />
+                            [(ngModel)]='applForm.value.chk_director_nurse'  />
                         Nursing Director
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_head_nurse' value='1' />
+                            [(ngModel)]='applForm.value.chk_head_nurse'  />
                         Head Nurse
                     </label>
 
                     <label>
                         <input type='checkbox' [ngModelOptions]='{standalone: true}'
-                            [(ngModel)]='applForm.value.chk_sister_nurse' value='1' />
+                            [(ngModel)]='applForm.value.chk_sister_nurse'  />
                         Nursing Sister
                     </label>
                 </div>
@@ -1105,13 +1105,16 @@
                         <input class='line-dash mid' [ngModelOptions]='{standalone: true}'
                             [(ngModel)]='applForm.value.beneficiary3_name' />
                         Relationship to Applicant :
-                        <input class='line-dash small' name='beneficiary3_relationship' />
+                        <input class='line-dash small' [ngModelOptions]='{standalone: true}'
+                            [(ngModel)]='applForm.value.beneficiary3_relationship' />
                     </p>
                     <p>
                         Address :
-                        <input class='line-dash mid' name='beneficiary3_address' />
+                        <input class='line-dash mid' [ngModelOptions]='{standalone: true}'
+                            [(ngModel)]='applForm.value.beneficiary3_address' />
                         Telephone :
-                        <input class='line-dash small' name='beneficiary3_phone' />
+                        <input class='line-dash small' [ngModelOptions]='{standalone: true}'
+                            [(ngModel)]='applForm.value.beneficiary3_phone' />
                     </p>
                 </div>
             </div>
@@ -1148,29 +1151,31 @@
 
 }@else {
 
+<!-- *******************************************************************************************-->
+<!-- *******************************************************************************************-->
+<!-- APPLICATION IS READONLY FOR LOGGED IN USERS ***********************************************-->
+<!-- PRINTABLE APPLICATION STARTS HERE *********************************************************-->
+<!-- *******************************************************************************************-->
+<!-- *******************************************************************************************-->
 
-
-<!-- APPLICATION IS READONLY FOR LOGGED IN USERS-->
-<!--PRINTABLE APPLICATION STARTS HERE ++++++++++++++++++++++++++++++++++++-->
-<div id='printable-application'>
-    
+<div id='printable-application'>   
 
     <div id='print-header'>
         <div style='text-align:left;'><button id='back-btn'(click)='navigateToApplicationList()'>&lt;&lt;&nbsp;&nbsp;Back to List of
                 Applications</button></div>
 
-        <div style='text-align:right'><button id='print-btn' onclick='printApplication()'>Print Application</button>
+        <div style='text-align:right'><button id='print-btn' (click)='printApplication()'>Print Application</button>
         </div>
     </div>
 
-    <div class="form-container">
+    <div class='readonly-form-container'>
 
         <!-- PAGE 1 -->
         <div class='page-marker'>
             <!-- HEADER -->
-            <div class="header">
-                <img src="assets/logo/logo.gif" class="logo" alt="logo" />
-                <div class="header-text">
+            <div class='header'>
+                <img src='./assets/logo/logo.gif' class='logo' alt='logo' />
+                <div class='header-text'>
                     <h2>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h2>
                     <p>
                         (Data Encoding Form: <strong>Medical Professionals</strong>)
@@ -1179,158 +1184,159 @@
             </div>
 
             <!-- SUB HEADER -->
-            <div class="sub-header">
+            <div class='sub-header'>
                 <div>
                     Please fill out the following with black ball pen (<strong>PLEASE PRINT IN BLOCK
                         LETTERS</strong>)
                 </div>
-                <div>DATE: <input type="date" name="filedate" style="border: none; border-bottom: 1px solid #000">
+                <div>DATE: <span class='display-span'>{{applyObj!.filedate | date:'dd MMM, yyyy'}}</span> 
                 </div>
             </div>
 
-            <div class="section-box">
-                <div class="section-title-Mode">
+            <div class='section-box'>
+                <div class='section-title-Mode'>
                     <span>MODE OF REFERENCE</span>(Please put a check mark where applicable)
                 </div>
 
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="chk_directhire" value="1" />
+                <div class='checkbox-group'>
+                    <label><input type='checkbox' [checked]='+applyObj!.chk_directhire === 1? true : false'  />
                         DIRECT HIRE</label>
-                    <label><input type="checkbox" name="chk_gwiphire" value="1" /> GWIP
+                    <label><input type='checkbox' [checked]='+applyObj!.chk_gwiphire === 1? true : false'  /> GWIP
                         HIRE</label>
-                    <label><input type="checkbox" name="chk_indirecthire" value="1" />
+                    <label><input type='checkbox' [checked]='+applyObj!.chk_indirecthire === 1 ? true : false'  />
                         PRINCIPAL'S INDIRECT HIRE</label>
-                    <label>Referred By / Principal:<input type="text" name="referredBy"
-                            style="border: none; border-bottom: 1px solid #000" />
+                    <label>Referred By / Principal:<input type='text' [value]='applyObj!.referredBy'
+                            style='border: none; border-bottom: 1px solid #000' />
                     </label>
                 </div>
             </div>
             <!-- </div> -->
 
             <!-- COUNTRY OF CHOICE -->
-            <div class="country-choice">
+            <div class='country-choice'>
                 <strong>COUNTRY OF CHOICE</strong>
-                <div class="input-box" data-label="First Choice">
+                <div class='input-box' data-label='First Choice'>
                     a.
-                    <input type="text" name="first_choice" />
+                    <input type='text' [value]='applyObj!.first_choice' />
                 </div>
-                <div class="input-box" data-label="Second Choice">
+                <div class='input-box' data-label='Second Choice'>
                     b.
-                    <input type="text" name="second_choice" />
+                    <input type='text' [value]='applyObj!.second_choice' />
                 </div>
-                <div class="input-box" data-label="Third Choice">
+                <div class='input-box' data-label='Third Choice'>
                     c.
-                    <input type="text" name="third_choice" />
+                    <input type='text' [value]='applyObj!.third_choice' />
                 </div>
             </div>
 
             <!-- PERSONAL INFORMATION -->
-            <div class="section-box">
-                <div class="section-title"><span>PERSONAL</span></div>
-                <div class="personal-container">
+            <div class='section-box'>
+                <div class='section-title'><span>PERSONAL</span></div>
+                <div class='personal-container'>
                     <!-- LEFT SIDE -->
-                    <div class="personal-left">
-                        <div class="form-group">
+                    <div class='personal-left'>
+                        <div class='form-group'>
                             <label>WHAT TO APPLY FOR:</label>
-                            <input type="text" class="line-input" name="applyFor" required />
+                            <input type='text' class='line-input' [value]='applyObj!.applyFor' required />
                         </div>
 
-                        <div class="form-group inline-fields">
+                        <div class='form-group inline-fields'>
                             <label>Last Name (Surname):</label>
-                            <input type="text" name="lastName" style="width: 75%" required />
+                            <input type='text' [value]='applyObj!.lastName' style='width: 75%' required />
 
                             <label>First Name:</label>
-                            <input type="text" name="firstName" style="width: 40%" required />
+                            <input type='text' [value]='applyObj!.firstName' style='width: 40%' required />
 
                             <label>Middle Name:</label>
-                            <input type="text" name="middleName" style="width: 20%" />
+                            <input type='text' [value]='applyObj!.middleName' style='width: 20%' />
                         </div>
 
-                        <div class="form-group">
+                        <div class='form-group'>
                             <label>Main Address (City Address):</label>
-                            <input type="text" name="address" class="line-input" required />
+                            <input type='text' [value]='applyObj!.address' class='line-input' required />
                         </div>
 
-                        <div class="form-group">
+                        <div class='form-group'>
                             <label>Alternate Address (Provincial):</label>
-                            <input type="text" name="alternateAddress" class="line-input" />
+                            <input type='text' [value]='applyObj!.alternateAddress' class='line-input' />
                         </div>
 
-                        <div class="form-group inline-fields">
+                        <div class='form-group inline-fields'>
                             <label>Email:</label>
-                            <input type="email" name="email" style="width: 40%" required />
+                            <input type='email' [value]='applyObj!.email' style='width: 40%' required />
 
                             <label>Contact Number:</label>
-                            <input type="text" name="phone" style="width: 30%" required />
+                            <input type='text' [value]='applyObj!.phone' style='width: 30%' required />
                         </div>
 
-                        <!--Please make this a dropdown with the following choices: Single, Married, Widowed,Divorced, Separated, Co-Habitation -->
-                        <div class="form-group inline-fields">
+                        
+                        <div class='form-group inline-fields'>
                             <label>Civil Status:</label>
 
-                            <select name="civilStatus" style="width: 150px" class="line-input" required>
-                                <option value="">-- Select Status --</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Widowed">Widowed</option>
-                                <option value="Divorced">Divorced</option>
-                                <option value="Separated">Separated</option>
-                                <option value="Co-Habitation">Co-Habitation</option>
+                            <select [value]='applyObj!.civilStatus' style='width: 150px' class='line-input' required>
+                                <option value=''>-- Select Status --</option>
+                                <option value='Single'>Single</option>
+                                <option value='Married'>Married</option>
+                                <option value='Widowed'>Widowed</option>
+                                <option value='Divorced'>Divorced</option>
+                                <option value='Separated'>Separated</option>
+                                <option value='Co-Habitation'>Co-Habitation</option>
                             </select>
                         </div>
 
-                        <div class="form-group inline-fields">
+                        <div class='form-group inline-fields'>
                             <label>Height:</label>
-                            <input type="text" name="height" style="width: 15%" />
+                            <input type='text' [value]='applyObj!.height' style='width: 15%' />
 
                             <label>Weight:</label>
-                            <input type="text" name="weight" style="width: 15%" />
+                            <input type='text' [value]='applyObj!.weight' style='width: 15%' />
 
                             <label>Birth Date:</label>
-                            <input type="date" name="birthdate" style="width: 30%" required />
+                            <input type='date' [value]='applyObj!.birthdate' style='width: 30%' required />
                         </div>
 
-                        <div class="form-group inline-fields">
+                        <div class='form-group inline-fields'>
                             <label>Religion:</label>
-                            <input type="text" name="religion" style="width: 25%" />
+                            <input type='text' [value]='applyObj!.religion' style='width: 25%' />
 
                             <label>Highest Educational Attainment:</label>
-                            <input type="text" name="highestEducational" placeholder="College / High schooll / etc..."
-                                style="width: 21%" />
+                            <input type='text' [value]='applyObj!.highestEducational' placeholder='College / High schooll / etc...'
+                                style='width: 21%' />
                         </div>
 
-                        <div class="form-group inline-fields">
+                        <div class='form-group inline-fields'>
                             <label>Course Taken:</label>
-                            <input type="text" name="courseTaken" style="width: 11%" />
+                            <input type='text' [value]='applyObj!.courseTaken' style='width: 11%' />
 
                             <label>Gender:</label>
-                            <!--Please make this a dropdown with the following choices: Male, Female  DONE!!-->
-                            <select name="gender" style="width: 100px" class="line-input">
-                                <option value="">-- Select --</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                            
+                            <select [value]='applyObj!.gender' style='width: 100px' class='line-input'>
+                                <option value=''>-- Select --</option>
+                                <option value='Male'>Male</option>
+                                <option value='Female'>Female</option>
                             </select>
 
                             <label>Experience:</label>
-                            <input type="text" name="experience" style="width: 30%"
-                                placeholder="Ex-Saudi / Ex-Taiwan / Ex-Hong Kong etc" />
+                            <input type='text' [value]='applyObj!.experience' style='width: 30%'
+                                placeholder='Ex-Saudi / Ex-Taiwan / Ex-Hong Kong etc' />
                         </div>
 
-                        <div class="form-group">
+                        <div class='form-group'>
                             <label>Hobbies and Other Skills:</label>
-                            <input type="text" name="hobbies" class="line-input" style="width: 70%" />
+                            <input type='text' [value]='applyObj!.hobbies' class='line-input' style='width: 70%' />
                         </div>
                     </div>
 
                     <!-- RIGHT SIDE (PICTURE BOX) -->
-                    <div class="personal-right">
+                    <div class='personal-right'>
                         <div id='two-by-two'
                             style='display:grid;place-items:center;height:200px; width: 200px; margin:0 auto;overflow: hidden;'>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="section-title"><span>EDUCATIONAL ATTAINMENT</span></div>
+                <div class='section-title'><span>EDUCATIONAL ATTAINMENT</span></div>
 
                 <table>
                     <tr>
@@ -1341,101 +1347,101 @@
 
                     <tr>
                         <td>
-                            <input class="gap" type="text" name="university_name" placeholder="➡ University" /><br />
-                            <input class="gap" type="text" name="university_location" placeholder="➡ Location" />
+                            <input class='gap' type='text' [value]='applyObj!.university_name' placeholder='➡ University' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.university_location' placeholder='➡ Location' />
                         </td>
                         <td>
-                            <input class="gap" type="text" name="university_year" />
+                            <input class='gap' type='text' [value]='applyObj!.university_year' />
                         </td>
                         <td>
-                            <input class="gap" type="text" name="university_course" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <input class="gap" type="text" name="college_name" placeholder="➡ College" /><br />
-                            <input class="gap" type="text" name="college_location" placeholder="➡ Location" />
-                        </td>
-                        <td><input class="gap" type="text" name="college_year" /></td>
-                        <td><input class="gap" type="text" name="college_course" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <input class="gap" type="text" name="highschool_name" placeholder="➡ High School" /><br />
-                            <input class="gap" type="text" name="highschool_location" placeholder="➡ Location" />
-                        </td>
-                        <td>
-                            <input class="gap" type="text" name="highschool_year" />
-                        </td>
-                        <td>
-                            <input class="gap" type="text" name="highschool_course" />
+                            <input class='gap' type='text' [value]='applyObj!.university_course' />
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <input class="gap" type="text" name="elementary_name" placeholder="➡ Elementary" /><br />
-                            <input class="gap" type="text" name="elementary_location" placeholder="➡ Location" />
+                            <input class='gap' type='text' [value]='applyObj!.college_name' placeholder='➡ College' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.college_location' placeholder='➡ Location' />
+                        </td>
+                        <td><input class='gap' type='text' [value]='applyObj!.college_year' /></td>
+                        <td><input class='gap' type='text' [value]='applyObj!.college_course' /></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class='gap' type='text' [value]='applyObj!.highschool_name' placeholder='➡ High School' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.highschool_location' placeholder='➡ Location' />
                         </td>
                         <td>
-                            <input class="gap" type="text" name="elementary_year" />
+                            <input class='gap' type='text' [value]='applyObj!.highschool_year' />
                         </td>
                         <td>
-                            <input class="gap" type="text" name="elementary_course" />
+                            <input class='gap' type='text' [value]='applyObj!.highschool_course' />
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <input class="gap" type="text" name="technical_name"
-                                placeholder="➡ Technical School" /><br />
-                            <input class="gap" type="text" name="technical_training" placeholder="➡ Trainings" />
+                            <input class='gap' type='text' [value]='applyObj!.elementary_name' placeholder='➡ Elementary' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.elementary_location' placeholder='➡ Location' />
                         </td>
-                        <td><input class="gap" type="text" name="technical_year" /></td>
                         <td>
-                            <input class="gap" type="text" name="technical_course" />
+                            <input class='gap' type='text' [value]='applyObj!.elementary_year' />
+                        </td>
+                        <td>
+                            <input class='gap' type='text' [value]='applyObj!.elementary_course' />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input class='gap' type='text' [value]='applyObj!.technical_name'
+                                placeholder='➡ Technical School' /><br />
+                            <input class='gap' type='text' [value]='applyObj!.technical_training' placeholder='➡ Trainings' />
+                        </td>
+                        <td><input class='gap' type='text' [value]='applyObj!.technical_year' /></td>
+                        <td>
+                            <input class='gap' type='text' [value]='applyObj!.technical_course' />
                         </td>
                     </tr>
                 </table>
 
-                <div class="section-title">
+                <div class='section-title'>
                     <span>REVIEWS (ON-GOING / COMPLETED)</span>
                 </div>
 
-                <div class="review-row">
-                    <div>1. <input type="text" name="review1" /></div>
+                <div class='review-row'>
+                    <div>1. <input type='text' [value]='applyObj!.review1' /></div>
                     <div>
-                        <label for='review1_status'><input type="radio" name="review1_status" value='ongoing' />
+                        <label for='review1_status'><input type='radio' [value]='applyObj!.review1_status' value='ongoing' />
                             On-Going</label>
-                        <label for='review1_status'><input type="radio" name="review1_status" value='completed' />
+                        <label for='review1_status'><input type='radio' [value]='applyObj!.review1_status' value='completed' />
                             Completed</label>
                     </div>
                 </div>
 
-                <div class="review-row">
-                    <div>2. <input type="text" name="review2" /></div>
+                <div class='review-row'>
+                    <div>2. <input type='text' [value]='applyObj!.review2' /></div>
                     <div>
-                        <label for='review2_status'><input type="radio" name="review2_status" value='ongoing' />
+                        <label for='review2_status'><input type='radio' [value]='applyObj!.review2_status' value='ongoing' />
                             On-Going</label>
-                        <label for='review2_status'><input type="radio" name="review2_status" value='completed' />
+                        <label for='review2_status'><input type='radio' [value]='applyObj!.review2_status' value='completed' />
                             Completed</label>
                     </div>
                 </div>
 
-                <div class="review-row">
-                    <div>3. <input type="text" name="review3" /></div>
+                <div class='review-row'>
+                    <div>3. <input type='text' [value]='applyObj!.review3' /></div>
                     <div>
-                        <label for='review3_status'><input type="radio" name="review3_status" value="ongoing" />
+                        <label for='review3_status'><input type='radio' [value]='applyObj!.review3_status' value='ongoing' />
                             On-Going</label>
-                        <label for='review3_status'><input type="radio" name="review3_status" value="completed" />
+                        <label for='review3_status'><input type='radio' [value]='applyObj!.review3_status' value='completed' />
                             Completed</label>
                     </div>
                 </div>
 
                 <!-- EXAMS -->
-                <div class="section-title"><span>EXAMS PASSED</span></div>
+                <div class='section-title'><span>EXAMS PASSED</span></div>
 
                 <table>
                     <tr>
@@ -1444,49 +1450,48 @@
                         <th>Exam Taken</th>
                         <th>Year Passed</th>
                     </tr>
-                    <!-- I Added the additional paddings(style='padding-top: 24px;') to even out
-                      the level of the text boxes below-->
+                   
                     <tr>
-                        <td>1.<input type="text" name="exam1" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam1_year" />
+                        <td>1.<input type='text' [value]='applyObj!.exam1' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam1_year' />
                         </td>
-                        <td>5.<input type="text" name="exam5" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam5_year" />
+                        <td>5.<input type='text' [value]='applyObj!.exam5' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam5_year' />
                         </td>
                     </tr>
 
                     <tr>
-                        <td>2.<input type="text" name="exam2" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam2_year" />
+                        <td>2.<input type='text' [value]='applyObj!.exam2' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam2_year' />
                         </td>
-                        <td>6.<input type="text" name="exam6" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam6_year" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>3.<input type="text" name="exam3" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam3_year" />
-                        </td>
-                        <td>7.<input type="text" name="exam7" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam7_year" />
+                        <td>6.<input type='text' [value]='applyObj!.exam6' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam6_year' />
                         </td>
                     </tr>
 
                     <tr>
-                        <td>4.<input type="text" name="exam4" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam4_year" />
+                        <td>3.<input type='text' [value]='applyObj!.exam3' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam3_year' />
                         </td>
-                        <td>8.<input type="text" name="exam8" /></td>
-                        <td style="padding-top: 24px">
-                            <input type="text" name="exam8_year" />
+                        <td>7.<input type='text' [value]='applyObj!.exam7' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam7_year' />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4.<input type='text' [value]='applyObj!.exam4' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam4_year' />
+                        </td>
+                        <td>8.<input type='text' [value]='applyObj!.exam8' /></td>
+                        <td style='padding-top: 24px'>
+                            <input type='text' [value]='applyObj!.exam8_year' />
                         </td>
                     </tr>
                 </table>
@@ -1496,96 +1501,96 @@
 
         <!-- ================= PAGE 2  -->
         <div class='page-marker'>
-            <div class="red-title">
+            <div class='red-title'>
                 Requirements for USA Immigration Working Visa (HB3) Processing
             </div>
-            <div class="section-box">
+            <div class='section-box'>
                 <!-- EDUCATION -->
-                <div class="section-title">
+                <div class='section-title'>
                     EDUCATIONAL QUALIFICATIONS (Check the appropreate Box below)
                 </div>
 
-                <div class="left-space">
-                    <div class="sub-section">
+                <div class='left-space'>
+                    <div class='sub-section'>
                         <strong>For Registered Nurses</strong>
-                        <div class="checkbox-grid">
-                            <label><input type="checkbox" name="chk_reg_nurse_bsc" value="1" />
+                        <div class='checkbox-grid'>
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_bsc === 1? true : false'  />
                                 B.Sc. Nursing</label>
-                            <label><input type="checkbox" name="chk_reg_nurse_diploma_nursing" value="1" />
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_diploma_nursing === 1? true : false'  />
                                 Diploma of Nursing</label>
-                            <label><input type="checkbox" name="chk_reg_nurse_midwifery" value="1" />
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_midwifery === 1? true : false'  />
                                 Diploma of Midwifery</label>
-                            <label><input type="checkbox" name="chk_reg_nurse_masters" value="1" />
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_masters === 1? true : false'  />
                                 Masters in Nursing</label>
-                            <label><input type="checkbox" name="chk_reg_nurse_phd" value="1" />
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_phd === 1? true : false'  />
                                 PhD in Nursing</label>
                             <label>
-                                <input type="checkbox" name="chk_reg_nurse_other" value="1" />
+                                <input type='checkbox' [checked]='+applyObj!.chk_reg_nurse_other === 1? true : false'  />
                                 Other Diploma:
-                                <input type="text" name="nursing_other" />
+                                <input type='text' [value]='applyObj!.nursing_other' />
                             </label>
                         </div>
                     </div>
 
-                    <div class="sub-section">
+                    <div class='sub-section'>
                         <strong>For Physical Therapists</strong>
-                        <div class="checkbox-grid">
-                            <label><input type="checkbox" name="chk_pt_bsc_pt" value="1" />
+                        <div class='checkbox-grid'>
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_pt_bsc_pt === 1? true : false'  />
                                 B.Sc. Physical Therapist</label>
-                            <label><input type="checkbox" name="chk_pt_na" value="1" /> Not
+                            <label><input type='checkbox' [checked]='+applyObj!.chk_pt_na === 1? true : false'  /> Not
                                 Applicable</label>
                         </div>
                     </div>
                 </div>
 
                 <!-- JOB SPECIALTIES -->
-                <div class="section-title">
+                <div class='section-title'>
                     JOB SPECIALTIES / POSITIONS HELD (Check the appropreate Box
                     below)
                 </div>
-                <div class="checkbox-grid-1">
+                <div class='checkbox-grid-1'>
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_er" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_er === 1? true : false'  />
                         Emergency Room Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_med_surg" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_med_surg === 1? true : false'  />
                         Medical Surgical Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_general" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_general === 1? true : false'  />
                         General Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_icu" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_icu === 1? true : false'  />
                         ICU Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_telemetry" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_telemetry === 1? true : false'  />
                         Telemetry Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_pt" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_pt === 1? true : false'  />
                         Physical Therapist
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_theater" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_theater === 1? true : false'  />
                         Theater / Operation Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_pcu" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_pcu === 1? true : false'  />
                         PCU/CVPCU Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_job_specialty_ot" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_job_specialty_ot === 1? true : false'  />
                         Occupational Therapist
                     </label>
 
@@ -1594,43 +1599,43 @@
                 </div>
 
                 <!-- PORTFOLIO -->
-                <div class="section-title">
+                <div class='section-title'>
                     YOUR PORTFOLIO LEVEL (Check the appropreate Box below)
                 </div>
-                <div class="checkbox-grid-2">
+                <div class='checkbox-grid-2'>
                     <label>
-                        <input type="checkbox" name="chk_staff_nurse" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_staff_nurse === 1? true : false'  />
                         Staff Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_charge_nurse" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_charge_nurse === 1? true : false'  />
                         Charge Nurse (Nurse Manager during shifts)
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_senior_nurse" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_senior_nurse === 1? true : false'  />
                         Senior Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_director_nurse" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_director_nurse === 1? true : false'  />
                         Nursing Director
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_head_nurse" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_head_nurse === 1? true : false'  />
                         Head Nurse
                     </label>
 
                     <label>
-                        <input type="checkbox" name="chk_sister_nurse" value="1" />
+                        <input type='checkbox' [checked]='+applyObj!.chk_sister_nurse === 1? true : false'  />
                         Nursing Sister
                     </label>
                 </div>
 
                 <!-- LICENSE REQUIREMENTS -->
-                <div class="section-title">LICENSE REQUIREMENTS</div>
+                <div class='section-title'>LICENSE REQUIREMENTS</div>
 
                 <table>
                     <tr>
@@ -1641,42 +1646,42 @@
                     </tr>
                     <tr>
                         <td>➡ NCLEX</td>
-                        <td><input type="text" class="gap" name="nclex_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.nclex_year' /></td>
                         <td>➡ CBT</td>
-                        <td><input type="text" class="gap" name="cbt_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.cbt_year' /></td>
                     </tr>
                     <tr>
                         <td>➡ IELTS</td>
-                        <td><input type="text" class="gap" name="ielts_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.ielts_year' /></td>
                         <td>➡ HAAD</td>
-                        <td><input type="text" class="gap" name="haad_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.haad_year' /></td>
                     </tr>
                     <tr>
                         <td>➡ TOEFL</td>
-                        <td><input type="text" class="gap" name="toefl_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.toefl_year' /></td>
                         <td>➡ DHA</td>
-                        <td><input type="text" class="gap" name="dha_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.dha_year' /></td>
                     </tr>
                     <tr>
                         <td>➡ OET</td>
-                        <td><input type="text" class="gap" name="oet_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.oet_year' /></td>
                         <td>➡ PROMETRIC</td>
                         <td>
-                            <input type="text" class="gap" name="prometric_year" />
+                            <input type='text' class='gap' [value]='applyObj!.prometric_year' />
                         </td>
                     </tr>
                     <tr>
                         <td>➡ Others</td>
                         <td>
-                            <input type="text" class="gap" name="other_exam_year" />
+                            <input type='text' class='gap' [value]='applyObj!.other_exam_year' />
                         </td>
                         <td>➡ PT / OT Exams</td>
-                        <td><input type="text" class="gap" name="pt_ot_year" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.pt_ot_year' /></td>
                     </tr>
                 </table>
 
                 <!-- LICENSE IDs -->
-                <div class="section-title">LICENSES / IDs</div>
+                <div class='section-title'>LICENSES / IDs</div>
 
                 <table>
                     <tr>
@@ -1687,83 +1692,83 @@
                     </tr>
                     <tr>
                         <td>➡ PRC License</td>
-                        <td><input type="text" class="gap" name="prc_number" /></td>
-                        <td><input type="date" class="gap" name="prc_issued" /></td>
-                        <td><input type="date" class="gap" name="prc_expiry" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.prc_number' /></td>
+                        <td><input type='date' class='gap' [value]='applyObj!.prc_issued' /></td>
+                        <td><input type='date' class='gap' [value]='applyObj!.prc_expiry' /></td>
                     </tr>
                     <tr>
                         <td>➡ SSS/GSIS</td>
-                        <td><input type="text" class="gap" name="sss_number" /></td>
-                        <td><input type="date" class="gap" name="sss_issued" /></td>
-                        <td><input type="date" class="gap" name="sss_expiry" /></td>
+                        <td><input type='text' class='gap' [value]='applyObj!.sss_number' /></td>
+                        <td><input type='date' class='gap' [value]='applyObj!.sss_issued' /></td>
+                        <td><input type='date' class='gap' [value]='applyObj!.sss_expiry' /></td>
                     </tr>
                     <tr>
                         <td>➡ Driver’s License</td>
                         <td>
-                            <input type="text" class="gap" name="driver_number" />
+                            <input type='text' class='gap' [value]='applyObj!.driver_number' />
                         </td>
                         <td>
-                            <input type="date" class="gap" name="driver_issued" />
+                            <input type='date' class='gap' [value]='applyObj!.driver_issued' />
                         </td>
                         <td>
-                            <input type="date" class="gap" name="driver_expiry" />
+                            <input type='date' class='gap' [value]='applyObj!.driver_expiry' />
                         </td>
                     </tr>
                     <tr>
                         <td>➡ Passport</td>
                         <td>
-                            <input type="text" class="gap" name="passport_number" />
+                            <input type='text' class='gap' [value]='applyObj!.passport_number' />
                         </td>
                         <td>
-                            <input type="date" class="gap" name="passport_issued" />
+                            <input type='date' class='gap' [value]='applyObj!.passport_issued' />
                         </td>
                         <td>
-                            <input type="date" class="gap" name="passport_expiry" />
+                            <input type='date' class='gap' [value]='applyObj!.passport_expiry' />
                         </td>
                     </tr>
                     <tr>
                         <td>➡ Place of Issue</td>
-                        <td colspan="3">
-                            <input type="text" class="gap" name="place_of_issue" />
+                        <td colspan='3'>
+                            <input type='text' class='gap' [value]='applyObj!.place_of_issue' />
                         </td>
                     </tr>
                 </table>
             </div>
 
             <!-- SEMINARS -->
-            <div class="section-box">
-                <div class="section-title">SEMINARS or WORKSHOPS ATTENDED</div>
+            <div class='section-box'>
+                <div class='section-title'>SEMINARS or WORKSHOPS ATTENDED</div>
 
                 <table>
                     <tr>
-                        <th style="width: 70%">Seminar / Workshop</th>
+                        <th style='width: 70%'>Seminar / Workshop</th>
                         <th>Period / Year Attended</th>
                     </tr>
 
                     <!-- 5 rows -->
                     <tr>
-                        <td>1. <input class="line-dash" name="item1_name" /></td>
-                        <td><input class="line-dash" name="item1_value" /></td>
+                        <td>1. <input class='line-dash' [value]='applyObj!.item1_name' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.item1_value' /></td>
                     </tr>
 
                     <tr>
-                        <td>2. <input class="line-dash" name="item2_name" /></td>
-                        <td><input class="line-dash" name="item2_value" /></td>
+                        <td>2. <input class='line-dash' [value]='applyObj!.item2_name' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.item2_value' /></td>
                     </tr>
 
                     <tr>
-                        <td>3. <input class="line-dash" name="item3_name" /></td>
-                        <td><input class="line-dash" name="item3_value" /></td>
+                        <td>3. <input class='line-dash' [value]='applyObj!.item3_name' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.item3_value' /></td>
                     </tr>
 
                     <tr>
-                        <td>4. <input class="line-dash" name="item4_name" /></td>
-                        <td><input class="line-dash" name="item4_value" /></td>
+                        <td>4. <input class='line-dash' [value]='applyObj!.item4_name' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.item4_value' /></td>
                     </tr>
 
                     <tr>
-                        <td>5. <input class="line-dash" name="item5_name" /></td>
-                        <td><input class="line-dash" name="item5_value" /></td>
+                        <td>5. <input class='line-dash' [value]='applyObj!.item5_name' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.item5_value' /></td>
                     </tr>
                 </table>
             </div>
@@ -1774,8 +1779,8 @@
         <!-- ================= PAGE 3 -->
         <div class='page-marker'>
             <!-- EMPLOYMENT -->
-            <div class="section-box">
-                <div class="section-title">EMPLOYMENT BACKGROUND</div>
+            <div class='section-box'>
+                <div class='section-title'>EMPLOYMENT BACKGROUND</div>
 
                 <table>
                     <tr>
@@ -1786,131 +1791,131 @@
                     </tr>
 
                     <tr>
-                        <td>1. <input class="line-dash" name="company1" /></td>
-                        <td><input class="line-dash" name="position1" /></td>
-                        <td><input class="line-dash" name="country1" /></td>
-                        <td><input class="line-dash" name="year1" /></td>
+                        <td>1. <input class='line-dash' [value]='applyObj!.company1' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.position1' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.country1' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.year1' /></td>
                     </tr>
 
                     <tr>
-                        <td>2. <input class="line-dash" name="company2" /></td>
-                        <td><input class="line-dash" name="position2" /></td>
-                        <td><input class="line-dash" name="country2" /></td>
-                        <td><input class="line-dash" name="year2" /></td>
+                        <td>2. <input class='line-dash' [value]='applyObj!.company2' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.position2' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.country2' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.year2' /></td>
                     </tr>
 
                     <tr>
-                        <td>3. <input class="line-dash" name="company3" /></td>
-                        <td><input class="line-dash" name="position3" /></td>
-                        <td><input class="line-dash" name="country3" /></td>
-                        <td><input class="line-dash" name="year3" /></td>
+                        <td>3. <input class='line-dash' [value]='applyObj!.company3' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.position3' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.country3' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.year3' /></td>
                     </tr>
 
                     <tr>
-                        <td>4. <input class="line-dash" name="company4" /></td>
-                        <td><input class="line-dash" name="position4" /></td>
-                        <td><input class="line-dash" name="country4" /></td>
-                        <td><input class="line-dash" name="year4" /></td>
+                        <td>4. <input class='line-dash' [value]='applyObj!.company4' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.position4' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.country4' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.year4' /></td>
                     </tr>
 
                     <tr>
-                        <td>5. <input class="line-dash" name="company5" /></td>
-                        <td><input class="line-dash" name="position5" /></td>
-                        <td><input class="line-dash" name="country5" /></td>
-                        <td><input class="line-dash" name="year5" /></td>
+                        <td>5. <input class='line-dash' [value]='applyObj!.company5' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.position5' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.country5' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.year5' /></td>
                     </tr>
 
                     <tr>
-                        <td>6. <input class="line-dash" name="company6" /></td>
-                        <td><input class="line-dash" name="position6" /></td>
-                        <td><input class="line-dash" name="country6" /></td>
-                        <td><input class="line-dash" name="year6" /></td>
+                        <td>6. <input class='line-dash' [value]='applyObj!.company6' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.position6' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.country6' /></td>
+                        <td><input class='line-dash' [value]='applyObj!.year6' /></td>
                     </tr>
                 </table>
             </div>
 
             <!-- JOB DESCRIPTION -->
-            <div class="section-box">
-                <div class="section-title">
+            <div class='section-box'>
+                <div class='section-title'>
                     JOB DESCRIPTION FOR JOB POSITIONS STATED ABOVE
                 </div>
 
                 <!-- 6 descriptions -->
-                <div class="job-desc">
+                <div class='job-desc'>
                     <p><strong>Job Description 1.</strong></p>
-                    <textarea name="job_desc1"></textarea>
+                    <textarea [value]='applyObj!.job_desc1'></textarea>
 
                     <p><strong>Job Description 2.</strong></p>
-                    <textarea name="job_desc2"></textarea>
+                    <textarea [value]='applyObj!.job_desc2'></textarea>
 
                     <p><strong>Job Description 3.</strong></p>
-                    <textarea name="job_desc3"></textarea>
+                    <textarea [value]='applyObj!.job_desc3'></textarea>
 
                     <p><strong>Job Description 4.</strong></p>
-                    <textarea name="job_desc4"></textarea>
+                    <textarea [value]='applyObj!.job_desc4'></textarea>
 
                     <p><strong>Job Description 5.</strong></p>
-                    <textarea name="job_desc5"></textarea>
+                    <textarea [value]='applyObj!.job_desc5'></textarea>
 
                     <p><strong>Job Description 6.</strong></p>
-                    <textarea name="job_desc6"></textarea>
+                    <textarea [value]='applyObj!.job_desc6'></textarea>
                 </div>
             </div>
 
             <!-- AWARDS -->
-            <div class="section-box">
-                <div class="section-title">AWARDS RECEIVED</div>
+            <div class='section-box'>
+                <div class='section-title'>AWARDS RECEIVED</div>
 
-                <div class="two-column-lines">
+                <div class='two-column-lines'>
                     <div>
-                        <p>1. <input class="line-dash" name="field1" /></p>
-                        <p>2. <input class="line-dash" name="field2" /></p>
-                        <p>3. <input class="line-dash" name="field3" /></p>
+                        <p>1. <input class='line-dash' [value]='applyObj!.field1' /></p>
+                        <p>2. <input class='line-dash' [value]='applyObj!.field2' /></p>
+                        <p>3. <input class='line-dash' [value]='applyObj!.field3' /></p>
                     </div>
 
-                    <div class="divider"></div>
+                    <div class='divider'></div>
 
                     <div>
-                        <p>4. <input class="line-dash" name="field4" /></p>
-                        <p>5. <input class="line-dash" name="field5" /></p>
-                        <p>6. <input class="line-dash" name="field6" /></p>
+                        <p>4. <input class='line-dash' [value]='applyObj!.field4' /></p>
+                        <p>5. <input class='line-dash' [value]='applyObj!.field5' /></p>
+                        <p>6. <input class='line-dash' [value]='applyObj!.field6' /></p>
                     </div>
                 </div>
             </div>
 
             <!-- CERTIFICATES -->
-            <div class="section-box">
-                <div class="section-title">CERTIFICATES</div>
+            <div class='section-box'>
+                <div class='section-title'>CERTIFICATES</div>
 
-                <table class="certificate-table">
+                <table class='certificate-table'>
                     <tr>
-                        <td>1. <input class="line-dash" name="certificate1" /></td>
-                        <td>4. <input class="line-dash" name="certificate4" /></td>
+                        <td>1. <input class='line-dash' [value]='applyObj!.certificate1' /></td>
+                        <td>4. <input class='line-dash' [value]='applyObj!.certificate4' /></td>
                     </tr>
                     <tr>
-                        <td>2. <input class="line-dash" name="certificate2" /></td>
-                        <td>5. <input class="line-dash" name="certificate5" /></td>
+                        <td>2. <input class='line-dash' [value]='applyObj!.certificate2' /></td>
+                        <td>5. <input class='line-dash' [value]='applyObj!.certificate5' /></td>
                     </tr>
                     <tr>
-                        <td>3. <input class="line-dash" name="certificate3" /></td>
-                        <td>6. <input class="line-dash" name="certificate6" /></td>
+                        <td>3. <input class='line-dash' [value]='applyObj!.certificate3' /></td>
+                        <td>6. <input class='line-dash' [value]='applyObj!.certificate6' /></td>
                     </tr>
                 </table>
             </div>
 
             <!-- REFEREES -->
-            <div class="section-box">
-                <div class="section-title">REFEREES</div>
+            <div class='section-box'>
+                <div class='section-title'>REFEREES</div>
 
-                <div class="ref-box">
+                <div class='ref-box'>
                     <p><strong>1.</strong></p>
                     <p>
                         Name:
-                        <input class="line-dash long" name="ref1_name" /> Telephone:
-                        <input class="line-dash small" name="ref1_phone" />
+                        <input class='line-dash long' [value]='applyObj!.ref1_name' /> Telephone:
+                        <input class='line-dash small' [value]='applyObj!.ref1_phone' />
                     </p>
                     <p>
-                        Address: <input class="line-dash full" name="ref1_address" />
+                        Address: <input class='line-dash full' [value]='applyObj!.ref1_address' />
                     </p>
                 </div>
 
@@ -1919,166 +1924,166 @@
         </div>
         <!-- ==================PAGE 4 -->
         <div class='page-marker'>
-            <div class="ref-box">
+            <div class='ref-box'>
                 <p><strong>2.</strong></p>
                 <p>
                     Name:
-                    <input class="line-dash long" name="ref2_name" /> Telephone:
-                    <input class="line-dash small" name="ref2_phone" />
+                    <input class='line-dash long' [value]='applyObj!.ref2_name' /> Telephone:
+                    <input class='line-dash small' [value]='applyObj!.ref2_phone' />
                 </p>
                 <p>
-                    Address: <input class="line-dash full" name="ref2_address" />
+                    Address: <input class='line-dash full' [value]='applyObj!.ref2_address' />
                 </p>
             </div>
             <!-- SPONSORSHIP -->
-            <div class="section-box">
-                <div class="section-title">
+            <div class='section-box'>
+                <div class='section-title'>
                     PREVIOUS APPLICATION SPONSORSHIP COMMITMENTS
-                    <span class="note">(If you had been sponsored, please fill up below)</span>
+                    <span class='note'>(If you had been sponsored, please fill up below)</span>
                 </div>
 
                 <p>
                     Name of Previous Sponsor:
-                    <input class="line-dash full" name="previous_sponsor" />
+                    <input class='line-dash full' [value]='applyObj!.previous_sponsor' />
                 </p>
 
                 <p>
                     Activities Sponsored:
-                    <input class="line-dash full" name="sponsored_activities" />
-                    <span class="small-note">(Exams, Reviews, Trainings etc...)</span>
+                    <input class='line-dash full' [value]='applyObj!.sponsored_activities' />
+                    <span class='small-note'>(Exams, Reviews, Trainings etc...)</span>
                 </p>
 
                 <p>
                     Amount of Obligation to Sponsor:
-                    <input class="line-dash full" name="sponsor_amount" />
-                    <span class="small-note">(Amount in Monetary terms...)</span>
+                    <input class='line-dash full' [value]='applyObj!.sponsor_amount' />
+                    <span class='small-note'>(Amount in Monetary terms...)</span>
                 </p>
             </div>
             <!-- SUBMITTED REQUIREMENTS -->
-            <div class="section-box">
-                <div class="section-title">Submitted Requirements</div>
+            <div class='section-box'>
+                <div class='section-title'>Submitted Requirements</div>
 
-                <p><input class="line-dash full" name="requirement1" /></p>
-                <p><input class="line-dash full" name="requirement2" /></p>
-                <p><input class="line-dash full" name="requirement3" /></p>
-                <p><input class="line-dash full" name="requirement4" /></p>
+                <p><input class='line-dash full' [value]='applyObj!.requirement1' /></p>
+                <p><input class='line-dash full' [value]='applyObj!.requirement2' /></p>
+                <p><input class='line-dash full' [value]='applyObj!.requirement3' /></p>
+                <p><input class='line-dash full' [value]='applyObj!.requirement4' /></p>
             </div>
             <!-- FAMILY -->
-            <div class="section-box">
-                <div class="section-title">APPLICANT’S FAMILY</div>
+            <div class='section-box'>
+                <div class='section-title'>APPLICANT’S FAMILY</div>
 
                 <p>
                     How Many Children? :
-                    <input class="line-dash full" name="children_count" />
+                    <input class='line-dash full' [value]='applyObj!.children_count' />
                 </p>
                 <p>
                     Child or Children's Ages :
-                    <input class="line-dash full" name="children_ages" />
+                    <input class='line-dash full' [value]='applyObj!.children_ages' />
                 </p>
                 <p>
                     Spouse’s Name :
-                    <input class="line-dash full" name="spouse_name" />
+                    <input class='line-dash full' [value]='applyObj!.spouse_name' />
                 </p>
                 <p>
                     Spouse’s Occupation :
-                    <input class="line-dash full" name="spouse_occupation" />
+                    <input class='line-dash full' [value]='applyObj!.spouse_occupation' />
                 </p>
                 <p>
                     Spouse’s Birth Date :
-                    <input type="date" class="line-dash full" name="spouse_birthdate" />
+                    <input type='date' class='line-dash full' [value]='applyObj!.spouse_birthdate' />
                 </p>
 
                 <p>
                     Father’s Name :
-                    <input class="line-dash mid" name="father_name" /> Father’s
+                    <input class='line-dash mid' [value]='applyObj!.father_name' /> Father’s
                     Occupation :
-                    <input class="line-dash small" name="father_occupation" />
+                    <input class='line-dash small' [value]='applyObj!.father_occupation' />
                 </p>
 
                 <p>
                     Mother’s Name :
-                    <input class="line-dash mid" name="mother_name" /> Mother’s
+                    <input class='line-dash mid' [value]='applyObj!.mother_name' /> Mother’s
                     Occupation :
-                    <input class="line-dash small" name="mother_occupation" />
+                    <input class='line-dash small' [value]='applyObj!.mother_occupation' />
                 </p>
 
                 <p>
                     Parents’ Address :
-                    <input class="line-dash full" name="parents_address" />
+                    <input class='line-dash full' [value]='applyObj!.parents_address' />
                 </p>
 
                 <p>
                     Parents’ Telephone :
-                    <input class="line-dash mid" name="parents_phone" /> Parents’
+                    <input class='line-dash mid' [value]='applyObj!.parents_phone' /> Parents’
                     Cell phone :
-                    <input class="line-dash small" name="parents_mobile" />
+                    <input class='line-dash small' [value]='applyObj!.parents_mobile' />
                 </p>
 
                 <!-- NEXT OF KIN -->
-                <div class="section-title">NEXT OF KIN</div>
+                <div class='section-title'>NEXT OF KIN</div>
 
                 <p>
                     Name :
-                    <input class="line-dash mid" name="nok_name" /> Relationship to
+                    <input class='line-dash mid' [value]='applyObj!.nok_name' /> Relationship to
                     Applicant :
-                    <input class="line-dash small" name="nok_relationship" />
+                    <input class='line-dash small' [value]='applyObj!.nok_relationship' />
                 </p>
 
                 <p>
-                    Address : <input class="line-dash full" name="nok_address" />
+                    Address : <input class='line-dash full' [value]='applyObj!.nok_address' />
                 </p>
 
                 <p>
                     Telephone :
-                    <input class="line-dash mid" name="nok_phone" /> E-Mail :
-                    <input class="line-dash small" name="nok_email" />
+                    <input class='line-dash mid' [value]='applyObj!.nok_phone' /> E-Mail :
+                    <input class='line-dash small' [value]='applyObj!.nok_email' />
                 </p>
 
                 <!-- BENEFICIARIES -->
-                <div class="section-title">BENEFICIARIES</div>
+                <div class='section-title'>BENEFICIARIES</div>
 
-                <div class="beneficiary">
+                <div class='beneficiary'>
                     <p>
                         1. Name :
-                        <input class="line-dash mid" name="beneficiary1_name" />
+                        <input class='line-dash mid' [value]='applyObj!.beneficiary1_name' />
                         Relationship to Applicant :
-                        <input class="line-dash small" name="beneficiary1_relationship" />
+                        <input class='line-dash small' [value]='applyObj!.beneficiary1_relationship' />
                     </p>
                     <p>
                         Address :
-                        <input class="line-dash mid" name="beneficiary1_address" />
+                        <input class='line-dash mid' [value]='applyObj!.beneficiary1_address' />
                         Telephone :
-                        <input class="line-dash small" name="beneficiary1_phone" />
+                        <input class='line-dash small' [value]='applyObj!.beneficiary1_phone' />
                     </p>
                 </div>
 
-                <div class="beneficiary">
+                <div class='beneficiary'>
                     <p>
                         2. Name :
-                        <input class="line-dash mid" name="beneficiary2_name" />
+                        <input class='line-dash mid' [value]='applyObj!.beneficiary2_name' />
                         Relationship to Applicant :
-                        <input class="line-dash small" name="beneficiary2_relationship" />
+                        <input class='line-dash small' [value]='applyObj!.beneficiary2_relationship' />
                     </p>
                     <p>
                         Address :
-                        <input class="line-dash mid" name="beneficiary2_address" />
+                        <input class='line-dash mid' [value]='applyObj!.beneficiary2_address' />
                         Telephone :
-                        <input class="line-dash small" name="beneficiary2_phone" />
+                        <input class='line-dash small' [value]='applyObj!.beneficiary2_phone' />
                     </p>
                 </div>
 
-                <div class="beneficiary">
+                <div class='beneficiary'>
                     <p>
                         3. Name :
-                        <input class="line-dash mid" name="beneficiary3_name" />
+                        <input class='line-dash mid' [value]='applyObj!.beneficiary3_name' />
                         Relationship to Applicant :
-                        <input class="line-dash small" name="beneficiary3_relationship" />
+                        <input class='line-dash small' [value]='applyObj!.beneficiary3_relationship' />
                     </p>
                     <p>
                         Address :
-                        <input class="line-dash mid" name="beneficiary3_address" />
+                        <input class='line-dash mid' [value]='applyObj!.beneficiary3_address' />
                         Telephone :
-                        <input class="line-dash small" name="beneficiary3_phone" />
+                        <input class='line-dash small' [value]='applyObj!.beneficiary3_phone' />
                     </p>
                 </div>
             </div>
