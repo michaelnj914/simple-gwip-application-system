@@ -20,6 +20,8 @@ export class UsersComponent {
   errorMessage: string = ''; // Variable to hold error messages
 
   ngOnInit() {
+    //Make sure the users management button is not visible
+    this.sharedService.userButtonIsVisible.set(false);
     // This is where you can initialize any data or perform any setup when the component is loaded
     this.getusersList(); // Load the list of users when the component is initialized
   }

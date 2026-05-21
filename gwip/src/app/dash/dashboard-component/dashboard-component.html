@@ -2,19 +2,17 @@
 
     <!-- Dashboard -->
     <div id="adminSection" class="dashboard-box">
-        <h1 style='margin:0;'>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
-        <h2 style='margin:0; font-size: 27px; color: #2c3e50;text-align:center;'>Applications Dashboard</h2>
-        <hr style='margin: 0;'>
-
+        <div>
+            <h1 style='margin:0;'>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
+            <h2 style='margin:0; font-size: 27px; color: #2c3e50;text-align:center;'>Applications Dashboard</h2>
+            <hr style='margin: 0;'>
+        </div>
         <div class='user-info'>
             <div>
-                @if(isAdmin){ <!--Display the button based on if the user is Admin-->
-                @if(sharedService.userButtonIsVisible()){
+                @if(isAdmin && sharedService.userButtonIsVisible()) { <!--Display the button based on if the user is Admin-->
                 <button id='manageUsersButton' style='background: #085722;color: #fff;' (click)='openUserEncoding()'>
                     Manage Users
                 </button>
-                }
-                
                 }
             </div>
             <div style='display:grid;grid-template-columns:1fr auto auto;gap:6px;'>
@@ -23,7 +21,8 @@
                     <span>{{userFirstName}}</span> &nbsp; <span>{{userLastName}}</span><br>
                     <span style='color:brown'>{{designation}}</span>
                 </div>
-                <div style='text-align: right;padding-top:2px;'> <button id="btnLogout" (click)='logout()'>logout</button></div>
+                <div style='text-align: right;padding-top:2px;'> <button id="btnLogout"
+                        (click)='logout()'>logout</button></div>
             </div>
         </div>
 

@@ -41,8 +41,8 @@ export class ApplicationComponent {
   //==============================================================================================================
 
   ngOnInit() {
-
-
+    //Make sure the users management button is not visible
+    this.sharedService.userButtonIsVisible.set(false);
     window.scrollTo(0, 0); // Scroll to the top of the page when the component is initialized
     this.imgPreview = document.getElementById('img-preview') as HTMLImageElement; //used for photo preview
     if ((this.route.snapshot.params['id'])) {
