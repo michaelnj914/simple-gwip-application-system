@@ -74,7 +74,7 @@ export class SharedService {
    * Check if the logged-in user is an admin
    * @returns boolean If the logged-in user is an admin it returns true, otherwise it returns false
    */
-  userIsAdmin(): boolean {
+  thisUserIsAdmin(): boolean {
     const user = localStorage.getItem('loggedInUser');
     if (user!==null) {
       const loggedInUser = JSON.parse(user);

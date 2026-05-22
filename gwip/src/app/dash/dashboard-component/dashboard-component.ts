@@ -11,7 +11,7 @@ import { SharedService } from '../../shared-service';
 export class DashboardComponent {
   router = inject(Router);
   sharedService = inject(SharedService);
-  isAdmin = this.sharedService.userIsAdmin();
+  isAdmin = this.sharedService.thisUserIsAdmin();
 
   userLastName = '';
   userFirstName = '';

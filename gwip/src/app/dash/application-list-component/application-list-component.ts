@@ -19,7 +19,7 @@ export class ApplicationListComponent {
   errorMessage: string = ''; // Variable to hold error messages
   photoURL = 'api/uploads/'; // Base URL for application photos
 
-  isAdmin = this.sharedService.userIsAdmin();
+  isAdmin = this.sharedService.thisUserIsAdmin();
 
 
   async ngOnInit() {
@@ -94,11 +94,10 @@ export class ApplicationListComponent {
 
     if (filteredList.length > 0) {
       //something was found
-      // renderTable(filteredList); //render the result into the table
+    
       return true;
     } else {
-      //render empty array
-      // renderTable([]);
+     
       return false;
     }
   }
@@ -120,11 +119,10 @@ export class ApplicationListComponent {
 
     if (filteredList.length > 0) {
       //something was found
-      // renderTable(filteredList); //render the result into the table
+      
       return true;
     } else {
-      //render an empty array
-      //renderTable([]);
+      
       return false;
     }
   }

@@ -26,12 +26,6 @@ export class UsersComponent {
     this.getusersList(); // Load the list of users when the component is initialized
   }
 
-  afterViewInit() {
-    // const frm: any = document.getElementById('userFrm');
-    // if (frm) {
-    //   frm.value.role = ''; // clear the Role dropdowna
-    // }
-  } 
 
   async getusersList() {
     const data = await this.sharedService.callAPI('users_service.php', 'get-users', null);
@@ -46,9 +40,7 @@ export class UsersComponent {
 
 
   async createUser(userFrm: any) {
-   // console.log('Creating user with data:', userFrm);
-   // let formData = new FormData();
-   // formData = userFrm; //We can directly use the form data as FormData for our API call, no need to manually append each field.
+ 
     try {
       //We use await here because we want to wait for the response before proceeding. 
       // This allows us to handle the response in a more linear and readable way.
