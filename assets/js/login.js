@@ -30,7 +30,7 @@ if (btnLogin) {
 
     // Custom header used by the API to determine the command (login)
     const myHeaders = {
-      "api-command": "login",
+      "apicommand": "login",
     };
     
     // Send a POST request to the API with the login data

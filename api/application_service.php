@@ -3,9 +3,9 @@
 // Start or resume session to store user data
 session_start();
 
-// ini_set('display_errors', '1');  //REMOVE the comment during development
-if (isset($_SERVER['HTTP_API_COMMAND'])) {
-    $api = $_SERVER['HTTP_API_COMMAND']; //get the API command
+ini_set('display_errors', '1');  //REMOVE the comment during development
+if (isset($_SERVER['HTTP_APICOMMAND'])) {
+    $api = $_SERVER['HTTP_APICOMMAND']; //get the API command
 
     //Check our API command and route to the appropriate functions
     if ($api == 'create-application') {
@@ -29,7 +29,6 @@ if (isset($_SERVER['HTTP_API_COMMAND'])) {
             delete_application($applyID);
         }
     }
-
   
     // Check if the admin session is NOT set (user is not logged in)
     if (!isset($_SESSION['admin'])) {

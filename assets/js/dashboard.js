@@ -82,7 +82,7 @@ function closeUserdialog() {
 
 async function getUsersList() {
   const myHeaders = {
-    'api-command': 'get-users'
+    'apicommand': 'get-users'
   };
   const response = await fetch('api/users_service.php', { method: 'POST', headers: myHeaders });
   const data = await response.json();
@@ -136,7 +136,7 @@ async function deleteUser(userId) {
 
 async function getApplicationList() {
   const myHeaders = {
-    'api-command': 'get-application-list'
+    'apicommand': 'get-application-list'
   }
   const response = await fetch('api/application_service.php', { method: 'POST', headers: myHeaders });
   const data = await response.json();
@@ -261,7 +261,7 @@ async function deleteApplication(applyId) {
   }
   // prepare to make the request to the server
   const myHeaders = {
-    'api-command': 'delete-application'
+    'apicommand': 'delete-application'
   };
   const formData = new FormData();
   formData.append('id', applyId);
@@ -308,7 +308,7 @@ async function getOneApplication(applyId, event) {
   }
   // prepare to make the request to the server
   const myHeaders = {
-    'api-command': 'get-one-application'
+    'apicommand': 'get-one-application'
   };
   const formData = new FormData();
   formData.append('id', applyId);

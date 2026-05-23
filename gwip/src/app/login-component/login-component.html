@@ -1,0 +1,20 @@
+
+<form #loginForm='ngForm' (ngSubmit)='doLogin(loginForm.value)'>
+    <div class='dashboard-wrapper' >
+        <!-- LOGIN -->
+        <div id='loginSection' class='login-box' animate.enter ='slideInFromLeft'>
+            <h1>GOD'S WILL INTERNATIONAL PLACEMENT, INC</h1>
+            <p class='subtitle'>Medical Professionals Application Form</p>
+
+            <h2>Admin Login</h2>
+            @if(errorMessage().length > 0){
+            <div animate.enter='slideInFromLeft' animate.leave='fadeOut' style='color:red;padding:5px;'>{{errorMessage()}}</div>
+            }
+            <input id='username' placeholder='Username' name='username' [(ngModel)]='loginForm.value.username'  required />
+            <input id='password' type='password' placeholder='Password' name='password' [(ngModel)]='loginForm.value.password' required />
+
+            <button type='submit' class='btnlogin' id='btnLogin' [disabled]='loginForm.invalid'>LOGIN</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a [routerLink]='["/home"]' class='btnlogin'>Go to Home Page</a>
+        </div>
+    </div>
+</form>

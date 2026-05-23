@@ -15,7 +15,7 @@ if (btnLogout) {
     const response = await fetch("api/users_service.php", {
       method: "POST",
       headers: {
-        "API-COMMAND": "logout", // Custom header telling the API to run the logout command
+        "APICOMMAND": "logout", // Custom header telling the API to run the logout command
       },
     });
 

@@ -1,0 +1,152 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #749ad3;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+}
+.overlay{    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.loader{
+    position: fixed;
+    width:auto;
+    padding:10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color:white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    }
+
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.display-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+
+    th {
+        background-color: #03172b;
+        color: #fff;
+        border: 1px solid #fff;
+        font-size: .8rem;
+        padding: 4px;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e5e5e5;
+    }
+
+    tr {
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    tr:hover {
+        background-color: #bfe1f1;
+        transition: background-color 0.1s ease-in-out;
+    }
+
+    tr td {
+        padding: 10px;
+        font-size: .8rem;
+        border: 1px solid #bbbbbb;
+    }
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+//FORM VALIDATION -- If a required input or select is touched but not filled(valid) show red border
+select,
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+//ANIMATIONS======================
+@keyframes scaleInOut {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scaleIn {
+    animation: scaleInOut .3s ease-in-out;
+}
+
+.scaleOut {
+    animation: scaleInOut .2s ease-in-out reverse;
+}
+
+//===============================
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeInOut .5s ease-in-out;
+}
+
+.fadeOut {
+    animation: fadeInOut .2s ease-in-out reverse;
+}
+
+//===============================
+@keyframes slideHorizontalLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slideInFromLeft {
+    animation: slideHorizontalLeft .3s ease-in;
+}
+
+.slideOutToLeft {
+    animation: slideHorizontalLeft .2s ease-in reverse;
+}
+
+//============ END OF ANIMATIONS ===================

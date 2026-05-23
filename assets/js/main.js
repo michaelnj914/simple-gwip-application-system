@@ -27,7 +27,7 @@ document.getElementById("applicationForm").addEventListener("submit", async func
   formData.append('filedate', new Date().toLocaleDateString('en-CA')); //<== UNCOMMENT THIS LINE TO USE THIS FEATURE
 
   const myHeaders = {
-    'api-command': 'create-application'
+    'apicommand': 'create-application'
   };
 
   const response = await fetch(myform.action, { method: myform.method, body: formData, headers: myHeaders });
@@ -104,7 +104,7 @@ function doPhotoUpload(recordID, photo) {
     const command = 'upload-photo'; //this will be read on the server to route to the appropriate function
     //add an http header
     myHeaders = {
-      'api-command': command
+      'apicommand': command
     };
     formData.append('photofile', photo, photo.name); //the bytes that make up the photo
     formData.append('id', recordID); // id of the application in the database

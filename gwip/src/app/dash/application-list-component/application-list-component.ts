@@ -1,0 +1,131 @@
+import { Component, inject, signal } from '@angular/core';
+import { SharedService } from '../../shared-service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { apply } from '@angular/forms/signals';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-application-list-component',
+  imports: [FormsModule, CommonModule],
+  templateUrl: './application-list-component.html',
+  styleUrl: './application-list-component.scss',
+})
+export class ApplicationListComponent {
+  router = inject(Router);
+  sharedService = inject(SharedService);
+  applications = signal<any[]>([]); // Array to hold the list of applications
+
+  errorMessage: string = ''; // Variable to hold error messages
+  photoURL = 'api/uploads/'; // Base URL for application photos
+
+  isAdmin = this.sharedService.thisUserIsAdmin();
+
+
+  async ngOnInit() {
+    //load the list of applications when the component is initialized
+    await this.loadApplicationsList();
+  }
+
+  async loadApplicationsList() {
+    const data = await this.sharedService.callAPI('application_service.php', 'get-application-list', null);
+    if (data.success) {
+      this.applications.set(data.result); // Set the applications array = data.result;
+    //sort by id in descending order so that the latest application will be at the top of the list
+      this.applications.set(this.applications().sort((a, b) => b.id - a.id));
+    } else {
+      this.errorMessage = data.message;
+      console.error('Failed to load applications:', data.message);
+    }
+    return;
+  }
+
+   openOneApplication(applyId: number) {
+   this.sharedService.userButtonIsVisible.set(false);
+    const obj = { id: applyId };
+    
+    this.router.navigate(['/dashboard/application', applyId, false]);
+  
+  return;
+  }
+
+  //==================================================================
+  /**
+   * This function will delete an application
+   * @param {*} applyId 
+   */
+  async deleteApplication(applyId: number) {
+    //first confirm the deletion
+    if (confirm('Are you sure you want to delete this application?') === false) {
+      return false; //user cancelled
+    }
+    // prepare to make the request to the server
+    const obj = { id: applyId }; //We can directly use an object here, the callAPI method will convert it to FormData internally. = new FormData();
+   
+    try {
+      // make the request
+      const data = await this.sharedService.callAPI('application_service.php', 'delete-application', obj);
+
+      if (data.success) { //if the application was deleted successfully
+        //reload the application list
+        await this.loadApplicationsList();
+      }
+    } catch (error) {
+      console.log('Error occured while deleting application: ', error);
+    }
+    return;
+  }
+
+  //SEARCH FUNCTIONS ==================================================================
+  /**
+   * Search for applications by applicant's name. Will search by first name or last name
+   * @param {*} event 
+   * @returns true if data is found, false if not
+   */
+  searchByName(event: any) {
+    const searchString = event.target.value; //extract our search string from the event
+    if (searchString === '') { //if the search string is empty
+      return false; //quit
+    }
+    //filter the list of applications by the incoming value. We will search by first name and last name
+    //return any item where lastname or firstname contains the search string
+    const filteredList = this.applications().filter(item => item.firstName.toLowerCase().includes(searchString.toLowerCase())
+      || item.lastName.toLowerCase().includes(searchString.toLowerCase()));
+
+    if (filteredList.length > 0) {
+      //something was found
+    
+      return true;
+    } else {
+     
+      return false;
+    }
+  }
+
+  /**
+   * This function will search for applications by job category. If  the database job category starts with the search string
+   * @param {*} event onKeyUp event, the search string has been entered
+   * @returns true if data is found, false if not
+   */
+  searchByJobCategory(event: any) {
+    const searchString = event.target.value; //extract our search string
+    if (searchString === '') { //if the search string is empty
+      //  renderTable(dataArray);// render the full list
+      return false; //quit
+    }
+    //filter the list of applications by the incoming value. We will search by job_category
+    //return any item where job_category begins with the search string
+    const filteredList = this.applications().filter(item => item.applyFor.toLowerCase().startsWith(searchString.toLowerCase()));
+
+    if (filteredList.length > 0) {
+      //something was found
+      
+      return true;
+    } else {
+      
+      return false;
+    }
+  }
+
+
+}
