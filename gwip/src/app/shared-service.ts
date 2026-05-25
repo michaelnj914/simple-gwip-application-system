@@ -15,7 +15,7 @@ export class SharedService {
   isCallingAPI = signal<boolean>(false); // Signal to indicate if an API call is in progress.
   //This is accessible from any component that injects this SharedService, so you can use it to show a loading spinner or disable buttons while an API call is in progress.
 
-  baseUrl = 'api/'; //relates to our backend API url
+  baseUrl = '../api/'; //relates to our backend API url
   /**
    * This function calls the backend and returns a Promise.
    * @param url Backend endpoint
