@@ -1,7 +1,7 @@
 
 {
-  "../api/":{
-    "target": "http://localhost:8080/mike_nworji/api/",
+  "/api/":{
+    "target": "http://localhost:8080/mike_nworji/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
