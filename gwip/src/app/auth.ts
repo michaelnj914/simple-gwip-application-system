@@ -13,10 +13,9 @@ export class Auth { // This is a route guard to protect the dashboard route and 
         }
         //convert the stringified JSON object back to a JavaScript object
         const loggedInUser = JSON.parse(usr);
-        if (+loggedInUser.role === 1) {  //only admin can access the dashboard and users page
+        if (+loggedInUser.role === 1 || +loggedInUser.role === 2 || +loggedInUser.role === 3) {  //only admin can access the dashboard and users page
             return true;
         } else {
-
             return false;
         }
     }
