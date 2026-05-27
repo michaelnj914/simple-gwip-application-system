@@ -59,7 +59,7 @@ async function createUser() {
   const userFrm = document.getElementById("user-form");
   const formData = new FormData(userFrm);
   const myHeaders = {
-    'api-command': 'create-user'
+    'apicommand': 'create-user'
   };
   const response = await fetch('api/users_service.php', { method: 'POST', body: formData, headers: myHeaders });
   const data = await response.json();
@@ -120,7 +120,7 @@ function renderUsersTable(users) {
 async function deleteUser(userId) {
   if (confirm('Are you sure you want to delete this user?') === false) { return; }  
   const myHeaders = {
-    'api-command': 'delete-user'
+    'apicommand': 'delete-user'
   };
   const formData = new FormData();
   formData.append('id', userId);
